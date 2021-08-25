@@ -1,7 +1,7 @@
 package com.gin_arai_dee;
 
 public class Comment {
-//    private User user;
+    private User user;
     private final String text;
     private final Integer wordCount;
     private Integer voteCount;
@@ -14,7 +14,8 @@ public class Comment {
         this.MAX_WORD_COUNT = 100;
     }
 
-    public Comment(String text, Integer wordCount, Integer voteCount) {
+    public Comment(User user, String text, Integer wordCount, Integer voteCount) {
+        this.user = user;
         this.text = text;
         this.wordCount = wordCount;
         this.voteCount = voteCount;
