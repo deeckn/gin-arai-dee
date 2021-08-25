@@ -1,15 +1,24 @@
 package com.gin_arai_dee;
 
 public class User {
-    private final int id, age, weight, height;
-    private int passwordHash;
-    private final String firstName, lastName, email, username, password;
-    private String encryptedPassword;
+    private final int age;
+    private final float weight, height;
     private final char gender;
+    private final String username;
+
+    private int id;
+    private int passwordHash;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private String encryptedPassword;
+
     // private UserHistory userHistory;
     // private UserFavorites favoriteFoods;
 
-    public User(int id, int age, int weight, int height, String firstName, String lastName,
+    // Constructor for user data retrieval from database
+    public User(int id, int age, float weight, float height, String firstName, String lastName,
                 String email, String username, String password, char gender,
                 String userHistory, String favoriteFoods) {
         this.id = id;
@@ -26,10 +35,19 @@ public class User {
         calculatePasswordHash();
     }
 
+    // Constructor for Dietary Calculations
+    public User(int age, float weight, float height, String username, char gender) {
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.username = username;
+        this.gender = gender;
+    }
+
     public int getId() { return id; }
     public int getAge() { return age; }
-    public int getWeight() { return weight; }
-    public int getHeight() { return height; }
+    public float getWeight() { return weight; }
+    public float getHeight() { return height; }
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }
     public String getEmail() { return email; }
@@ -67,4 +85,9 @@ public class User {
 //        retrieveUserHistory();
 //        retrieveFavoriteFoods();
 //    }
+//
+//    private void saveData() {
+//
+//    }
+
 }
