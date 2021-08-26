@@ -13,8 +13,7 @@ public class User {
     private String email;
     private String password;
     private String encryptedPassword;
-
-    // private UserHistory userHistory;
+    private UserHistory userHistory;
     // private UserFavorites favoriteFoods;
 
     // Constructor for user data retrieval from database
@@ -73,21 +72,20 @@ public class User {
         passwordHash = sum;
     }
 
-//    private void retrieveUserHistory() {
-//
-//    }
-//
-//    private void retrieveFavoriteFoods() {
-//
-//    }
-//
-//    private void loadData() {
-//        retrieveUserHistory();
-//        retrieveFavoriteFoods();
-//    }
-//
-//    private void saveData() {
-//
-//    }
+    private void retrieveUserHistory() {
+        // Loads history from Database
+    }
 
+    private void retrieveFavoriteFoods() {
+        // Loads favorite foods from Database
+    }
+
+    private void loadData() {
+        retrieveUserHistory();
+        retrieveFavoriteFoods();
+    }
+
+    private void saveData() {
+        // Saves current data to Database
+    }
 }
