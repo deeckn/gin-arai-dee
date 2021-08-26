@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class UserHistory {
     private final String tableName;
-//    private ArrayList<Recipe> recipeBlogs;
+    private ArrayList<Recipe> recipeBlogs;
 
     UserHistory(String tableName) {
         this.tableName = tableName;
