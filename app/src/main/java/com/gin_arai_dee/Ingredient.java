@@ -5,7 +5,8 @@ public class Ingredient
     private String ingredientName;
     private float amount;
     private String unit;
-    public Ingredient(String ingredientName,float amount,String unit){
+
+    public Ingredient(String ingredientName, float amount, String unit){
         this.ingredientName = ingredientName;
         this.amount = amount;
         this.unit = unit;
