@@ -63,6 +63,17 @@ public class Food {
         }
     }
 
+    public ArrayList<String> findImagePath(){
+        ArrayList<String> bufferImagePath = new ArrayList<String>();
+        try{
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return bufferImagePath;
+    }
+
     public int getID(){
         return iD;
     }
