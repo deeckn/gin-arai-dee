@@ -19,7 +19,11 @@ public class Food {
         this.category = new ArrayList<String>();
         this.national = new ArrayList<String>();
     }
-    //Food(int iD){ DataBase    }
+
+/*    Food(int iD) {
+        loadFoodFromID(iD);
+
+    }*/
 
     Food(int iD,String name,int kCal){
         this.iD = iD;
@@ -30,14 +34,14 @@ public class Food {
         this.national = new ArrayList<String>();
     }
 
-    Food(int iD,String name,int kCal,String description){
+/*    Food(int iD,String name,int kCal,String description){
         this.iD = iD;
         this.name = name;
         this.kCal = kCal;
         this.description = description;
         this.category = new ArrayList<>();
         this.national = new ArrayList<String>();
-    }
+    }*/
 
     private void loadFoodFromID(int iD){
         //DataBase
