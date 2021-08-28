@@ -7,12 +7,10 @@ public class User {
     private final String username;
 
     private int id;
-    private int passwordHash;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private String encryptedPassword;
     private UserHistory userHistory;
     // private UserFavorites favoriteFoods;
 
@@ -30,8 +28,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.gender = gender;
-        encryptPassword();
-        calculatePasswordHash();
     }
 
     // Constructor for Dietary Calculations
@@ -52,25 +48,12 @@ public class User {
     public String getEmail() { return email; }
     public String getUsername() { return username; }
     public String getPassword() { return password; }
-    public String getEncryptedPassword() { return encryptedPassword; }
-    public int getPasswordHash() { return passwordHash; }
     public char getGender() { return gender; }
 
     public boolean isUsername(String username) {
         return this.username.equals(username);
     }
 
-    private void encryptPassword() {
-        StringBuilder result = new StringBuilder();
-        for (int c : password.toCharArray()) result.append((char)((c % 83) + 33));
-        encryptedPassword = result.toString();
-    }
-
-    private void calculatePasswordHash() {
-        int sum = 0;
-        for (int c : password.toCharArray()) sum += c;
-        passwordHash = sum;
-    }
 
     private void retrieveUserHistory() {
         // Loads history from Database
