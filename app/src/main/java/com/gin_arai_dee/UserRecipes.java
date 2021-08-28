@@ -2,11 +2,11 @@ package com.gin_arai_dee;
 
 import java.util.ArrayList;
 
-public class UserHistory {
+public class UserRecipes {
     private final String tableName;
     private ArrayList<Recipe> recipeBlogs;
 
-    UserHistory(String tableName) {
+    UserRecipes(String tableName) {
         this.tableName = tableName;
     }
 
