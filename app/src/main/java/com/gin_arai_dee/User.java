@@ -1,59 +1,74 @@
 package com.gin_arai_dee;
 
 public class User {
-    private final int age;
+    private final int userId, age;
     private final float weight, height;
-    private final char gender;
-    private final String username;
-
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private UserHistory userHistory;
+    private final String username, firstName, lastName, gender, email, password;
+    private final String recipeString, favoritesString;
+    private UserRecipes userRecipes;
     // private UserFavorites favoriteFoods;
 
     // Constructor for user data retrieval from database
-    public User(int id, int age, float weight, float height, String firstName, String lastName,
-                String email, String username, String password, char gender,
-                String userHistory, String favoriteFoods) {
-        this.id = id;
+    public User(int userId, int age, float weight, float height, String gender,
+                String username, String firstName, String lastName, String email,
+                String password, String recipeString, String favoritesString) {
+        this.userId = userId;
         this.age = age;
         this.weight = weight;
         this.height = height;
+        this.gender = gender;
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.username = username;
         this.password = password;
-        this.gender = gender;
+        this.recipeString = recipeString;
+        this.favoritesString = favoritesString;
     }
 
-    // Constructor for Dietary Calculations
-    public User(int age, float weight, float height, String username, char gender) {
-        this.age = age;
-        this.weight = weight;
-        this.height = height;
-        this.username = username;
-        this.gender = gender;
+    public int getId() {
+        return userId;
     }
 
-    public int getId() { return id; }
-    public int getAge() { return age; }
-    public float getWeight() { return weight; }
-    public float getHeight() { return height; }
-    public String getFirstName() { return firstName; }
-    public String getLastName() { return lastName; }
-    public String getEmail() { return email; }
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
-    public char getGender() { return gender; }
+    public int getAge() {
+        return age;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getGender() {
+        return gender;
+    }
 
     public boolean isUsername(String username) {
         return this.username.equals(username);
     }
-
 
     private void retrieveUserHistory() {
         // Loads history from Database
