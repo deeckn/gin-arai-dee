@@ -33,10 +33,10 @@ public class Recipe
     }
 
     private void loadIngredients() {
-        //Database
+        // Database
     }
 
     private void loadComments() {
-        //Database
+        // Database
     }
 }

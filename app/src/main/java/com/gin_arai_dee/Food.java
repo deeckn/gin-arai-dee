@@ -11,7 +11,7 @@ public class Food {
     private final ArrayList<String> category;
     private final ArrayList<String> national;
 
-    Food(){
+    Food() {
         this.iD = 9999;
         this.name = "No Item";
         this.kCal = 0;
@@ -25,7 +25,7 @@ public class Food {
 
     }*/
 
-    Food(int iD,String name,int kCal){
+    Food(int iD, String name, int kCal) {
         this.iD = iD;
         this.name = name;
         this.kCal = kCal;
@@ -47,30 +47,27 @@ public class Food {
         // DataBase
     }
 
-    private void setCategory(String category){
+    private void setCategory(String category) {
         try {
             this.category.addAll(Arrays.asList(category.split("/")));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void setNational(String national){
+    private void setNational(String national) {
         try {
             this.national.addAll(Arrays.asList(national.split("/")));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public ArrayList<String> findImagePath(){
+    public ArrayList<String> findImagePath() {
         ArrayList<String> bufferImagePath = new ArrayList<String>();
         try {
             ;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
