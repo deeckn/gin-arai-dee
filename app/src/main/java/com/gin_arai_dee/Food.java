@@ -1,5 +1,7 @@
 package com.gin_arai_dee;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -90,6 +92,7 @@ public class Food {
         return description;
     }
 
+    @NonNull
     public String toString() {
         return iD + "_" + name;
     }
