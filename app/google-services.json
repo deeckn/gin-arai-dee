@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "607273964871",
+    "project_id": "gin-arai-dee",
+    "storage_bucket": "gin-arai-dee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607273964871:android:40b5f2e5813174cf34a862",
+        "android_client_info": {
+          "package_name": "com.gin_arai_dee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "607273964871-kjbb1247et72dhe5g4dn60d0hqbl9cmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB50072f9YUSUjhkLBoaYToIt19cp5ssSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "607273964871-kjbb1247et72dhe5g4dn60d0hqbl9cmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
