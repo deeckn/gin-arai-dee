@@ -8,8 +8,8 @@ public class Food {
     private final int kCal;
     private final String name;
     private final String description;
-    private ArrayList<String> category;
-    private ArrayList<String> national;
+    private final ArrayList<String> category;
+    private final ArrayList<String> national;
 
     Food(){
         this.iD = 9999;
@@ -43,38 +43,41 @@ public class Food {
         this.national = new ArrayList<String>();
     }*/
 
-    private void loadFoodFromID(int iD){
-        //DataBase
+    private void loadFoodFromID(int iD) {
+        // DataBase
     }
 
     private void setCategory(String category){
-        try{
+        try {
             this.category.addAll(Arrays.asList(category.split("/")));
-        }catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void setNational(String national){
-        try{
+        try {
             this.national.addAll(Arrays.asList(national.split("/")));
-        }catch (Exception e){
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public ArrayList<String> findImagePath(){
         ArrayList<String> bufferImagePath = new ArrayList<String>();
-        try{
-
-        }catch (Exception e){
+        try {
+            ;
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
 
         return bufferImagePath;
     }
 
-    public int getID(){
+    public int getID() {
         return iD;
     }
 
@@ -82,16 +85,15 @@ public class Food {
         return kCal;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
-    public String toString(){
+    public String toString() {
         return iD + "_" + name;
     }
-
 }
