@@ -22,6 +22,11 @@ public class Comment {
         this.MAX_WORD_COUNT = 100;
     }
 
+    public User getUser() { return user; }
+    public String getText() { return text; }
+    public Integer getWordCount() { return wordCount; }
+    public Integer getVoteCount() { return voteCount; }
+
     public boolean isValid() { return wordCount <= MAX_WORD_COUNT; }
 
 //    public void uploadComment() {
