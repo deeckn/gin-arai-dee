@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Gin Arai Dee Theme Colors -->
+    <color name="snow">#FFF9F8</color>
+    <color name="champagne_pink">#F7E6D9</color>
+    <color name="middle_red_purple">#A24848</color>
+    <color name="wine">#642428</color>
+    <color name="eerie_black">#1A1A1A</color>
+    <color name="cadet_blue">#58A4A7</color>
+
 </resources>
