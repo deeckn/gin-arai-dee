@@ -7,9 +7,9 @@
         <item name="colorOnPrimary">@color/champagne_pink</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/cadet_blue</item>
+        <item name="colorSecondary">@color/charcoal</item>
         <item name="colorSecondaryVariant">@color/eerie_black</item>
-        <item name="colorOnSecondary">@color/snow</item>
+        <item name="colorOnSecondary">@color/ghost_white</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
