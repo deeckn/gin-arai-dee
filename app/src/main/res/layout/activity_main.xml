@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/middle_red_purple">
+    android:background="@drawable/login_page_bg"
+    android:layout_gravity="top"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/appNameTitle"
@@ -13,15 +14,15 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/app_name_capital"
-        android:textColor="@color/champagne_pink"
+        android:textColor="@color/ghost_white"
 
         android:textSize="52sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.078" />
 
     <TextView
         android:id="@+id/featureList"
@@ -30,28 +31,29 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/featureSets"
         android:textAlignment="textEnd"
-        android:textColor="@color/champagne_pink"
+        android:textColor="@color/ghost_white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintHorizontal_bias="0.906"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintVertical_bias="0.086" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="130dp"
         android:layout_height="50dp"
-        android:layout_marginStart="48dp"
-        android:background="@drawable/round_button_cadet_blue"
+        android:background="@drawable/round_button_max_yellow_red"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/login_text"
-        android:textColor="@color/eerie_black"
+        android:textColor="@color/wine"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.928"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69"
+        app:layout_constraintVertical_bias="0.258"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -61,12 +63,12 @@
         android:background="@drawable/round_button_champagne_pink"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/guest_button_text"
-        android:textColor="@color/eerie_black"
+        android:textColor="@color/wine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
-        app:layout_constraintStart_toEndOf="@+id/loginButton"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.353" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
