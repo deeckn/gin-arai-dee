@@ -3,6 +3,6 @@
     <string name="app_name">Gin Arai Dee</string>
     <string name="app_name_capital">GIN\nARAI\nDEE</string>
     <string name="login_text">Log in</string>
-    <string name="guest_button_text">Log in as Guest</string>
-    <string name="featureSets">Food Recommendation\nRecipe Sharing\nDietary Planner\nBill splitter</string>
+    <string name="guest_button_text">Guest Log in</string>
+    <string name="featureSets">Food Recommendation\nRecipe Sharing\nDietary Planner\nBill Splitter</string>
 </resources>
