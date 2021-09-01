@@ -1,4 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Gin Arai Dee</string>
-    <string name="app_name_capital">GIN ARAI DEE</string>
+    <string name="app_name_capital">GIN\nARAI\nDEE</string>
+    <string name="login_text">Log in</string>
+    <string name="guest_button_text">Log in as Guest</string>
+    <string name="featureSets">Food Recommendation\nRecipe Sharing\nDietary Planner\nBill splitter</string>
 </resources>
