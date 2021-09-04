@@ -5,4 +5,5 @@
     <string name="login_text">Log in</string>
     <string name="guest_button_text">Guest Log in</string>
     <string name="featureSets">Food Recommendation\nRecipe Sharing\nDietary Planner\nBill Splitter</string>
+    <string name="login_bg_description">Log in background photo</string>
 </resources>
