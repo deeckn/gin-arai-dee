@@ -2,17 +2,17 @@
     <!-- Base application theme. -->
     <style name="Theme.GinAraiDee" parent="Theme.AppCompat.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/middle_red_purple</item>
+        <item name="colorPrimary">@color/charcoal</item>
         <item name="colorPrimaryVariant">@color/wine</item>
-        <item name="colorOnPrimary">@color/champagne_pink</item>
+        <item name="colorOnPrimary">@color/ghost_white</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/charcoal</item>
-        <item name="colorSecondaryVariant">@color/eerie_black</item>
-        <item name="colorOnSecondary">@color/ghost_white</item>
+        <item name="colorSecondary">@color/wine</item>
+        <item name="colorSecondaryVariant">@color/middle_red_purple</item>
+        <item name="colorOnSecondary">@color/eerie_black</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
