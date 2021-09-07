@@ -46,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/maximum_yellow_red"
         app:itemBackground="@color/maximum_yellow_red"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
@@ -53,5 +54,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/menu_navigation"
+        app:labelVisibilityMode="unlabeled"/>
 </RelativeLayout>
