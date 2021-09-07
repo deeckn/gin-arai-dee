@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Gin Arai Dee</string>
-    <string name="app_name_capital">GIN\nARAI\nDEE</string>
+    <string name="app_name_capital_multiline">GIN\nARAI\nDEE</string>
+    <string name="app_name_capital">GIN ARAI DEE</string>
     <string name="login_text">Log in</string>
     <string name="guest_button_text">Guest Log in</string>
     <string name="featureSets">Food Recommendation\nRecipe Sharing\nDietary Planner\nBill Splitter</string>
     <string name="login_bg_description">Log in background photo</string>
+    <string name="home_page">Home Page</string>
+    <string name="food">Food</string>
+    <string name="browse_recipes">Browse Recipes</string>
+    <string name="dietary_planner">Dietary Planner</string>
 </resources>
