@@ -21,20 +21,20 @@ public class FoodPage extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.dock_navigation);
         bottomNavigationView.setSelectedItemId(R.id.food_page);
 
-        bottomNavigationView.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
-            @SuppressLint("NonConstantResourceId")
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home_page:
                         startActivity(new Intent(getApplicationContext(), HomePage.class));
                         overridePendingTransition(0, 0);
-                        return;
+                        return true;
                     case R.id.food_page:
-                        return;
+                        break;
                     default:
                         System.out.println("Not Implemented");
                 }
+                return false;
             }
         });
     }
