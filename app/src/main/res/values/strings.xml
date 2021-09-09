@@ -12,4 +12,10 @@
     <string name="browse_recipes">Browse Recipes</string>
     <string name="dietary_planner">Dietary Planner</string>
     <string name="search">Search</string>
+    <string name="choose_category">Choose Category</string>
+    <string name="main_dish">Main Dish</string>
+    <string name="appetizers">Appetizers</string>
+    <string name="snacks">Snacks</string>
+    <string name="desserts">Desserts</string>
+    <string name="beverages">Beverages</string>
 </resources>

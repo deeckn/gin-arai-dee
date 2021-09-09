@@ -59,7 +59,7 @@
         android:id="@+id/loginButton"
         android:layout_width="130dp"
         android:layout_height="50dp"
-        android:background="@drawable/round_button_max_yellow_red"
+        android:background="@drawable/round_button_yellow"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/login_text"
         android:textColor="@color/wine"
