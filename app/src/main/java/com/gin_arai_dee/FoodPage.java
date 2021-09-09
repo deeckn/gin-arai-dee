@@ -36,15 +36,17 @@ public class FoodPage extends AppCompatActivity {
         // Navigation Bar Settings
         bottomNavigationView.setSelectedItemId(R.id.food_page);
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.home_page:
-                    startActivity(new Intent(getApplicationContext(), HomePage.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-                case R.id.food_page:
-                    break;
-                default:
-                    System.out.println("Not Implemented");
+            int currentItem = item.getItemId();
+            if (currentItem == R.id.home_page) {
+                startActivity(new Intent(getApplicationContext(), HomePage.class));
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            else if (currentItem == R.id.food_page) {
+                return true;
+            }
+            else {
+                System.out.println("Not implemented");
             }
             return false;
         });
