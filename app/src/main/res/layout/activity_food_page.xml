@@ -7,55 +7,95 @@
     android:background="@color/ghost_white"
     tools:context=".HomePage">
 
-
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/scroll_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <GridLayout
+            android:id="@+id/main_grid_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="120dp">
+            android:rowCount="2"
+            android:columnCount="3">
 
             <EditText
-                android:id="@+id/searchEditText"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginBottom="24dp"
+                android:id="@+id/search_bar"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:paddingStart="20dp"
                 android:background="@drawable/search_bar"
-                android:ems="10"
-                android:fontFamily="@font/montserrat_bold"
                 android:hint="@string/search"
-                android:inputType="textPersonName"
-                android:labelFor="@id/searchButton"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColor="@color/ghost_white"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="20sp"
+                tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TextContrastCheck"
+            />
 
             <ImageButton
-                android:id="@+id/searchButton"
+                android:id="@+id/search_button"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="38dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="35dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_search"
                 android:background="@drawable/search_button"
                 android:contentDescription="@string/search"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/searchEditText"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_search" />
+            />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <GridLayout
+                android:id="@+id/category_selector_box"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="3"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/dropdown_box"
+                android:rowCount="6"
+                android:columnCount="2"
+                android:onClick="toggleCategoryBox">
+
+                <TextView
+                    android:id="@+id/choose_category_title"
+                    android:text="@string/choose_category"
+                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_rowSpan="1"
+                    android:layout_columnSpan="1"
+                    android:paddingStart="20dp"
+                    android:paddingTop="8dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="20sp"
+                    tools:ignore="RtlSymmetry"
+                />
+
+                <ImageButton
+                    android:id="@+id/category_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_rowSpan="1"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="end"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/choose_category"
+                    android:src="@drawable/ic_dropdown_triangle"
+                    android:onClick="toggleCategoryBox"
+                    tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck"
+                />
+            </GridLayout>
+        </GridLayout>
+
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
