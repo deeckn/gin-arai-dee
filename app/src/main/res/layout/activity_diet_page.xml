@@ -38,7 +38,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
-                android:text="Monday"
+                android:text="@string/monday"
                 android:textColor="@color/wine"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
@@ -54,7 +54,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
-                android:text="Tuesday"
+                android:text="@string/tuesday"
                 android:textColor="@color/wine"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
@@ -70,7 +70,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
-                android:text="Wednesday"
+                android:text="@string/wednesday"
                 android:textColor="@color/wine"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
@@ -86,7 +86,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
-                android:text="Thursday"
+                android:text="@string/thursday"
                 android:textColor="@color/wine"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
@@ -102,7 +102,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
-                android:text="Friday"
+                android:text="@string/friday"
                 android:textColor="@color/wine"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
@@ -118,7 +118,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
-                android:text="Saturday"
+                android:text="@string/saturday"
                 android:textColor="@color/wine"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
@@ -134,7 +134,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
-                android:text="Sunday"
+                android:text="@string/sunday"
                 android:textColor="@color/wine"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
