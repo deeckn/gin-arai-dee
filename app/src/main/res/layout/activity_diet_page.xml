@@ -1,45 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ghost_white"
-    tools:context=".HomePage">
+    android:background="@color/ghost_white">
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="36dp"
+        android:textAlignment="center"
+        android:textColor="@color/wine"
+        android:text="@string/dietary_planner"/>
 
     <ScrollView
-        android:id="@+id/scroll_area"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        tools:ignore="ScrollViewCount">
 
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
+        <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dietary_planer"
-            android:textColor="@color/wine"
-            android:textSize="35dp" />
+            tools:ignore="UselessLeaf">
 
+            <TextView
+                android:id="@+id/monday"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_row="0"
+                android:layout_rowSpan="1"
+                android:layout_column="0"
+                android:layout_columnSpan="1"
+                android:fontFamily="@font/rubik_bold"
+                android:paddingStart="20dp"
+                android:paddingTop="8dp"
+                android:text="Monday"
+                android:textColor="@color/wine"
+                android:textSize="20sp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_row="1"
+                android:layout_rowSpan="1"
+                android:layout_column="0"
+                android:layout_columnSpan="1"
+                android:fontFamily="@font/rubik_bold"
+                android:paddingStart="20dp"
+                android:paddingTop="8dp"
+                android:text="Tuesday"
+                android:textColor="@color/wine"
+                android:textSize="20sp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_row="2"
+                android:layout_rowSpan="1"
+                android:layout_column="0"
+                android:layout_columnSpan="1"
+                android:fontFamily="@font/rubik_bold"
+                android:paddingStart="20dp"
+                android:paddingTop="8dp"
+                android:text="Wednesday"
+                android:textColor="@color/wine"
+                android:textSize="20sp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_row="3"
+                android:layout_rowSpan="1"
+                android:layout_column="0"
+                android:layout_columnSpan="1"
+                android:fontFamily="@font/rubik_bold"
+                android:paddingStart="20dp"
+                android:paddingTop="8dp"
+                android:text="Thursday"
+                android:textColor="@color/wine"
+                android:textSize="20sp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/friday"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_row="4"
+                android:layout_rowSpan="1"
+                android:layout_column="0"
+                android:layout_columnSpan="1"
+                android:fontFamily="@font/rubik_bold"
+                android:paddingStart="20dp"
+                android:paddingTop="8dp"
+                android:text="Friday"
+                android:textColor="@color/wine"
+                android:textSize="20sp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_row="5"
+                android:layout_rowSpan="1"
+                android:layout_column="0"
+                android:layout_columnSpan="1"
+                android:fontFamily="@font/rubik_bold"
+                android:paddingStart="20dp"
+                android:paddingTop="8dp"
+                android:text="Saturday"
+                android:textColor="@color/wine"
+                android:textSize="20sp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_row="6"
+                android:layout_rowSpan="1"
+                android:layout_column="0"
+                android:layout_columnSpan="1"
+                android:fontFamily="@font/rubik_bold"
+                android:paddingStart="20dp"
+                android:paddingTop="8dp"
+                android:text="Sunday"
+                android:textColor="@color/wine"
+                android:textSize="20sp"
+                tools:ignore="RtlSymmetry" />
+
+        </GridLayout>
 
     </ScrollView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/dock_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/maximum_yellow_red"
-        app:itemBackground="@color/maximum_yellow_red"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_navigation" />
 </RelativeLayout>

@@ -22,6 +22,7 @@ public class HomePage extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.home_page);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
