@@ -16,7 +16,7 @@
             android:id="@+id/main_grid_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:rowCount="2"
+            android:rowCount="3"
             android:columnCount="3">
 
             <EditText
@@ -62,8 +62,7 @@
                 android:animateLayoutChanges="true"
                 android:background="@drawable/dropdown_box"
                 android:rowCount="6"
-                android:columnCount="2"
-                android:onClick="toggleCategoryBox">
+                android:columnCount="2">
 
                 <TextView
                     android:id="@+id/choose_category_title"
@@ -78,6 +77,7 @@
                     android:textColor="@color/ghost_white"
                     android:textSize="20sp"
                     tools:ignore="RtlSymmetry"
+                    android:onClick="toggleCategoryBox"
                 />
 
                 <ImageButton
@@ -93,6 +93,49 @@
                     android:onClick="toggleCategoryBox"
                     tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck"
                 />
+            </GridLayout>
+
+            <GridLayout
+                android:id="@+id/nationality_selector_box"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="3"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/dropdown_box"
+                android:rowCount="6"
+                android:columnCount="2">
+
+                <TextView
+                    android:id="@+id/choose_nationality_title"
+                    android:text="@string/choose_nationality"
+                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_rowSpan="1"
+                    android:layout_columnSpan="1"
+                    android:paddingStart="20dp"
+                    android:paddingTop="8dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="20sp"
+                    tools:ignore="RtlSymmetry"
+                    />
+
+                <ImageButton
+                    android:id="@+id/nationality_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_rowSpan="1"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="end"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/choose_nationality"
+                    android:src="@drawable/ic_dropdown_triangle"
+                    tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck"
+                    />
             </GridLayout>
         </GridLayout>
 
