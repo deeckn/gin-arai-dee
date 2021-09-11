@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Authentication Page -->
     <string name="app_name">Gin Arai Dee</string>
     <string name="app_name_capital_multiline">GIN\nARAI\nDEE</string>
     <string name="app_name_capital">GIN ARAI DEE</string>
@@ -7,10 +8,14 @@
     <string name="guest_button_text">Guest Log in</string>
     <string name="featureSets">Food Recommendation\nRecipe Sharing\nDietary Planner\nBill Splitter</string>
     <string name="login_bg_description">Log in background photo</string>
+
+    <!-- Dock Text -->
     <string name="home_page">Home Page</string>
     <string name="food">Food</string>
     <string name="browse_recipes">Browse Recipes</string>
     <string name="dietary_planner">Dietary Planner</string>
+
+    <!-- Food Recommendation Page -->
     <string name="search">Search</string>
     <string name="choose_category">Choose Category</string>
     <string name="main_dish">Main Dish</string>
