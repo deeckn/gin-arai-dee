@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/dietary_planer"
             android:textColor="@color/wine"
-            android:textSize="35dp" />
+            android:textSize="35sp" />
 
 
     </ScrollView>
