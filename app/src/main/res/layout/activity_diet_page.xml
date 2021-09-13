@@ -60,7 +60,7 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_gravity="center"
-                    android:background="" />
+                    />
 
                 <Button
                     android:id="@+id/monday_edit_button"
@@ -120,7 +120,7 @@
                     android:layout_row="0"
                     android:layout_column="1"
                     android:layout_gravity="center"
-                    android:background="" />
+                    />
 
                 <Button
                     android:id="@+id/tuesday_edit_button"
@@ -180,7 +180,7 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_gravity="center"
-                    android:background="" />
+                    />
 
                 <Button
                     android:id="@+id/wednesday_edit_button"
@@ -241,7 +241,7 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_gravity="center"
-                    android:background="" />
+                    />
 
                 <Button
                     android:id="@+id/thursday_edit_button"
@@ -301,7 +301,7 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_gravity="center"
-                    android:background="" />
+                    />
 
                 <Button
                     android:id="@+id/friday_edit_button"
@@ -361,7 +361,7 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_gravity="center"
-                    android:background="" />
+                    />
 
                 <Button
                     android:id="@+id/saturday_edit_button"
@@ -421,7 +421,7 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_gravity="center"
-                    android:background="" />
+                    />
 
                 <Button
                     android:id="@+id/sunday_edit_button"
