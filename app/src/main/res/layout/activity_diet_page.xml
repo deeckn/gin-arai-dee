@@ -25,6 +25,7 @@
         <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             tools:ignore="UselessLeaf">
 
             <TextView
@@ -43,11 +44,54 @@
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
 
+            <GridLayout
+                android:id="@+id/monday_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/monday_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:background="" />
+
+                <Button
+                    android:id="@+id/monday_edit_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dietary_shape"
+                    android:fontFamily="@font/rubik"
+                    android:text="@string/edit"
+                    android:textColor="@color/wine" />
+
+                <TextView
+                    android:id="@+id/monday_kcal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="3"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/wine" />
+
+            </GridLayout>
+
             <TextView
                 android:id="@+id/tuesday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="1"
+                android:layout_row="2"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -63,7 +107,7 @@
                 android:id="@+id/wednesday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="2"
+                android:layout_row="3"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -79,7 +123,7 @@
                 android:id="@+id/thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="3"
+                android:layout_row="4"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -95,7 +139,7 @@
                 android:id="@+id/friday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="4"
+                android:layout_row="5"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -111,7 +155,7 @@
                 android:id="@+id/saturday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="5"
+                android:layout_row="6"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -127,7 +171,7 @@
                 android:id="@+id/sunday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="6"
+                android:layout_row="7"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
