@@ -6,7 +6,7 @@
     android:thickness="40dp"
     >
 
-    <solid android:color="@color/wine"/>
+    <solid android:color="@color/charcoal"/>
 
     <size
         android:height="40dp"

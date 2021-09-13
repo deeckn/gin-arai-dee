@@ -72,7 +72,7 @@
                     android:background="@drawable/dietary_shape"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
-                    android:textColor="@color/wine" />
+                    android:textColor="@color/ghost_white" />
 
                 <TextView
                     android:id="@+id/monday_kcal"
@@ -132,7 +132,7 @@
                     android:background="@drawable/dietary_shape"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
-                    android:textColor="@color/wine" />
+                    android:textColor="@color/ghost_white" />
 
                 <TextView
                     android:id="@+id/tuesday_kcal"
@@ -192,7 +192,7 @@
                     android:background="@drawable/dietary_shape"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
-                    android:textColor="@color/wine" />
+                    android:textColor="@color/ghost_white" />
 
                 <TextView
                     android:id="@+id/wednesday_kcal"
@@ -253,7 +253,7 @@
                     android:background="@drawable/dietary_shape"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
-                    android:textColor="@color/wine" />
+                    android:textColor="@color/ghost_white" />
 
                 <TextView
                     android:id="@+id/thursday_kcal"
@@ -313,7 +313,7 @@
                     android:background="@drawable/dietary_shape"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
-                    android:textColor="@color/wine" />
+                    android:textColor="@color/ghost_white" />
 
                 <TextView
                     android:id="@+id/friday_kcal"
@@ -373,7 +373,7 @@
                     android:background="@drawable/dietary_shape"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
-                    android:textColor="@color/wine" />
+                    android:textColor="@color/ghost_white" />
 
                 <TextView
                     android:id="@+id/saturday_kcal"
@@ -433,7 +433,7 @@
                     android:background="@drawable/dietary_shape"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
-                    android:textColor="@color/wine" />
+                    android:textColor="@color/ghost_white" />
 
                 <TextView
                     android:id="@+id/sunday_kcal"
