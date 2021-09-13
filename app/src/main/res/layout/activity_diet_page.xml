@@ -28,6 +28,7 @@
             android:layout_gravity="center_horizontal"
             tools:ignore="UselessLeaf">
 
+            <!-- monday part -->
             <TextView
                 android:id="@+id/monday"
                 android:layout_width="wrap_content"
@@ -103,11 +104,56 @@
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
 
+            <!-- tuesday part -->
+            <GridLayout
+                android:id="@+id/tuesday_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/tuesday_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:background="" />
+
+                <Button
+                    android:id="@+id/tuesday_edit_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dietary_shape"
+                    android:fontFamily="@font/rubik"
+                    android:text="@string/edit"
+                    android:textColor="@color/wine" />
+
+                <TextView
+                    android:id="@+id/tuesday_kcal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="0"
+                    android:layout_column="3"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/wine" />
+
+            </GridLayout>
+
+            <!-- wednesday part -->
             <TextView
                 android:id="@+id/wednesday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="3"
+                android:layout_row="4"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -119,11 +165,56 @@
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
 
+            <GridLayout
+                android:id="@+id/wednesday_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="5"
+                android:layout_column="0"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/wednesday_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:background="" />
+
+                <Button
+                    android:id="@+id/wednesday_edit_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dietary_shape"
+                    android:fontFamily="@font/rubik"
+                    android:text="@string/edit"
+                    android:textColor="@color/wine" />
+
+                <TextView
+                    android:id="@+id/wednesday_kcal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="3"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/wine" />
+
+            </GridLayout>
+
+
+            <!-- thursday part -->
             <TextView
                 android:id="@+id/thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="4"
+                android:layout_row="6"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -135,11 +226,55 @@
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
 
+            <GridLayout
+                android:id="@+id/thursday_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="7"
+                android:layout_column="0"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/thursday_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:background="" />
+
+                <Button
+                    android:id="@+id/thursday_edit_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dietary_shape"
+                    android:fontFamily="@font/rubik"
+                    android:text="@string/edit"
+                    android:textColor="@color/wine" />
+
+                <TextView
+                    android:id="@+id/thursday_kcal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="3"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/wine" />
+
+            </GridLayout>
+
+            <!-- friday part -->
             <TextView
                 android:id="@+id/friday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="5"
+                android:layout_row="8"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -151,11 +286,55 @@
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
 
+            <GridLayout
+                android:id="@+id/friday_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="9"
+                android:layout_column="0"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/friday_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:background="" />
+
+                <Button
+                    android:id="@+id/friday_edit_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dietary_shape"
+                    android:fontFamily="@font/rubik"
+                    android:text="@string/edit"
+                    android:textColor="@color/wine" />
+
+                <TextView
+                    android:id="@+id/friday_kcal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="3"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/wine" />
+
+            </GridLayout>
+
+            <!-- saturday part -->
             <TextView
                 android:id="@+id/saturday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="6"
+                android:layout_row="10"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -167,11 +346,55 @@
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
 
+            <GridLayout
+                android:id="@+id/saturday_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="11"
+                android:layout_column="0"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/saturday_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:background="" />
+
+                <Button
+                    android:id="@+id/saturday_edit_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dietary_shape"
+                    android:fontFamily="@font/rubik"
+                    android:text="@string/edit"
+                    android:textColor="@color/wine" />
+
+                <TextView
+                    android:id="@+id/saturday_kcal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="3"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/wine" />
+
+            </GridLayout>
+
+            <!-- sunday part -->
             <TextView
                 android:id="@+id/sunday"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_row="7"
+                android:layout_row="12"
                 android:layout_rowSpan="1"
                 android:layout_column="0"
                 android:layout_columnSpan="1"
@@ -182,6 +405,49 @@
                 android:textColor="@color/wine"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
+
+            <GridLayout
+                android:id="@+id/sunday_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="13"
+                android:layout_column="0"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/sunday_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:background="" />
+
+                <Button
+                    android:id="@+id/sunday_edit_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dietary_shape"
+                    android:fontFamily="@font/rubik"
+                    android:text="@string/edit"
+                    android:textColor="@color/wine" />
+
+                <TextView
+                    android:id="@+id/sunday_kcal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="1"
+                    android:layout_column="3"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/wine" />
+
+            </GridLayout>
 
         </GridLayout>
 
