@@ -95,6 +95,7 @@
                 />
             </GridLayout>
 
+            <!-- Nationality Selector Dropdown -->
             <GridLayout
                 android:id="@+id/nationality_selector_box"
                 android:layout_width="360dp"
@@ -122,6 +123,7 @@
                     android:textColor="@color/ghost_white"
                     android:textSize="20sp"
                     tools:ignore="RtlSymmetry"
+                    android:onClick="toggleNationalityBox"
                     />
 
                 <ImageButton
@@ -135,6 +137,7 @@
                     android:contentDescription="@string/choose_nationality"
                     android:src="@drawable/ic_dropdown_triangle"
                     tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck"
+                    android:onClick="toggleNationalityBox"
                     />
             </GridLayout>
         </GridLayout>

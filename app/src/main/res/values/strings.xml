@@ -25,4 +25,9 @@
     <string name="beverages">Beverages</string>
     <string name="dietary_planer">Dietary Planer</string>
     <string name="choose_nationality">Choose Nationality</string>
+    <string name="thai">Thai</string>
+    <string name="japanese">Japanese</string>
+    <string name="italian">Italian</string>
+    <string name="chinese">Chinese</string>
+    <string name="korean">Korean</string>
 </resources>
