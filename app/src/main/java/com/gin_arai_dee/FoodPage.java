@@ -12,10 +12,22 @@ import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class FoodPage extends AppCompatActivity {
+
+    // Database
+    DatabaseHelper db;
+
+    // Food Data
+    List<FoodModel> allFoodItems;
+    HashMap<String, List<FoodModel>> categoryFoodGroup;
+    HashMap<String, List<FoodModel>> nationalityFoodGroup;
 
     // Main Grid Layout
     GridLayout parentGridLayout;
@@ -25,6 +37,7 @@ public class FoodPage extends AppCompatActivity {
 
     // Category Selector Box
     GridLayout categorySelectorBox;
+    TextView chooseCategoryTitle;
     ImageButton categoryDropdownArrow;
     boolean categoryBoxState = true;
     boolean categoryLoaded = false;
@@ -43,6 +56,7 @@ public class FoodPage extends AppCompatActivity {
 
     // Nationality Selector Box
     GridLayout nationalitySelectorBox;
+    TextView chooseNationalityTitle;
     ImageButton nationalityDropdownArrow;
     boolean nationalityBoxState = true;
     boolean nationalityLoaded = false;
@@ -64,15 +78,35 @@ public class FoodPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_page);
 
+        // Database
+        db = new DatabaseHelper(this);
+
+        // Food Data
+        categoryFoodGroup = new HashMap<>();
+        categoryFoodGroup.put("main_dish", new ArrayList<>());
+        categoryFoodGroup.put("appetizers", new ArrayList<>());
+        categoryFoodGroup.put("snacks", new ArrayList<>());
+        categoryFoodGroup.put("desserts", new ArrayList<>());
+        categoryFoodGroup.put("beverages", new ArrayList<>());
+
+        nationalityFoodGroup = new HashMap<>();
+        nationalityFoodGroup.put("thai", new ArrayList<>());
+        nationalityFoodGroup.put("italian", new ArrayList<>());
+        nationalityFoodGroup.put("japanese", new ArrayList<>());
+        nationalityFoodGroup.put("chinese", new ArrayList<>());
+        nationalityFoodGroup.put("korean", new ArrayList<>());
+
         // Initializing page elements and objects
         parentGridLayout = findViewById(R.id.main_grid_layout);
         bottomNavigationView = findViewById(R.id.dock_navigation);
 
+        chooseCategoryTitle = findViewById(R.id.choose_category_title);
         categorySelectorBox = findViewById(R.id.category_selector_box);
         categoryDropdownArrow = findViewById(R.id.category_arrow);
         categoryTextViews = new ArrayList<>();
         categoryCheckBoxes = new ArrayList<>();
 
+        chooseNationalityTitle = findViewById(R.id.choose_nationality_title);
         nationalitySelectorBox = findViewById(R.id.nationality_selector_box);
         nationalityDropdownArrow = findViewById(R.id.nationality_arrow);
         nationalityTextViews = new ArrayList<>();
@@ -95,6 +129,19 @@ public class FoodPage extends AppCompatActivity {
                 return false;
             }
         });
+
+        // Category Dropdown Settings
+        chooseCategoryTitle.setOnClickListener(this::toggleCategoryBox);
+        categoryDropdownArrow.setOnClickListener(this::toggleCategoryBox);
+
+        // Nationality Dropdown Settings
+        chooseNationalityTitle.setOnClickListener(this::toggleNationalityBox);
+        nationalityDropdownArrow.setOnClickListener(this::toggleNationalityBox);
+    }
+
+    private void loadAllData() {
+        loadFoodItems();
+        groupFoodItems();
     }
 
     private int getValueInDp(int value) {
@@ -164,14 +211,14 @@ public class FoodPage extends AppCompatActivity {
 
         // Performing tasks based on CategoryBoxState boolean
         if (categoryBoxState) {
-            categoryDropdownArrow.animate().rotation(90).setDuration(500);
+            categoryDropdownArrow.animate().rotation(90).setDuration(300);
             for (int i = 0; i < categoryTextViews.size(); i++) {
                 categorySelectorBox.addView(categoryTextViews.get(i));
                 categorySelectorBox.addView(categoryCheckBoxes.get(i));
             }
         }
         else {
-            categoryDropdownArrow.animate().rotation(0).setDuration(500);
+            categoryDropdownArrow.animate().rotation(0).setDuration(300);
             for (int i = 0; i < categoryTextViews.size() * 2; i++)
                 categorySelectorBox.removeViewAt(2);
         }
@@ -237,20 +284,76 @@ public class FoodPage extends AppCompatActivity {
 
         // Performing tasks based on CategoryBoxState boolean
         if (nationalityBoxState) {
-            nationalityDropdownArrow.animate().rotation(90).setDuration(500);
+            nationalityDropdownArrow.animate().rotation(90).setDuration(300);
             for (int i = 0; i < nationalityTextViews.size(); i++) {
                 nationalitySelectorBox.addView(nationalityTextViews.get(i));
                 nationalitySelectorBox.addView(nationalityCheckBoxes.get(i));
             }
         }
         else {
-            nationalityDropdownArrow.animate().rotation(0).setDuration(500);
+            nationalityDropdownArrow.animate().rotation(0).setDuration(300);
             for (int i = 0; i < nationalityTextViews.size() * 2; i++)
                 nationalitySelectorBox.removeViewAt(2);
         }
         nationalityBoxState = !nationalityBoxState;
     }
 
-    private void clearFoodList() {}
-    private void buildFoodList() {}
+    // Kinda Hard Code, using files and loops later.
+    private void addFoodItemToDatabase(String name, String description, String dishType,
+                                       String nationality, int kcal, String imageName) {
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(FoodPage.this);
+        FoodModel food = new FoodModel(0, name, description, dishType, nationality, kcal, imageName);
+        boolean success = databaseHelper.addFoodItem(food);
+
+        // Debug Output (Delete later)
+        if (success) Toast.makeText(this, "SUCCESS SQLITE", Toast.LENGTH_SHORT).show();
+        else Toast.makeText(this, "UNSUCCESSFUL SQLITE", Toast.LENGTH_SHORT).show();
+    }
+
+    private void loadFoodItems() {
+        DatabaseHelper databaseHelper = new DatabaseHelper(FoodPage.this);
+        allFoodItems = databaseHelper.getAllFoodItems();
+    }
+
+    private void groupFoodItems() {
+        for (FoodModel food : allFoodItems) {
+            String dishType = food.getDish_type();
+            switch (dishType) {
+                case "main_dish":
+                    categoryFoodGroup.get("main_dish").add(food);
+                    break;
+                case "appetizers":
+                    categoryFoodGroup.get("appetizers").add(food);
+                    break;
+                case "snacks":
+                    categoryFoodGroup.get("snacks").add(food);
+                    break;
+                case "desserts":
+                    categoryFoodGroup.get("desserts").add(food);
+                    break;
+                case "beverages":
+                    categoryFoodGroup.get("beverages").add(food);
+                    break;
+                default:
+                    System.out.println("No category");
+            }
+
+            String nationality = food.getNationality();
+            switch (nationality) {
+                case "thai":
+                    nationalityFoodGroup.get("thai").add(food);
+                case "italian":
+                    nationalityFoodGroup.get("italian").add(food);
+                case "japanese":
+                    nationalityFoodGroup.get("japanese").add(food);
+                case "chinese":
+                    nationalityFoodGroup.get("chinese").add(food);
+                case "korean":
+                    nationalityFoodGroup.get("korean").add(food);
+                default:
+                    System.out.println("No nationality");
+            }
+        }
+    }
 }
