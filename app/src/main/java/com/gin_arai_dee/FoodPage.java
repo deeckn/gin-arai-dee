@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -18,16 +19,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class FoodPage extends AppCompatActivity {
-
     // Database
     DatabaseHelper db;
 
     // Food Data
     List<FoodModel> allFoodItems;
+    List<FoodModel> displayFoodItems;
     HashMap<String, List<FoodModel>> categoryFoodGroup;
     HashMap<String, List<FoodModel>> nationalityFoodGroup;
+    ArrayList<String> categoryFilter;
+    ArrayList<String> nationalityFilter;
 
     // Main Grid Layout
     GridLayout parentGridLayout;
@@ -73,44 +77,24 @@ public class FoodPage extends AppCompatActivity {
     CheckBox chinese_checkbox;
     CheckBox korean_checkbox;
 
+    // String Constants
+    public static final String MAIN_DISH = "main_dish";
+    public static final String APPETIZERS = "appetizers";
+    public static final String SNACKS = "snacks";
+    public static final String DESSERTS = "desserts";
+    public static final String BEVERAGES = "beverages";
+    public static final String THAI = "thai";
+    public static final String ITALIAN = "italian";
+    public static final String JAPANESE = "japanese";
+    public static final String CHINESE = "chinese";
+    public static final String KOREAN = "korean";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_page);
-
-        // Database
-        db = new DatabaseHelper(this);
-
-        // Food Data
-        categoryFoodGroup = new HashMap<>();
-        categoryFoodGroup.put("main_dish", new ArrayList<>());
-        categoryFoodGroup.put("appetizers", new ArrayList<>());
-        categoryFoodGroup.put("snacks", new ArrayList<>());
-        categoryFoodGroup.put("desserts", new ArrayList<>());
-        categoryFoodGroup.put("beverages", new ArrayList<>());
-
-        nationalityFoodGroup = new HashMap<>();
-        nationalityFoodGroup.put("thai", new ArrayList<>());
-        nationalityFoodGroup.put("italian", new ArrayList<>());
-        nationalityFoodGroup.put("japanese", new ArrayList<>());
-        nationalityFoodGroup.put("chinese", new ArrayList<>());
-        nationalityFoodGroup.put("korean", new ArrayList<>());
-
-        // Initializing page elements and objects
-        parentGridLayout = findViewById(R.id.main_grid_layout);
-        bottomNavigationView = findViewById(R.id.dock_navigation);
-
-        chooseCategoryTitle = findViewById(R.id.choose_category_title);
-        categorySelectorBox = findViewById(R.id.category_selector_box);
-        categoryDropdownArrow = findViewById(R.id.category_arrow);
-        categoryTextViews = new ArrayList<>();
-        categoryCheckBoxes = new ArrayList<>();
-
-        chooseNationalityTitle = findViewById(R.id.choose_nationality_title);
-        nationalitySelectorBox = findViewById(R.id.nationality_selector_box);
-        nationalityDropdownArrow = findViewById(R.id.nationality_arrow);
-        nationalityTextViews = new ArrayList<>();
-        nationalityCheckBoxes = new ArrayList<>();
+        initializeInstances();
+        loadData();
 
         // Navigation Bar Settings
         bottomNavigationView.setSelectedItemId(R.id.food_page);
@@ -137,9 +121,137 @@ public class FoodPage extends AppCompatActivity {
         // Nationality Dropdown Settings
         chooseNationalityTitle.setOnClickListener(this::toggleNationalityBox);
         nationalityDropdownArrow.setOnClickListener(this::toggleNationalityBox);
+
+        // Category Checkbox Settings
+        main_dish_checkbox.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) categoryFilter.add(MAIN_DISH);
+            else categoryFilter.remove(MAIN_DISH);
+            updateDisplayFoodItems();
+        });
+
+        appetizer_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
+            if (b) categoryFilter.add(APPETIZERS);
+            else categoryFilter.remove(APPETIZERS);
+            updateDisplayFoodItems();
+        }));
+
+        snacks_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
+            if (b) categoryFilter.add(SNACKS);
+            else categoryFilter.remove(SNACKS);
+            updateDisplayFoodItems();
+        }));
+
+        desserts_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
+            if (b) categoryFilter.add(DESSERTS);
+            else categoryFilter.remove(DESSERTS);
+            updateDisplayFoodItems();
+        }));
+
+        beverages_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
+            if (b) categoryFilter.add(BEVERAGES);
+            else categoryFilter.remove(BEVERAGES);
+            updateDisplayFoodItems();
+        }));
+
+        // Nationality Checkbox Settings
+        thai_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
+            if (b) nationalityFilter.add(THAI);
+            else nationalityFilter.remove(THAI);
+            updateDisplayFoodItems();
+        }));
+
+        italian_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
+            if (b) nationalityFilter.add(ITALIAN);
+            else nationalityFilter.remove(ITALIAN);
+            updateDisplayFoodItems();
+        }));
+
+        japanese_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
+            if (b) nationalityFilter.add(JAPANESE);
+            else nationalityFilter.remove(JAPANESE);
+            updateDisplayFoodItems();
+        }));
+
+        chinese_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
+            if (b) nationalityFilter.add(CHINESE);
+            else nationalityFilter.remove(CHINESE);
+            updateDisplayFoodItems();
+        }));
+
+        korean_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
+            if (b) nationalityFilter.add(KOREAN);
+            else nationalityFilter.remove(KOREAN);
+            updateDisplayFoodItems();
+        }));
     }
 
-    private void loadAllData() {
+    private void initializeInstances() {
+        // Database
+        db = new DatabaseHelper(this);
+
+        // Food Data
+        displayFoodItems = new ArrayList<>();
+        categoryFoodGroup = new HashMap<>();
+        categoryFoodGroup.put(MAIN_DISH, new ArrayList<>());
+        categoryFoodGroup.put(APPETIZERS, new ArrayList<>());
+        categoryFoodGroup.put(SNACKS, new ArrayList<>());
+        categoryFoodGroup.put(DESSERTS, new ArrayList<>());
+        categoryFoodGroup.put(BEVERAGES, new ArrayList<>());
+
+        nationalityFoodGroup = new HashMap<>();
+        nationalityFoodGroup.put(THAI, new ArrayList<>());
+        nationalityFoodGroup.put(ITALIAN, new ArrayList<>());
+        nationalityFoodGroup.put(JAPANESE, new ArrayList<>());
+        nationalityFoodGroup.put(CHINESE, new ArrayList<>());
+        nationalityFoodGroup.put(KOREAN, new ArrayList<>());
+
+        categoryFilter = new ArrayList<>();
+        nationalityFilter = new ArrayList<>();
+
+        // Initializing page elements and objects
+        parentGridLayout = findViewById(R.id.main_grid_layout);
+        bottomNavigationView = findViewById(R.id.dock_navigation);
+
+        chooseCategoryTitle = findViewById(R.id.choose_category_title);
+        categorySelectorBox = findViewById(R.id.category_selector_box);
+        categoryDropdownArrow = findViewById(R.id.category_arrow);
+
+        chooseNationalityTitle = findViewById(R.id.choose_nationality_title);
+        nationalitySelectorBox = findViewById(R.id.nationality_selector_box);
+        nationalityDropdownArrow = findViewById(R.id.nationality_arrow);
+
+        // Category Dropdown Box Elements
+        categoryTextViews = new ArrayList<>();
+        main_dish_text = new TextView(this);
+        appetizer_text = new TextView(this);
+        desserts_text = new TextView(this);
+        snacks_text = new TextView(this);
+        beverages_text = new TextView(this);
+
+        categoryCheckBoxes = new ArrayList<>();
+        main_dish_checkbox = new CheckBox(this);
+        appetizer_checkbox = new CheckBox(this);
+        desserts_checkbox = new CheckBox(this);
+        snacks_checkbox = new CheckBox(this);
+        beverages_checkbox = new CheckBox(this);
+
+        // Nationality Dropdown Box Elements
+        nationalityTextViews = new ArrayList<>();
+        thai_text = new TextView(this);
+        japanese_text = new TextView(this);
+        italian_text = new TextView(this);
+        chinese_text = new TextView(this);
+        korean_text = new TextView(this);
+
+        nationalityCheckBoxes = new ArrayList<>();
+        thai_checkbox = new CheckBox(this);
+        japanese_checkbox = new CheckBox(this);
+        italian_checkbox = new CheckBox(this);
+        chinese_checkbox = new CheckBox(this);
+        korean_checkbox = new CheckBox(this);
+    }
+
+    private void loadData() {
         loadFoodItems();
         groupFoodItems();
     }
@@ -152,36 +264,21 @@ public class FoodPage extends AppCompatActivity {
     // Expand and minimize category selector box
     public void toggleCategoryBox(View view) {
         if (!categoryLoaded) {
-            // New Elements Creation
-            main_dish_text = new TextView(this);
-            appetizer_text = new TextView(this);
-            desserts_text = new TextView(this);
-            snacks_text = new TextView(this);
-            beverages_text = new TextView(this);
-
-            main_dish_checkbox = new CheckBox(this);
-            appetizer_checkbox = new CheckBox(this);
-            desserts_checkbox = new CheckBox(this);
-            snacks_checkbox = new CheckBox(this);
-            beverages_checkbox = new CheckBox(this);
-
-            // TextViews for Category Titles
-            categoryTextViews.clear();
+            // Loads TextViews into ArrayList
             categoryTextViews.add(main_dish_text);
             categoryTextViews.add(appetizer_text);
             categoryTextViews.add(desserts_text);
             categoryTextViews.add(snacks_text);
             categoryTextViews.add(beverages_text);
 
-            // Checkboxes for each category titles
-            categoryCheckBoxes.clear();
+            // Loads Checkboxes to ArrayList
             categoryCheckBoxes.add(main_dish_checkbox);
             categoryCheckBoxes.add(appetizer_checkbox);
             categoryCheckBoxes.add(desserts_checkbox);
             categoryCheckBoxes.add(snacks_checkbox);
             categoryCheckBoxes.add(beverages_checkbox);
 
-            // Category TextView Setup
+            // Category UI Elements Setup
             main_dish_text.setText(R.string.main_dish);
             appetizer_text.setText(R.string.beverages);
             desserts_text.setText(R.string.desserts);
@@ -227,34 +324,21 @@ public class FoodPage extends AppCompatActivity {
 
     public void toggleNationalityBox(View view) {
         if (!nationalityLoaded) {
-            // New TextView and Checkbox Creation
-            thai_text = new TextView(this);
-            japanese_text = new TextView(this);
-            italian_text = new TextView(this);
-            chinese_text = new TextView(this);
-            korean_text = new TextView(this);
-
-            thai_checkbox = new CheckBox(this);
-            japanese_checkbox = new CheckBox(this);
-            italian_checkbox = new CheckBox(this);
-            chinese_checkbox = new CheckBox(this);
-            korean_checkbox = new CheckBox(this);
-
-            // TextViews for Nationality Titles
+            // Loads TextViews into ArrayList
             nationalityTextViews.add(thai_text);
             nationalityTextViews.add(japanese_text);
             nationalityTextViews.add(italian_text);
             nationalityTextViews.add(chinese_text);
             nationalityTextViews.add(korean_text);
 
-            // Checkboxes for each nationality titles
+            // Loads Checkboxes to ArrayList
             nationalityCheckBoxes.add(thai_checkbox);
             nationalityCheckBoxes.add(japanese_checkbox);
             nationalityCheckBoxes.add(italian_checkbox);
             nationalityCheckBoxes.add(chinese_checkbox);
             nationalityCheckBoxes.add(korean_checkbox);
 
-            // Category TextView Setup
+            // Category UI Elements Setup
             thai_text.setText(R.string.thai);
             japanese_text.setText(R.string.japanese);
             italian_text.setText(R.string.italian);
@@ -298,62 +382,99 @@ public class FoodPage extends AppCompatActivity {
         nationalityBoxState = !nationalityBoxState;
     }
 
-    // Kinda Hard Code, using files and loops later.
+    // Add Food Item to Database
     private void addFoodItemToDatabase(String name, String description, String dishType,
                                        String nationality, int kcal, String imageName) {
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(FoodPage.this);
         FoodModel food = new FoodModel(0, name, description, dishType, nationality, kcal, imageName);
-        boolean success = databaseHelper.addFoodItem(food);
+        boolean success = db.addFoodItem(food);
 
         // Debug Output (Delete later)
         if (success) Toast.makeText(this, "SUCCESS SQLITE", Toast.LENGTH_SHORT).show();
         else Toast.makeText(this, "UNSUCCESSFUL SQLITE", Toast.LENGTH_SHORT).show();
     }
 
+    // Loads all food items from the database
     private void loadFoodItems() {
-        DatabaseHelper databaseHelper = new DatabaseHelper(FoodPage.this);
-        allFoodItems = databaseHelper.getAllFoodItems();
+        allFoodItems = db.getAllFoodItems();
     }
 
+    // Filters Food Items into Hashmaps
     private void groupFoodItems() {
         for (FoodModel food : allFoodItems) {
-            String dishType = food.getDish_type();
-            switch (dishType) {
-                case "main_dish":
-                    categoryFoodGroup.get("main_dish").add(food);
-                    break;
-                case "appetizers":
-                    categoryFoodGroup.get("appetizers").add(food);
-                    break;
-                case "snacks":
-                    categoryFoodGroup.get("snacks").add(food);
-                    break;
-                case "desserts":
-                    categoryFoodGroup.get("desserts").add(food);
-                    break;
-                case "beverages":
-                    categoryFoodGroup.get("beverages").add(food);
-                    break;
-                default:
-                    System.out.println("No category");
+            if (food == null) continue;
+            else {
+                String dishType = food.getDish_type();
+                switch (dishType) {
+                    case MAIN_DISH:
+                        Objects.requireNonNull(categoryFoodGroup.get(MAIN_DISH)).add(food);
+                        break;
+                    case APPETIZERS:
+                        Objects.requireNonNull(categoryFoodGroup.get(APPETIZERS)).add(food);
+                        break;
+                    case SNACKS:
+                        Objects.requireNonNull(categoryFoodGroup.get(SNACKS)).add(food);
+                        break;
+                    case DESSERTS:
+                        Objects.requireNonNull(categoryFoodGroup.get(DESSERTS)).add(food);
+                        break;
+                    case BEVERAGES:
+                        Objects.requireNonNull(categoryFoodGroup.get(BEVERAGES)).add(food);
+                        break;
+                    default:
+                        System.out.println("No category");
+                }
             }
 
             String nationality = food.getNationality();
             switch (nationality) {
-                case "thai":
-                    nationalityFoodGroup.get("thai").add(food);
-                case "italian":
-                    nationalityFoodGroup.get("italian").add(food);
-                case "japanese":
-                    nationalityFoodGroup.get("japanese").add(food);
-                case "chinese":
-                    nationalityFoodGroup.get("chinese").add(food);
-                case "korean":
-                    nationalityFoodGroup.get("korean").add(food);
+                case THAI:
+                    Objects.requireNonNull(nationalityFoodGroup.get(THAI)).add(food);
+                case ITALIAN:
+                    Objects.requireNonNull(nationalityFoodGroup.get(ITALIAN)).add(food);
+                case JAPANESE:
+                    Objects.requireNonNull(nationalityFoodGroup.get(JAPANESE)).add(food);
+                case CHINESE:
+                    Objects.requireNonNull(nationalityFoodGroup.get(CHINESE)).add(food);
+                case KOREAN:
+                    Objects.requireNonNull(nationalityFoodGroup.get(KOREAN)).add(food);
                 default:
                     System.out.println("No nationality");
             }
         }
+    }
+
+    /***
+     * TODO: Remove Duplicates in - displayFoodItems
+     */
+    private void updateDisplayFoodItems() {
+        displayFoodItems.clear();
+
+        if (categoryFilter.isEmpty() && nationalityFilter.isEmpty()) {
+            displayFoodItems.addAll(allFoodItems);
+        }
+
+        if (!categoryFilter.isEmpty()) {
+            for (String type : categoryFilter) {
+                List<FoodModel> temp = categoryFoodGroup.get(type);
+                if (temp == null || temp.isEmpty()) break;
+                displayFoodItems.addAll(temp);
+            }
+        }
+
+        if (!nationalityFilter.isEmpty()) {
+            for (String type : nationalityFilter) {
+                List<FoodModel> temp = nationalityFoodGroup.get(type);
+                if (temp == null || temp.isEmpty()) break;
+                displayFoodItems.addAll(temp);
+            }
+        }
+
+        /* Debugging Purposes */
+        for (FoodModel m : displayFoodItems) {
+            System.out.println("FOOD ITEM: " + m.getFood_item());
+        }
+        System.out.println(categoryFilter.toString());
+        System.out.println(nationalityFilter.toString());
     }
 }
