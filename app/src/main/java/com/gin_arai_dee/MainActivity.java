@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // openHomePage();
         // openFoodPage();
+        // openBillSplitterPage();
     }
 
     // Opens the home page
@@ -28,4 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private void openFoodPage() {
         startActivity(new Intent(this, FoodPage.class));
     }
+
+    // Opens the bill splitter page
+    private void openBillSplitterPage() { startActivity(new Intent(this, BillSplitterPage.class)); }
 }
