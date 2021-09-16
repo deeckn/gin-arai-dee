@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -18,8 +17,10 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class FoodPage extends AppCompatActivity {
     // Database
@@ -27,11 +28,11 @@ public class FoodPage extends AppCompatActivity {
 
     // Food Data
     List<FoodModel> allFoodItems;
-    List<FoodModel> displayFoodItems;
+    Set<FoodModel> displayFoodItems;
     HashMap<String, List<FoodModel>> categoryFoodGroup;
     HashMap<String, List<FoodModel>> nationalityFoodGroup;
-    ArrayList<String> categoryFilter;
-    ArrayList<String> nationalityFilter;
+    List<String> categoryFilter;
+    List<String> nationalityFilter;
 
     // Main Grid Layout
     GridLayout parentGridLayout;
@@ -190,7 +191,7 @@ public class FoodPage extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         // Food Data
-        displayFoodItems = new ArrayList<>();
+        displayFoodItems = new HashSet<>();
         categoryFoodGroup = new HashMap<>();
         categoryFoodGroup.put(MAIN_DISH, new ArrayList<>());
         categoryFoodGroup.put(APPETIZERS, new ArrayList<>());
@@ -444,9 +445,6 @@ public class FoodPage extends AppCompatActivity {
         }
     }
 
-    /***
-     * TODO: Remove Duplicates in - displayFoodItems
-     */
     private void updateDisplayFoodItems() {
         displayFoodItems.clear();
 
@@ -469,12 +467,5 @@ public class FoodPage extends AppCompatActivity {
                 displayFoodItems.addAll(temp);
             }
         }
-
-        /* Debugging Purposes */
-        for (FoodModel m : displayFoodItems) {
-            System.out.println("FOOD ITEM: " + m.getFood_item());
-        }
-        System.out.println(categoryFilter.toString());
-        System.out.println(nationalityFilter.toString());
     }
 }
