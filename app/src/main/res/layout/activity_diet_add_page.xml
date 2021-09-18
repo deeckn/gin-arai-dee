@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ghost_white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/dietary_planner"
+        android:textAlignment="center"
+        android:textColor="@color/wine"
+        android:textSize="36sp" />
+
+    <GridLayout
+        android:layout_marginTop="75dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="Add Item(s)"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:textColor="@color/charcoal"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_margin="15dp"
+            android:layout_height="5dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:background="@drawable/dietary_line"/>
+
+    </GridLayout>
+
+</RelativeLayout>
