@@ -1,0 +1,16 @@
+ID;FOOD_ITEM;DESCRIPTION;DISH_TYPE;NATIONALITY;KCAL;IMAGE_NAME
+1;Carbonara;Pasta made with eggs, hard cheese, cured pork, and black pepper;main_dish;italian;468;carbonara.jpg
+2;Grissini;Breadsticks;appetizers;italian;899;grissini.jpg
+3;Som Tum;Green Papaya Salad;appetizers;thai;914;somtum.jpg
+4;Mandu;Korean Dumplings ;appetizers;korean;882;mandu.jpg
+5;Lasagna;An Italian dish made of stacked layers of thin flat pasta alternating with fillings such as ragù and other vegetables, cheese, and seasonings and spices such as garlic, oregano and basil;main_dish;italian;619;lasagna.jpg
+6;Bruschetta;Grilled bread rubbed with garlic and topped with olive oil and salt;appetizers;italian;939;bruschetta.jpg
+7;Panna Cotta;Italian dessert of sweetened cream thickened with gelatin and molded. The cream may be aromatized with coffee, vanilla, or other flavorings.;desserts;italian;820;pannacotta.jpg
+8;Shakerato;An Italian drink prepared using espresso and ice cubes;beverages;italian;682;shakerato.jpg
+9;Gelato;Italian icecream;snacks;italian;828;gelato.jpg
+10;Choo Chee;A thick red Thai curry that can be made with any kind of seafood;main_dish;thai;808;choochee.jpg
+11;Chilli Garlic Tofu Bites;Fried tofu with chilli and garlic;appetizers;thai;715;chilligarlic.jpg
+12;Lod Chong;Pandan noodles with coconut milk;desserts;thai;595;logchong.jpg
+13;Thai Iced Tea;Made with Thai black tea and condensed milk;beverages;thai;850;thaiicedtea.jpg
+14;Fried Taro;Fried taro;snacks;thai;601;friedtaro.jpg
+15;Mapu Tofu;Tofu in a spicy oil sauce with minced pork or beef;main_dish;chinese;903;maputofu.jpg

@@ -3,9 +3,11 @@ package com.gin_arai_dee;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,6 +17,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -252,7 +265,37 @@ public class FoodPage extends AppCompatActivity {
         korean_checkbox = new CheckBox(this);
     }
 
+    private boolean copyDatabase(Context context) {
+        try {
+            InputStream inputStream = context.getAssets().open(DatabaseHelper.DB_NAME);
+            String outFileName = DatabaseHelper.DB_LOCATION + DatabaseHelper.DB_NAME;
+            OutputStream outputStream = new FileOutputStream(outFileName);
+            byte[] buffer = new byte[1024];
+            int length = 0;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+            outputStream.flush();
+            outputStream.close();
+            Log.w("FoodPage", "DB Copied");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     private void loadData() {
+        File database = getApplicationContext().getDatabasePath(DatabaseHelper.DB_NAME);
+        if (!database.exists()) {
+            db.getReadableDatabase();
+            if (copyDatabase(this)) {
+                Log.d("FoodPage", "Database Copied Successfully");
+            }
+            else {
+                Log.d("FoodPage", "Database Not Copied");
+            }
+        }
         loadFoodItems();
         groupFoodItems();
     }
@@ -281,7 +324,7 @@ public class FoodPage extends AppCompatActivity {
 
             // Category UI Elements Setup
             main_dish_text.setText(R.string.main_dish);
-            appetizer_text.setText(R.string.beverages);
+            appetizer_text.setText(R.string.appetizers);
             desserts_text.setText(R.string.desserts);
             snacks_text.setText(R.string.snacks);
             beverages_text.setText(R.string.beverages);
@@ -384,20 +427,18 @@ public class FoodPage extends AppCompatActivity {
     }
 
     // Add Food Item to Database
-    private void addFoodItemToDatabase(String name, String description, String dishType,
-                                       String nationality, int kcal, String imageName) {
-
-        FoodModel food = new FoodModel(0, name, description, dishType, nationality, kcal, imageName);
+    private void addFoodItemToDatabase(FoodModel food) {
         boolean success = db.addFoodItem(food);
-
-        // Debug Output (Delete later)
-        if (success) Toast.makeText(this, "SUCCESS SQLITE", Toast.LENGTH_SHORT).show();
-        else Toast.makeText(this, "UNSUCCESSFUL SQLITE", Toast.LENGTH_SHORT).show();
+        if (success) Log.d("Success", "Successfully loaded to database");
+        else Log.d("Error", "Failed to put food to database");
     }
 
     // Loads all food items from the database
     private void loadFoodItems() {
         allFoodItems = db.getAllFoodItems();
+        for (FoodModel m : allFoodItems) {
+            System.out.println(m.getFood_item());
+        }
     }
 
     // Filters Food Items into Hashmaps
@@ -452,7 +493,7 @@ public class FoodPage extends AppCompatActivity {
             displayFoodItems.addAll(allFoodItems);
         }
 
-        if (!categoryFilter.isEmpty()) {
+        if (!categoryFilter.isEmpty() && nationalityFilter.isEmpty()) {
             for (String type : categoryFilter) {
                 List<FoodModel> temp = categoryFoodGroup.get(type);
                 if (temp == null || temp.isEmpty()) break;
@@ -460,12 +501,45 @@ public class FoodPage extends AppCompatActivity {
             }
         }
 
-        if (!nationalityFilter.isEmpty()) {
+        if (categoryFilter.isEmpty() && !nationalityFilter.isEmpty()) {
             for (String type : nationalityFilter) {
                 List<FoodModel> temp = nationalityFoodGroup.get(type);
                 if (temp == null || temp.isEmpty()) break;
                 displayFoodItems.addAll(temp);
             }
+        }
+
+        if (!(categoryFilter.isEmpty() && nationalityFilter.isEmpty())) {
+            for (FoodModel fm : allFoodItems) {
+                if (categoryFilter.contains(fm.getDish_type())
+                        && nationalityFilter.contains(fm.getNationality())) {
+                    displayFoodItems.add(fm);
+                }
+            }
+        }
+    }
+
+    /* Used when filling in data to database */
+    private void importFromCSV() {
+        InputStream inputStream = getResources().openRawResource(R.raw.food_list);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(inputStream, StandardCharsets.UTF_8)
+        );
+
+        String line;
+        try {
+            reader.readLine();
+            while ( (line = reader.readLine()) != null ) {
+                String[] tokens = line.split(";");
+                FoodModel food = new FoodModel(
+                        Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4],
+                        Integer.parseInt(tokens[5]), tokens[6]
+                );
+                addFoodItemToDatabase(food);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

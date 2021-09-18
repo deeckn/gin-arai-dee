@@ -1,5 +1,6 @@
 package com.gin_arai_dee;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,10 +8,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    public static final String DB_NAME = "gin_arai_dee.sqlite";
+    @SuppressLint("SdCardPath")
+    public static final String DB_LOCATION = "/data/data/com.gin_arai_dee/databases/";
 
     public static final String FOOD_ITEMS_TABLE = "FOOD_ITEMS_TABLE";
     public static final String COLUMN_ID = "ID";
@@ -21,28 +31,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_KCAL = "KCAL";
     public static final String COLUMN_IMAGE_NAME = "IMAGE_NAME";
 
-    public DatabaseHelper(@Nullable Context context) {
-        super(context, "gin_arai_dee_sqlite.db", null, 1);
+    private final Context context;
+    private SQLiteDatabase db;
+
+    public DatabaseHelper(Context context) {
+        super(context, DB_NAME, null, 1);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTableStatement = "CREATE TABLE " + FOOD_ITEMS_TABLE + " (" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_FOOD_ITEM + " TEXT, " +
-                COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_DISH_TYPE + " TEXT, " +
-                COLUMN_NATIONALITY + " TEXT, " +
-                COLUMN_KCAL + " INTEGER, " +
-                COLUMN_IMAGE_NAME + " TEXT)";
-        sqLiteDatabase.execSQL(createTableStatement);
+//        String createTableStatement = "CREATE TABLE " + FOOD_ITEMS_TABLE + " (" +
+//                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                COLUMN_FOOD_ITEM + " TEXT, " +
+//                COLUMN_DESCRIPTION + " TEXT, " +
+//                COLUMN_DISH_TYPE + " TEXT, " +
+//                COLUMN_NATIONALITY + " TEXT, " +
+//                COLUMN_KCAL + " INTEGER, " +
+//                COLUMN_IMAGE_NAME + " TEXT)";
+//        sqLiteDatabase.execSQL(createTableStatement);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {}
 
+    public void openDatabase() {
+        String path = context.getDatabasePath(DB_NAME).getPath();
+        if (db != null && db.isOpen()) return;
+        db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+    }
+
+    public void closeDatabase() {
+        if (db != null) db.close();
+    }
+
     public boolean addFoodItem(FoodModel food) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        openDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_FOOD_ITEM, food.getFood_item());
@@ -53,13 +77,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_IMAGE_NAME, food.getImage_name());
 
         long insert = db.insert(FOOD_ITEMS_TABLE, null, cv);
+        closeDatabase();
         return insert != -1;
     }
 
     public List<FoodModel> getAllFoodItems() {
+        openDatabase();
         List<FoodModel> allFoodItems = new ArrayList<>();
         String query = "SELECT * FROM " + FOOD_ITEMS_TABLE;
-        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
@@ -76,6 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
+        closeDatabase();
         return allFoodItems;
     }
 }

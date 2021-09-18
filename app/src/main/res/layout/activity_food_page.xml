@@ -16,7 +16,7 @@
             android:id="@+id/main_grid_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:rowCount="3"
+            android:rowCount="4"
             android:columnCount="3">
 
             <EditText
@@ -136,6 +136,23 @@
                     tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck"
                     />
             </GridLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_rowSpan="1"
+                android:layout_columnSpan="3"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="PlaceHolder!"
+                    android:textColor="@color/charcoal"/>
+            </LinearLayout>
+
         </GridLayout>
 
     </ScrollView>
