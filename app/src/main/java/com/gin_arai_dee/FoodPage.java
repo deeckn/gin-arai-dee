@@ -14,19 +14,14 @@ import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -422,7 +417,7 @@ public class FoodPage extends AppCompatActivity {
             String outFileName = DatabaseHelper.DB_LOCATION + DatabaseHelper.DB_NAME;
             OutputStream outputStream = new FileOutputStream(outFileName);
             byte[] buffer = new byte[1024];
-            int length = 0;
+            int length;
             while ((length = inputStream.read(buffer)) > 0) {
                 outputStream.write(buffer, 0, length);
             }
