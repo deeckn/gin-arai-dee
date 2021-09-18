@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GinAraiDee">
         <activity
+            android:name=".FoodHub"
+            android:exported="true" />
+        <activity
             android:name=".BillSplitterPage"
             android:exported="true" />
         <activity

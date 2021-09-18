@@ -106,7 +106,7 @@ public class FoodPage extends AppCompatActivity {
         loadData();
 
         // Navigation Bar Settings
-        bottomNavigationView.setSelectedItemId(R.id.food_page);
+        bottomNavigationView.setSelectedItemId(R.id.food_hub);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int currentItem = item.getItemId();
             if (currentItem == R.id.home_page) {
@@ -114,7 +114,7 @@ public class FoodPage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
             }
-            else if (currentItem == R.id.food_page) {
+            else if (currentItem == R.id.food_hub) {
                 return true;
             }
             else {

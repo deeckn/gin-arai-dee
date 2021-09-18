@@ -41,5 +41,7 @@
     <string name="list_name_text">List Name</string>
     <string name="price_text">Price</string>
     <string name="per_person_text">Per Person</string>
+    <string name="bill_splitter">Bill Splitter</string>
+    <string name="food_hub">Food Hub</string>
 
 </resources>

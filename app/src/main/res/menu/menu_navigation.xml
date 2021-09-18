@@ -6,13 +6,13 @@
         android:icon="@drawable/ic_home"/>
 
     <item
-        android:id="@+id/food_page"
+        android:id="@+id/food_hub"
         android:title="@string/food"
         android:icon="@drawable/ic_food"/>
 
     <item
-        android:id="@+id/recipe_page"
-        android:title="@string/browse_recipes"
+        android:id="@+id/billing_page"
+        android:title="@string/bill_splitter"
         android:icon="@drawable/ic_recipe"/>
 
     <item
