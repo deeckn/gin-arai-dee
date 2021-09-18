@@ -1,84 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/ghost_white"
     tools:context=".BillSplitterPage">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/bill_scroll_area"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="fill_parent"
+        android:paddingBottom="70sp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bill_splitter"
-            android:textColor="@color/wine"
-            android:textSize="30sp"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginStart="30sp"
-            android:layout_marginTop="30sp"
-        />
-
-        <GridLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:rowCount="2"
-            android:columnCount="2"
-            android:textAlignment="center">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/num_people_text"
-                android:textColor="@color/charcoal"
-                android:textSize="20sp"
-                android:fontFamily="@font/rubik_bold"
-                android:layout_marginTop="10sp"
-                android:layout_marginStart="60sp"
-                android:layout_gravity="center"/>
+                android:layout_marginStart="30sp"
+                android:layout_marginTop="30sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/bill_splitter"
+                android:textColor="@color/wine"
+                android:textSize="30sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/total_text"
-                android:textColor="@color/charcoal"
-                android:textSize="20sp"
-                android:fontFamily="@font/rubik_bold"
-                android:layout_marginTop="10sp"
-                android:layout_gravity="center"/>
+                android:columnCount="2"
+                android:rowCount="2"
+                android:textAlignment="center">
 
-            <TextView
-                android:id="@+id/num_people"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/total"
-                android:textColor="@color/charcoal"
-                android:textSize="30sp"
-                android:fontFamily="@font/rubik_bold"
-                android:layout_marginTop="5sp"
-                android:layout_marginStart="60sp"
-                android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="60sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_columnSpan="1"
+                    android:layout_rowSpan="1"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/num_people_text"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/total"
-                android:textColor="@color/charcoal"
-                android:textSize="30sp"
-                android:fontFamily="@font/rubik_bold"
-                android:layout_marginTop="5sp"
-                android:layout_gravity="center"/>
-        </GridLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10sp"
+                    android:layout_columnSpan="1"
+                    android:layout_rowSpan="1"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/total_text"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent">
+                <TextView
+                    android:id="@+id/num_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_columnSpan="1"
+                    android:layout_rowSpan="1"
+                    android:layout_marginStart="60sp"
+                    android:layout_marginTop="5sp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/total"
+                    android:textColor="@color/charcoal"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_columnSpan="1"
+                    android:layout_rowSpan="1"
+                    android:layout_marginTop="5sp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/total"
+                    android:textColor="@color/charcoal"
+                    android:textSize="30sp" />
+            </GridLayout>
+
             <TabHost
                 android:id="@+id/tabhost"
                 android:layout_width="match_parent"
@@ -100,82 +110,132 @@
                     <FrameLayout
                         android:id="@android:id/tabcontent"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
                             android:id="@+id/list_tab"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:background="@color/fuzzy_wuzzy"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="10sp"
-                            android:layout_marginEnd="10sp">
+                            android:layout_marginTop="10sp"
+                            android:layout_marginEnd="10sp"
+                            android:background="@drawable/tab_widget_window"
+                            android:orientation="vertical">
 
 
                             <GridLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:rowCount="1"
                                 android:columnCount="3"
+                                android:rowCount="1"
                                 android:textAlignment="center">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="20sp"
+                                    android:layout_marginTop="20sp"
+                                    android:fontFamily="@font/rubik_bold"
                                     android:text="@string/list_name_text"
                                     android:textColor="@color/wine"
-                                    android:textSize="20sp"
-                                    android:fontFamily="@font/rubik_bold"
-                                    android:layout_marginTop="10sp"
-                                    android:layout_marginStart="10sp"
-                                    android:layout_gravity="center"/>
+                                    android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="50sp"
+                                    android:layout_marginTop="20sp"
+                                    android:layout_marginEnd="40sp"
+                                    android:fontFamily="@font/rubik_bold"
                                     android:text="@string/price_text"
                                     android:textColor="@color/wine"
-                                    android:textSize="20sp"
-                                    android:fontFamily="@font/rubik_bold"
-                                    android:layout_marginTop="10sp"
-                                    android:layout_marginStart="50sp"
-                                    android:layout_marginEnd="60sp"
-                                    android:layout_gravity="center"/>
+                                    android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="20sp"
+                                    android:layout_marginEnd="20sp"
+                                    android:fontFamily="@font/rubik_bold"
                                     android:text="@string/per_person_text"
                                     android:textColor="@color/wine"
-                                    android:textSize="20sp"
-                                    android:fontFamily="@font/rubik_bold"
-                                    android:layout_marginTop="10sp"
-                                    android:layout_marginEnd="10sp"
-                                    android:layout_gravity="center"/>
+                                    android:textSize="20sp" />
 
                             </GridLayout>
-
+                            <!--                            <ScrollView-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="230sp"-->
+                            <!--                                android:layout_marginTop="10sp"-->
+                            <!--                                android:layout_marginStart="20sp"-->
+                            <!--                                android:layout_marginEnd="20sp">-->
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="hello"
-                                android:textSize="50sp"
-                                android:textColor="@color/wine"
-                                android:fontFamily="@font/rubik_bold">
-                            </TextView>
+                                android:layout_marginStart="20sp"
+                                android:fontFamily="@font/rubik"
+                                android:text="@string/app_name"
+                                android:textColor="@color/ghost_white"
+                                android:textSize="20sp">
 
-                            <EditText
-                                android:id="@+id/list_add_bar"
-                                android:layout_width="300sp"
+                            </TextView>
+                            <!--                            </ScrollView>-->
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/list_add_bar"
+                                    android:layout_width="280sp"
+                                    android:layout_height="50sp"
+                                    android:layout_marginStart="20sp"
+                                    android:layout_marginTop="10sp"
+                                    android:background="@drawable/add_bar"
+                                    android:fontFamily="@font/rubik"
+                                    android:hint="@string/add"
+                                    android:importantForAutofill="no"
+                                    android:inputType="text"
+                                    android:paddingStart="20dp"
+                                    android:paddingEnd="0dp"
+                                    android:textColorHint="@color/wine"
+                                    android:textSize="20sp">
+
+                                </EditText>
+
+                                <Button
+                                    android:id="@+id/add_list_button"
+                                    android:layout_width="0dp"
+                                    android:layout_height="50sp"
+                                    android:layout_marginStart="10sp"
+                                    android:layout_marginTop="10sp"
+                                    android:layout_marginEnd="20sp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/search_bar"
+                                    android:fontFamily="@font/rubik_bold"
+                                    android:text="@string/add_list"
+                                    android:textColor="@color/ghost_white"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/clear_list_button"
+                                android:layout_width="match_parent"
                                 android:layout_height="50sp"
-                                android:layout_marginStart="30sp"
-                                android:hint="@string/add"
-                                android:textColorHint="@color/charcoal"
-                                android:inputType="text"
-                                android:importantForAutofill="no"
-                                android:fontFamily="@font/montserrat_bold"
-                                >
-                            </EditText>
+                                android:layout_marginStart="20sp"
+                                android:layout_marginTop="10sp"
+                                android:layout_marginEnd="20sp"
+                                android:layout_marginBottom="10sp"
+                                android:background="@android:color/transparent"
+                                android:fontFamily="@font/rubik_bold"
+                                android:text="@string/clear_list"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="false"
+                                android:textColor="@color/wine"
+                                android:textSize="20sp" />
 
                         </LinearLayout>
 
@@ -184,14 +244,28 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
-
                         </LinearLayout>
 
                     </FrameLayout>
                 </LinearLayout>
             </TabHost>
-        </ScrollView>
-    </LinearLayout>
+
+            <Button
+                android:id="@+id/create_bill_button"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/create_bill_button"
+                android:fontFamily="@font/rubik_bold"
+                android:text="@string/create_bill"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/dock_navigation"

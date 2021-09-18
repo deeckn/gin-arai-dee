@@ -6,19 +6,29 @@ import androidx.core.content.res.ResourcesCompat;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
 public class BillSplitterPage extends AppCompatActivity {
+    ScrollView scrollView;
+    EditText list_input;
+    TabHost tabHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill_splitter_page);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        scrollView = findViewById(R.id.bill_scroll_area);
+        list_input = findViewById(R.id.list_add_bar);
 
         // Set TabWidget name
-        TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
+        tabHost =  findViewById(R.id.tabhost);
         tabHost.setup();
         TabHost.TabSpec spec = tabHost.newTabSpec("List Tab");
         spec.setContent(R.id.list_tab);
