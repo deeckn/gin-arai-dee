@@ -24,8 +24,19 @@
     <string name="snacks">Snacks</string>
     <string name="desserts">Desserts</string>
     <string name="beverages">Beverages</string>
-    <string name="dietary_planer">Dietary Planer</string>
     <string name="choose_nationality">Choose Nationality</string>
+
+    <!-- Dietary Planner Page -->
+    <string name="dietary_planner">Dietary Planner</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="edit">Edit</string>
+    <string name="total_calories">Total Calories</string>
     <string name="thai">Thai</string>
     <string name="japanese">Japanese</string>
     <string name="italian">Italian</string>
@@ -44,5 +55,9 @@
     <string name="add_list">⏎</string>
     <string name="clear_list">Clear All List ⌫</string>
     <string name="create_bill">Create Bill ⏎</string>
-
+    <string name="bill_splitter">Bill Splitter</string>
+  
+    <!-- Food Hub Page -->
+    <string name="food_hub">Food Hub</string>
+   
 </resources>

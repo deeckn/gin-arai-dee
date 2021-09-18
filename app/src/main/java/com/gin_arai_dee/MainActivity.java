@@ -4,10 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,5 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Opens the bill splitter page
-    private void openBillSplitterPage() { startActivity(new Intent(this, BillSplitterPage.class)); }
+    private void openBillSplitterPage() { 
+      startActivity(new Intent(this, BillSplitterPage.class));
+    }
 }

@@ -22,7 +22,6 @@ public class HomePage extends AppCompatActivity {
         // Navigation Settings
         bottomNavigationView = findViewById(R.id.dock_navigation);
         bottomNavigationView.setSelectedItemId(R.id.home_page);
-        bottomNavigationView.setSelectedItemId(R.id.home_page);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int currentItem = item.getItemId();
             if (currentItem == R.id.home_page) {
