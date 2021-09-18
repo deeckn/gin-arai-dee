@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ghost_white"
+    tools:context=".BillSplitterPage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bill_splitter"
+            android:textColor="@color/wine"
+            android:textSize="30sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginStart="30sp"
+            android:layout_marginTop="30sp"
+        />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rowCount="2"
+            android:columnCount="2"
+            android:textAlignment="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/num_people_text"
+                android:textColor="@color/charcoal"
+                android:textSize="20sp"
+                android:fontFamily="@font/rubik_bold"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="60sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_text"
+                android:textColor="@color/charcoal"
+                android:textSize="20sp"
+                android:fontFamily="@font/rubik_bold"
+                android:layout_marginTop="10sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/num_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total"
+                android:textColor="@color/charcoal"
+                android:textSize="30sp"
+                android:fontFamily="@font/rubik_bold"
+                android:layout_marginTop="5sp"
+                android:layout_marginStart="60sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total"
+                android:textColor="@color/charcoal"
+                android:textSize="30sp"
+                android:fontFamily="@font/rubik_bold"
+                android:layout_marginTop="5sp"
+                android:layout_gravity="center"/>
+        </GridLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+            <TabHost
+                android:id="@+id/tabhost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:theme="@style/tabWidget">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/ghost_white" />
+
+                    <FrameLayout
+                        android:id="@android:id/tabcontent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/list_tab"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:background="@color/fuzzy_wuzzy"
+                            android:layout_marginStart="10sp"
+                            android:layout_marginEnd="10sp">
+
+
+                            <GridLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:rowCount="1"
+                                android:columnCount="3"
+                                android:textAlignment="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/list_name_text"
+                                    android:textColor="@color/wine"
+                                    android:textSize="20sp"
+                                    android:fontFamily="@font/rubik_bold"
+                                    android:layout_marginTop="10sp"
+                                    android:layout_marginStart="10sp"
+                                    android:layout_gravity="center"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/price_text"
+                                    android:textColor="@color/wine"
+                                    android:textSize="20sp"
+                                    android:fontFamily="@font/rubik_bold"
+                                    android:layout_marginTop="10sp"
+                                    android:layout_marginStart="50sp"
+                                    android:layout_marginEnd="60sp"
+                                    android:layout_gravity="center"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/per_person_text"
+                                    android:textColor="@color/wine"
+                                    android:textSize="20sp"
+                                    android:fontFamily="@font/rubik_bold"
+                                    android:layout_marginTop="10sp"
+                                    android:layout_marginEnd="10sp"
+                                    android:layout_gravity="center"/>
+
+                            </GridLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="hello"
+                                android:textSize="50sp"
+                                android:textColor="@color/wine"
+                                android:fontFamily="@font/rubik_bold">
+                            </TextView>
+
+                            <EditText
+                                android:id="@+id/list_add_bar"
+                                android:layout_width="300sp"
+                                android:layout_height="50sp"
+                                android:layout_marginStart="30sp"
+                                android:hint="@string/add"
+                                android:textColorHint="@color/charcoal"
+                                android:inputType="text"
+                                android:importantForAutofill="no"
+                                android:fontFamily="@font/montserrat_bold"
+                                >
+                            </EditText>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/payer_tab"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+                </LinearLayout>
+            </TabHost>
+        </ScrollView>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/dock_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/maximum_yellow_red"
+        app:itemBackground="@color/maximum_yellow_red"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_navigation" />
+</RelativeLayout>

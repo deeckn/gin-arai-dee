@@ -10,9 +10,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diet_page);
-        //openHomePage();
-        //openFoodPage();
+        setContentView(R.layout.activity_main);
+        // openHomePage();
+        // openFoodPage();
+        // openBillSplitterPage();
     }
 
     // Opens the home page
@@ -23,5 +24,10 @@ public class MainActivity extends AppCompatActivity {
     // Opens the food page
     private void openFoodPage() {
         startActivity(new Intent(this, FoodPage.class));
+    }
+
+    // Opens the bill splitter page
+    private void openBillSplitterPage() { 
+      startActivity(new Intent(this, BillSplitterPage.class));
     }
 }

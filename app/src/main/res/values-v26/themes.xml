@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="tabWidget">
+        <item name="android:textColor">@color/charcoal</item>
+        <item name="android:font">@font/rubik_bold</item>
+    </style>
+</resources>

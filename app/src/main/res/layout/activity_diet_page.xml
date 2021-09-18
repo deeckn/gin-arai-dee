@@ -25,6 +25,7 @@
         <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center_horizontal"
             tools:ignore="UselessLeaf">
 
@@ -242,6 +243,10 @@
                     android:layout_column="1"
                     android:layout_gravity="center"
                     />
+              
+            android:text="@string/dietary_planer"
+            android:textColor="@color/wine"
+            android:textSize="35sp" />
 
                 <Button
                     android:id="@+id/thursday_edit_button"

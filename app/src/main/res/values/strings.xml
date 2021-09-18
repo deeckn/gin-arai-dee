@@ -13,7 +13,8 @@
     <string name="home_page">Home Page</string>
     <string name="food">Food</string>
     <string name="browse_recipes">Browse Recipes</string>
-
+    <string name="dietary_planner">Dietary Planner</string>
+    <string name="bill_splitter">Bill Splitter</string>
 
     <!-- Food Recommendation Page -->
     <string name="search">Search</string>
@@ -36,4 +37,23 @@
     <string name="sunday">Sunday</string>
     <string name="edit">Edit</string>
     <string name="total_calories">Total Calories</string>
+    <string name="thai">Thai</string>
+    <string name="japanese">Japanese</string>
+    <string name="italian">Italian</string>
+    <string name="chinese">Chinese</string>
+    <string name="korean">Korean</string>
+
+    <!-- Bill Splitter Page -->
+    <string name="num_people_text"># of People</string>
+    <string name="total_text">Total</string>
+    <string name="num_people">0</string>
+    <string name="total">0</string>
+    <string name="add">Add</string>
+    <string name="list_name_text">List Name</string>
+    <string name="price_text">Price</string>
+    <string name="per_person_text">Per Person</string>
+    <string name="bill_splitter">Bill Splitter</string>
+  
+    <!-- Food Hub Page -->
+    <string name="food_hub">Food Hub</string>
 </resources>
