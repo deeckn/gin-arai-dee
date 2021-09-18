@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ghost_white"
-    tools:context=".FoodHub">
+    tools:context=".FoodHub"
+    android:id="@+id/food_hub">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,8 +60,8 @@
 
             <!-- Browse Food Card -->
             <RelativeLayout
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_columnSpan="1"
                 android:layout_rowSpan="1"
                 android:background="@drawable/food_food_menu"
@@ -84,12 +85,13 @@
 
             <!-- Browse Recipes Card -->
             <RelativeLayout
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_columnSpan="1"
                 android:layout_rowSpan="1"
                 android:background="@drawable/recipes_food_menu"
-                android:layout_marginStart="40dp">
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp">
 
                 <TextView
                     android:layout_width="wrap_content"
