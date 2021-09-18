@@ -265,46 +265,15 @@ public class FoodPage extends AppCompatActivity {
         korean_checkbox = new CheckBox(this);
     }
 
-    private boolean copyDatabase(Context context) {
-        try {
-            InputStream inputStream = context.getAssets().open(DatabaseHelper.DB_NAME);
-            String outFileName = DatabaseHelper.DB_LOCATION + DatabaseHelper.DB_NAME;
-            OutputStream outputStream = new FileOutputStream(outFileName);
-            byte[] buffer = new byte[1024];
-            int length = 0;
-            while ((length = inputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, length);
-            }
-            outputStream.flush();
-            outputStream.close();
-            Log.w("FoodPage", "DB Copied");
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    private void loadData() {
-        File database = getApplicationContext().getDatabasePath(DatabaseHelper.DB_NAME);
-        if (!database.exists()) {
-            db.getReadableDatabase();
-            if (copyDatabase(this)) {
-                Log.d("FoodPage", "Database Copied Successfully");
-            }
-            else {
-                Log.d("FoodPage", "Database Not Copied");
-            }
-        }
-        loadFoodItems();
-        groupFoodItems();
-    }
-
     private int getValueInDp(int value) {
         float scale = getResources().getDisplayMetrics().density;
         return (int) (value * scale + 0.5f);
     }
 
+
+    /***
+     * UI Page Functionality
+     */
     // Expand and minimize category selector box
     public void toggleCategoryBox(View view) {
         if (!categoryLoaded) {
@@ -426,11 +395,45 @@ public class FoodPage extends AppCompatActivity {
         nationalityBoxState = !nationalityBoxState;
     }
 
-    // Add Food Item to Database
-    private void addFoodItemToDatabase(FoodModel food) {
-        boolean success = db.addFoodItem(food);
-        if (success) Log.d("Success", "Successfully loaded to database");
-        else Log.d("Error", "Failed to put food to database");
+    /***
+     * Database Management Section
+     */
+
+    // Load Data Facade
+    private void loadData() {
+        File database = getApplicationContext().getDatabasePath(DatabaseHelper.DB_NAME);
+        if (!database.exists()) {
+            db.getReadableDatabase();
+            if (copyDatabase(this)) {
+                Log.d("FoodPage", "Database Copied Successfully");
+            }
+            else {
+                Log.d("FoodPage", "Database Not Copied");
+            }
+        }
+        loadFoodItems();
+        groupFoodItems();
+    }
+
+    // Copies the Application Database to User Device
+    private boolean copyDatabase(Context context) {
+        try {
+            InputStream inputStream = context.getAssets().open(DatabaseHelper.DB_NAME);
+            String outFileName = DatabaseHelper.DB_LOCATION + DatabaseHelper.DB_NAME;
+            OutputStream outputStream = new FileOutputStream(outFileName);
+            byte[] buffer = new byte[1024];
+            int length = 0;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+            outputStream.flush();
+            outputStream.close();
+            Log.w("FoodPage", "DB Copied");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // Loads all food items from the database
@@ -441,7 +444,16 @@ public class FoodPage extends AppCompatActivity {
         }
     }
 
-    // Filters Food Items into Hashmaps
+    // Add Food Item to Database
+    private void addFoodItemToDatabase(FoodModel food) {
+        boolean success = db.addFoodItem(food);
+        if (success) Log.d("Success", "Successfully loaded to database");
+        else Log.d("Error", "Failed to put food to database");
+    }
+
+    /***
+     * Food Filtering Process
+     */
     private void groupFoodItems() {
         for (FoodModel food : allFoodItems) {
             if (food == null) continue;
@@ -519,7 +531,9 @@ public class FoodPage extends AppCompatActivity {
         }
     }
 
-    /* Used when filling in data to database */
+    /***
+     * Development Utility for SQLite
+     */
     private void importFromCSV() {
         InputStream inputStream = getResources().openRawResource(R.raw.food_list);
         BufferedReader reader = new BufferedReader(
