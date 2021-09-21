@@ -9,8 +9,10 @@ public class FoodModel {
     private int kcal;
     private String image_name;
 
-    public FoodModel(int id, String food_item, String description, String dish_type,
-                     String nationality, int kcal, String image_name) {
+    public FoodModel(int id, String food_item,
+                     String description, String dish_type,
+                     String nationality, int kcal,
+                     String image_name) {
         this.id = id;
         this.food_item = food_item;
         this.description = description;

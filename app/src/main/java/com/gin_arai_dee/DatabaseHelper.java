@@ -11,18 +11,17 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String DB_NAME = "gin_arai_dee.sqlite";
+    public static final String DB_NAME              = "gin_arai_dee.sqlite";
     @SuppressLint("SdCardPath")
-    public static final String DB_LOCATION = "/data/data/com.gin_arai_dee/databases/";
-
-    public static final String FOOD_ITEMS_TABLE = "FOOD_ITEMS_TABLE";
-    public static final String COLUMN_ID = "ID";
-    public static final String COLUMN_FOOD_ITEM = "FOOD_ITEM";
-    public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
-    public static final String COLUMN_DISH_TYPE = "DISH_TYPE";
-    public static final String COLUMN_NATIONALITY = "NATIONALITY";
-    public static final String COLUMN_KCAL = "KCAL";
-    public static final String COLUMN_IMAGE_NAME = "IMAGE_NAME";
+    public static final String DB_LOCATION          = "/data/data/com.gin_arai_dee/databases/";
+    public static final String FOOD_ITEMS_TABLE     = "FOOD_ITEMS_TABLE";
+    public static final String COLUMN_ID            = "ID";
+    public static final String COLUMN_FOOD_ITEM     = "FOOD_ITEM";
+    public static final String COLUMN_DESCRIPTION   = "DESCRIPTION";
+    public static final String COLUMN_DISH_TYPE     = "DISH_TYPE";
+    public static final String COLUMN_NATIONALITY   = "NATIONALITY";
+    public static final String COLUMN_KCAL          = "KCAL";
+    public static final String COLUMN_IMAGE_NAME    = "IMAGE_NAME";
 
     private final Context context;
     private SQLiteDatabase db;
