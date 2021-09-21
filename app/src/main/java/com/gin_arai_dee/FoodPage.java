@@ -88,16 +88,16 @@ public class FoodPage extends AppCompatActivity {
     CheckBox korean_checkbox;
 
     // String Constants
-    public static final String MAIN_DISH = "main_dish";
-    public static final String APPETIZERS = "appetizers";
-    public static final String SNACKS = "snacks";
-    public static final String DESSERTS = "desserts";
-    public static final String BEVERAGES = "beverages";
-    public static final String THAI = "thai";
-    public static final String ITALIAN = "italian";
-    public static final String JAPANESE = "japanese";
-    public static final String CHINESE = "chinese";
-    public static final String KOREAN = "korean";
+    public static final String MAIN_DISH    = "main_dish";
+    public static final String APPETIZERS   = "appetizers";
+    public static final String SNACKS       = "snacks";
+    public static final String DESSERTS     = "desserts";
+    public static final String BEVERAGES    = "beverages";
+    public static final String THAI         = "thai";
+    public static final String ITALIAN      = "italian";
+    public static final String JAPANESE     = "japanese";
+    public static final String CHINESE      = "chinese";
+    public static final String KOREAN       = "korean";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,46 +220,44 @@ public class FoodPage extends AppCompatActivity {
         nationalityFilter = new ArrayList<>();
 
         // Initializing page elements and objects
-        parentGridLayout = findViewById(R.id.main_grid_layout);
-        bottomNavigationView = findViewById(R.id.dock_navigation);
-
-        chooseCategoryTitle = findViewById(R.id.choose_category_title);
-        categorySelectorBox = findViewById(R.id.category_selector_box);
-        categoryDropdownArrow = findViewById(R.id.category_arrow);
-
-        chooseNationalityTitle = findViewById(R.id.choose_nationality_title);
-        nationalitySelectorBox = findViewById(R.id.nationality_selector_box);
-        nationalityDropdownArrow = findViewById(R.id.nationality_arrow);
+        parentGridLayout            = findViewById(R.id.main_grid_layout);
+        bottomNavigationView        = findViewById(R.id.dock_navigation);
+        chooseCategoryTitle         = findViewById(R.id.choose_category_title);
+        categorySelectorBox         = findViewById(R.id.category_selector_box);
+        categoryDropdownArrow       = findViewById(R.id.category_arrow);
+        chooseNationalityTitle      = findViewById(R.id.choose_nationality_title);
+        nationalitySelectorBox      = findViewById(R.id.nationality_selector_box);
+        nationalityDropdownArrow    = findViewById(R.id.nationality_arrow);
 
         // Category Dropdown Box Elements
-        categoryTextViews = new ArrayList<>();
-        main_dish_text = new TextView(this);
-        appetizer_text = new TextView(this);
-        desserts_text = new TextView(this);
-        snacks_text = new TextView(this);
-        beverages_text = new TextView(this);
+        categoryTextViews   = new ArrayList<>();
+        main_dish_text      = new TextView(this);
+        appetizer_text      = new TextView(this);
+        desserts_text       = new TextView(this);
+        snacks_text         = new TextView(this);
+        beverages_text      = new TextView(this);
 
-        categoryCheckBoxes = new ArrayList<>();
-        main_dish_checkbox = new CheckBox(this);
-        appetizer_checkbox = new CheckBox(this);
-        desserts_checkbox = new CheckBox(this);
-        snacks_checkbox = new CheckBox(this);
-        beverages_checkbox = new CheckBox(this);
+        categoryCheckBoxes  = new ArrayList<>();
+        main_dish_checkbox  = new CheckBox(this);
+        appetizer_checkbox  = new CheckBox(this);
+        desserts_checkbox   = new CheckBox(this);
+        snacks_checkbox     = new CheckBox(this);
+        beverages_checkbox  = new CheckBox(this);
 
         // Nationality Dropdown Box Elements
         nationalityTextViews = new ArrayList<>();
-        thai_text = new TextView(this);
-        japanese_text = new TextView(this);
-        italian_text = new TextView(this);
-        chinese_text = new TextView(this);
-        korean_text = new TextView(this);
+        thai_text       = new TextView(this);
+        japanese_text   = new TextView(this);
+        italian_text    = new TextView(this);
+        chinese_text    = new TextView(this);
+        korean_text     = new TextView(this);
 
         nationalityCheckBoxes = new ArrayList<>();
-        thai_checkbox = new CheckBox(this);
-        japanese_checkbox = new CheckBox(this);
-        italian_checkbox = new CheckBox(this);
-        chinese_checkbox = new CheckBox(this);
-        korean_checkbox = new CheckBox(this);
+        thai_checkbox       = new CheckBox(this);
+        japanese_checkbox   = new CheckBox(this);
+        italian_checkbox    = new CheckBox(this);
+        chinese_checkbox    = new CheckBox(this);
+        korean_checkbox     = new CheckBox(this);
     }
 
     private int getValueInDp(int value) {
@@ -319,6 +317,7 @@ public class FoodPage extends AppCompatActivity {
         // Performing tasks based on CategoryBoxState boolean
         if (categoryBoxState) {
             categoryDropdownArrow.animate().rotation(90).setDuration(300);
+
             for (int i = 0; i < categoryTextViews.size(); i++) {
                 categorySelectorBox.addView(categoryTextViews.get(i));
                 categorySelectorBox.addView(categoryCheckBoxes.get(i));
@@ -379,6 +378,7 @@ public class FoodPage extends AppCompatActivity {
         // Performing tasks based on CategoryBoxState boolean
         if (nationalityBoxState) {
             nationalityDropdownArrow.animate().rotation(90).setDuration(300);
+
             for (int i = 0; i < nationalityTextViews.size(); i++) {
                 nationalitySelectorBox.addView(nationalityTextViews.get(i));
                 nationalitySelectorBox.addView(nationalityCheckBoxes.get(i));
@@ -401,12 +401,10 @@ public class FoodPage extends AppCompatActivity {
         File database = getApplicationContext().getDatabasePath(DatabaseHelper.DB_NAME);
         if (!database.exists()) {
             db.getReadableDatabase();
-            if (copyDatabase(this)) {
+            if (copyDatabase(this))
                 Log.d("FoodPage", "Database Copied Successfully");
-            }
-            else {
+            else
                 Log.d("FoodPage", "Database Not Copied");
-            }
         }
         loadFoodItems();
         groupFoodItems();
@@ -420,14 +418,14 @@ public class FoodPage extends AppCompatActivity {
             OutputStream outputStream = new FileOutputStream(outFileName);
             byte[] buffer = new byte[1024];
             int length;
-            while ((length = inputStream.read(buffer)) > 0) {
+            while ((length = inputStream.read(buffer)) > 0)
                 outputStream.write(buffer, 0, length);
-            }
             outputStream.flush();
             outputStream.close();
             Log.w("FoodPage", "DB Copied");
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -436,9 +434,7 @@ public class FoodPage extends AppCompatActivity {
     // Loads all food items from the database
     private void loadFoodItems() {
         allFoodItems = db.getAllFoodItems();
-        for (FoodModel m : allFoodItems) {
-            System.out.println(m.getFood_item());
-        }
+        for (FoodModel m : allFoodItems) System.out.println(m.getFood_item());
     }
 
     // Add Food Item to Database
@@ -498,9 +494,8 @@ public class FoodPage extends AppCompatActivity {
     private void updateDisplayFoodItems() {
         displayFoodItems.clear();
 
-        if (categoryFilter.isEmpty() && nationalityFilter.isEmpty()) {
+        if (categoryFilter.isEmpty() && nationalityFilter.isEmpty())
             displayFoodItems.addAll(allFoodItems);
-        }
 
         if (!categoryFilter.isEmpty() && nationalityFilter.isEmpty()) {
             for (String type : categoryFilter) {
