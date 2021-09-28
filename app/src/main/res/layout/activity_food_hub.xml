@@ -79,7 +79,7 @@
                     android:text="@string/food"
                     android:textAlignment="center"
                     android:textColor="@color/ghost_white"
-                    android:textSize="30sp" />
+                    android:textSize="20sp" />
 
             </RelativeLayout>
 
@@ -99,13 +99,13 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="20dp"
+                    android:alpha="0.8"
+                    android:background="@drawable/round_button_yellow"
                     android:fontFamily="@font/rubik_bold"
-                    android:text="Recipes"
+                    android:text="@string/recipes"
                     android:textAlignment="center"
                     android:textColor="@color/ghost_white"
-                    android:textSize="30sp"
-                    android:alpha="0.8"
-                    android:background="@drawable/round_button_yellow"/>
+                    android:textSize="30sp" />
 
             </RelativeLayout>
 

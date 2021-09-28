@@ -14,8 +14,17 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,7 +41,8 @@ import java.util.Objects;
 import java.util.Set;
 
 public class FoodPage extends AppCompatActivity {
-    // Database
+    // Databases
+    StorageReference storageReference;
     DatabaseHelper db;
 
     // Food Data
@@ -86,6 +96,9 @@ public class FoodPage extends AppCompatActivity {
     CheckBox italian_checkbox;
     CheckBox chinese_checkbox;
     CheckBox korean_checkbox;
+
+    // Food Cards
+    LinearLayout foodCardLayout;
 
     // String Constants
     public static final String MAIN_DISH    = "main_dish";
@@ -197,7 +210,9 @@ public class FoodPage extends AppCompatActivity {
     }
 
     private void initializeInstances() {
-        // Database
+        // Databases
+        storageReference = FirebaseStorage.getInstance()
+                .getReference().child("food_images/carbonara.jpg");
         db = new DatabaseHelper(this);
 
         // Food Data
@@ -258,6 +273,9 @@ public class FoodPage extends AppCompatActivity {
         italian_checkbox    = new CheckBox(this);
         chinese_checkbox    = new CheckBox(this);
         korean_checkbox     = new CheckBox(this);
+
+        // Food Cards
+        foodCardLayout = findViewById(R.id.food_card_linear_layout);
     }
 
     private int getValueInDp(int value) {
@@ -434,7 +452,6 @@ public class FoodPage extends AppCompatActivity {
     // Loads all food items from the database
     private void loadFoodItems() {
         allFoodItems = db.getAllFoodItems();
-        for (FoodItem m : allFoodItems) System.out.println(m.getFood_item());
     }
 
     // Add Food Item to Database
@@ -514,14 +531,24 @@ public class FoodPage extends AppCompatActivity {
         }
 
         if (!(categoryFilter.isEmpty() && nationalityFilter.isEmpty())) {
-            for (FoodItem fm : allFoodItems) {
-                if (categoryFilter.contains(fm.getDish_type())
-                        && nationalityFilter.contains(fm.getNationality())) {
-                    displayFoodItems.add(fm);
+            for (FoodItem f : allFoodItems) {
+                if (categoryFilter.contains(f.getDish_type())
+                        && nationalityFilter.contains(f.getNationality())) {
+                    displayFoodItems.add(f);
                 }
             }
         }
+
+        generateFoodCards();
     }
+
+    /***
+     * Food cards list
+     */
+    private void generateFoodCards() {
+
+    }
+
 
     /***
      * Development Utility for SQLite

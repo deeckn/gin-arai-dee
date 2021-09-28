@@ -16,6 +16,7 @@ public class FoodHub extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_hub);
 
+        bottomNavigationView = findViewById(R.id.dock_navigation);
         bottomNavigationView.setSelectedItemId(R.id.food_hub);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int currentItem = item.getItemId();

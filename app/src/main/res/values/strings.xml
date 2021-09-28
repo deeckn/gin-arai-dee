@@ -27,7 +27,6 @@
     <string name="choose_nationality">Choose Nationality</string>
 
     <!-- Dietary Planner Page -->
-    <string name="dietary_planner">Dietary Planner</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
@@ -55,9 +54,8 @@
     <string name="add_list">⏎</string>
     <string name="clear_list">Clear All List ⌫</string>
     <string name="create_bill">Create Bill ⏎</string>
-    <string name="bill_splitter">Bill Splitter</string>
   
     <!-- Food Hub Page -->
     <string name="food_hub">Food Hub</string>
-   
+    <string name="recipes">Recipes</string>
 </resources>
