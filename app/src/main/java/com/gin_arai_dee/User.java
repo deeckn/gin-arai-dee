@@ -7,7 +7,7 @@ public class User {
     private float weight, height;
     private String username, firstName, lastName, gender, email, password, recipes, favorites;
     private ArrayList<Recipe> userRecipes;
-    private ArrayList<Food> favoriteFoods;
+    private ArrayList<FoodItem> favoriteFoods;
 
     public User() {
         this.id = 9999;

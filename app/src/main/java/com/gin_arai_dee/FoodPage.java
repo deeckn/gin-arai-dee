@@ -36,10 +36,10 @@ public class FoodPage extends AppCompatActivity {
     DatabaseHelper db;
 
     // Food Data
-    List<FoodModel> allFoodItems;
-    Set<FoodModel> displayFoodItems;
-    HashMap<String, List<FoodModel>> categoryFoodGroup;
-    HashMap<String, List<FoodModel>> nationalityFoodGroup;
+    List<FoodItem> allFoodItems;
+    Set<FoodItem> displayFoodItems;
+    HashMap<String, List<FoodItem>> categoryFoodGroup;
+    HashMap<String, List<FoodItem>> nationalityFoodGroup;
     List<String> categoryFilter;
     List<String> nationalityFilter;
 
@@ -434,11 +434,11 @@ public class FoodPage extends AppCompatActivity {
     // Loads all food items from the database
     private void loadFoodItems() {
         allFoodItems = db.getAllFoodItems();
-        for (FoodModel m : allFoodItems) System.out.println(m.getFood_item());
+        for (FoodItem m : allFoodItems) System.out.println(m.getFood_item());
     }
 
     // Add Food Item to Database
-    private void addFoodItemToDatabase(FoodModel food) {
+    private void addFoodItemToDatabase(FoodItem food) {
         boolean success = db.addFoodItem(food);
         if (success) Log.d("Success", "Successfully loaded to database");
         else Log.d("Error", "Failed to put food to database");
@@ -448,7 +448,7 @@ public class FoodPage extends AppCompatActivity {
      * Food Filtering Process
      */
     private void groupFoodItems() {
-        for (FoodModel food : allFoodItems) {
+        for (FoodItem food : allFoodItems) {
             if (food == null) continue;
             else {
                 String dishType = food.getDish_type();
@@ -499,7 +499,7 @@ public class FoodPage extends AppCompatActivity {
 
         if (!categoryFilter.isEmpty() && nationalityFilter.isEmpty()) {
             for (String type : categoryFilter) {
-                List<FoodModel> temp = categoryFoodGroup.get(type);
+                List<FoodItem> temp = categoryFoodGroup.get(type);
                 if (temp == null || temp.isEmpty()) break;
                 displayFoodItems.addAll(temp);
             }
@@ -507,14 +507,14 @@ public class FoodPage extends AppCompatActivity {
 
         if (categoryFilter.isEmpty() && !nationalityFilter.isEmpty()) {
             for (String type : nationalityFilter) {
-                List<FoodModel> temp = nationalityFoodGroup.get(type);
+                List<FoodItem> temp = nationalityFoodGroup.get(type);
                 if (temp == null || temp.isEmpty()) break;
                 displayFoodItems.addAll(temp);
             }
         }
 
         if (!(categoryFilter.isEmpty() && nationalityFilter.isEmpty())) {
-            for (FoodModel fm : allFoodItems) {
+            for (FoodItem fm : allFoodItems) {
                 if (categoryFilter.contains(fm.getDish_type())
                         && nationalityFilter.contains(fm.getNationality())) {
                     displayFoodItems.add(fm);
@@ -537,7 +537,7 @@ public class FoodPage extends AppCompatActivity {
             reader.readLine();
             while ( (line = reader.readLine()) != null ) {
                 String[] tokens = line.split(";");
-                FoodModel food = new FoodModel(
+                FoodItem food = new FoodItem(
                         Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4],
                         Integer.parseInt(tokens[5]), tokens[6]
                 );

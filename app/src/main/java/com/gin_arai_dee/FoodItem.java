@@ -1,6 +1,6 @@
 package com.gin_arai_dee;
 
-public class FoodModel {
+public class FoodItem {
     private int id;
     private String food_item;
     private String description;
@@ -9,10 +9,10 @@ public class FoodModel {
     private int kcal;
     private String image_name;
 
-    public FoodModel(int id, String food_item,
-                     String description, String dish_type,
-                     String nationality, int kcal,
-                     String image_name) {
+    public FoodItem(int id, String food_item,
+                    String description, String dish_type,
+                    String nationality, int kcal,
+                    String image_name) {
         this.id = id;
         this.food_item = food_item;
         this.description = description;

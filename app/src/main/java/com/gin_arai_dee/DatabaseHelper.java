@@ -57,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (db != null) db.close();
     }
 
-    public boolean addFoodItem(FoodModel food) {
+    public boolean addFoodItem(FoodItem food) {
         openDatabase();
         ContentValues cv = new ContentValues();
 
@@ -73,9 +73,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insert != -1;
     }
 
-    public List<FoodModel> getAllFoodItems() {
+    public List<FoodItem> getAllFoodItems() {
         openDatabase();
-        List<FoodModel> allFoodItems = new ArrayList<>();
+        List<FoodItem> allFoodItems = new ArrayList<>();
         String query = "SELECT * FROM " + FOOD_ITEMS_TABLE;
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -87,8 +87,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String nationality = cursor.getString(4);
                 int kcal = cursor.getInt(5);
                 String image = cursor.getString(6);
-                FoodModel foodItem =
-                        new FoodModel(id, name, description, dish_type, nationality, kcal, image);
+                FoodItem foodItem =
+                        new FoodItem(id, name, description, dish_type, nationality, kcal, image);
                 allFoodItems.add(foodItem);
             } while (cursor.moveToNext());
         }
