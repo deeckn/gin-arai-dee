@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @SuppressLint("SdCardPath")
     public static final String DB_LOCATION          = "/data/data/com.gin_arai_dee/databases/";
     public static final String FOOD_ITEMS_TABLE     = "FOOD_ITEMS_TABLE";
-    public static final String COLUMN_ID            = "ID";
+//    public static final String COLUMN_ID            = "ID";
     public static final String COLUMN_FOOD_ITEM     = "FOOD_ITEM";
     public static final String COLUMN_DESCRIPTION   = "DESCRIPTION";
     public static final String COLUMN_DISH_TYPE     = "DISH_TYPE";
@@ -23,25 +23,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_KCAL          = "KCAL";
     public static final String COLUMN_IMAGE_NAME    = "IMAGE_NAME";
 
+    @SuppressLint("StaticFieldLeak")
+    private static DatabaseHelper databaseHelper;
     private final Context context;
     private SQLiteDatabase db;
 
-    public DatabaseHelper(Context context) {
+    private DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.context = context;
     }
 
+    public static DatabaseHelper getInstance(Context context) {
+        if (databaseHelper == null) databaseHelper = new DatabaseHelper(context);
+        return databaseHelper;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-//        String createTableStatement = "CREATE TABLE " + FOOD_ITEMS_TABLE + " (" +
-//                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                COLUMN_FOOD_ITEM + " TEXT, " +
-//                COLUMN_DESCRIPTION + " TEXT, " +
-//                COLUMN_DISH_TYPE + " TEXT, " +
-//                COLUMN_NATIONALITY + " TEXT, " +
-//                COLUMN_KCAL + " INTEGER, " +
-//                COLUMN_IMAGE_NAME + " TEXT)";
-//        sqLiteDatabase.execSQL(createTableStatement);
+        /* Used only to create new table in SQLite
+        String createTableStatement = "CREATE TABLE " + FOOD_ITEMS_TABLE + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_FOOD_ITEM + " TEXT, " +
+                COLUMN_DESCRIPTION + " TEXT, " +
+                COLUMN_DISH_TYPE + " TEXT, " +
+                COLUMN_NATIONALITY + " TEXT, " +
+                COLUMN_KCAL + " INTEGER, " +
+                COLUMN_IMAGE_NAME + " TEXT)";
+        sqLiteDatabase.execSQL(createTableStatement);
+        */
     }
 
     @Override

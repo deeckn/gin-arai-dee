@@ -2,37 +2,20 @@ package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -41,7 +24,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class FoodPage extends AppCompatActivity {
-    // Databases
+    // Database
     StorageReference storageReference;
     DatabaseHelper db;
 
@@ -60,18 +43,18 @@ public class FoodPage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     // Category Selector Box
+    boolean categoryBoxState = true;
+    boolean categoryLoaded = false;
     GridLayout categorySelectorBox;
     TextView chooseCategoryTitle;
     ImageButton categoryDropdownArrow;
-    boolean categoryBoxState = true;
-    boolean categoryLoaded = false;
     ArrayList<TextView> categoryTextViews;
+    ArrayList<CheckBox> categoryCheckBoxes;
     TextView main_dish_text;
     TextView appetizer_text;
     TextView desserts_text;
     TextView snacks_text;
     TextView beverages_text;
-    ArrayList<CheckBox> categoryCheckBoxes;
     CheckBox main_dish_checkbox;
     CheckBox appetizer_checkbox;
     CheckBox desserts_checkbox;
@@ -79,18 +62,18 @@ public class FoodPage extends AppCompatActivity {
     CheckBox beverages_checkbox;
 
     // Nationality Selector Box
+    boolean nationalityBoxState = true;
+    boolean nationalityLoaded = false;
     GridLayout nationalitySelectorBox;
     TextView chooseNationalityTitle;
     ImageButton nationalityDropdownArrow;
-    boolean nationalityBoxState = true;
-    boolean nationalityLoaded = false;
     ArrayList<TextView> nationalityTextViews;
+    ArrayList<CheckBox> nationalityCheckBoxes;
     TextView thai_text;
     TextView japanese_text;
     TextView italian_text;
     TextView chinese_text;
     TextView korean_text;
-    ArrayList<CheckBox> nationalityCheckBoxes;
     CheckBox thai_checkbox;
     CheckBox japanese_checkbox;
     CheckBox italian_checkbox;
@@ -213,23 +196,23 @@ public class FoodPage extends AppCompatActivity {
         // Databases
         storageReference = FirebaseStorage.getInstance()
                 .getReference().child("food_images/carbonara.jpg");
-        db = new DatabaseHelper(this);
+        db = DatabaseHelper.getInstance(this);
 
         // Food Data
         displayFoodItems = new HashSet<>();
         categoryFoodGroup = new HashMap<>();
-        categoryFoodGroup.put(MAIN_DISH, new ArrayList<>());
-        categoryFoodGroup.put(APPETIZERS, new ArrayList<>());
-        categoryFoodGroup.put(SNACKS, new ArrayList<>());
-        categoryFoodGroup.put(DESSERTS, new ArrayList<>());
-        categoryFoodGroup.put(BEVERAGES, new ArrayList<>());
+        categoryFoodGroup.put(MAIN_DISH,    new ArrayList<>());
+        categoryFoodGroup.put(APPETIZERS,   new ArrayList<>());
+        categoryFoodGroup.put(SNACKS,       new ArrayList<>());
+        categoryFoodGroup.put(DESSERTS,     new ArrayList<>());
+        categoryFoodGroup.put(BEVERAGES,    new ArrayList<>());
 
         nationalityFoodGroup = new HashMap<>();
-        nationalityFoodGroup.put(THAI, new ArrayList<>());
-        nationalityFoodGroup.put(ITALIAN, new ArrayList<>());
-        nationalityFoodGroup.put(JAPANESE, new ArrayList<>());
-        nationalityFoodGroup.put(CHINESE, new ArrayList<>());
-        nationalityFoodGroup.put(KOREAN, new ArrayList<>());
+        nationalityFoodGroup.put(THAI,      new ArrayList<>());
+        nationalityFoodGroup.put(ITALIAN,   new ArrayList<>());
+        nationalityFoodGroup.put(JAPANESE,  new ArrayList<>());
+        nationalityFoodGroup.put(CHINESE,   new ArrayList<>());
+        nationalityFoodGroup.put(KOREAN,    new ArrayList<>());
 
         categoryFilter = new ArrayList<>();
         nationalityFilter = new ArrayList<>();
@@ -282,7 +265,6 @@ public class FoodPage extends AppCompatActivity {
         float scale = getResources().getDisplayMetrics().density;
         return (int) (value * scale + 0.5f);
     }
-
 
     /***
      * UI Page Functionality
@@ -413,52 +395,10 @@ public class FoodPage extends AppCompatActivity {
     /***
      * Database Management Section
      */
-
-    // Load Data Facade
+    // Load Data
     private void loadData() {
-        File database = getApplicationContext().getDatabasePath(DatabaseHelper.DB_NAME);
-        if (!database.exists()) {
-            db.getReadableDatabase();
-            if (copyDatabase(this))
-                Log.d("FoodPage", "Database Copied Successfully");
-            else
-                Log.d("FoodPage", "Database Not Copied");
-        }
-        loadFoodItems();
-        groupFoodItems();
-    }
-
-    // Copies the Application Database to User Device
-    private boolean copyDatabase(Context context) {
-        try {
-            InputStream inputStream = context.getAssets().open(DatabaseHelper.DB_NAME);
-            String outFileName = DatabaseHelper.DB_LOCATION + DatabaseHelper.DB_NAME;
-            OutputStream outputStream = new FileOutputStream(outFileName);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = inputStream.read(buffer)) > 0)
-                outputStream.write(buffer, 0, length);
-            outputStream.flush();
-            outputStream.close();
-            Log.w("FoodPage", "DB Copied");
-            return true;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    // Loads all food items from the database
-    private void loadFoodItems() {
         allFoodItems = db.getAllFoodItems();
-    }
-
-    // Add Food Item to Database
-    private void addFoodItemToDatabase(FoodItem food) {
-        boolean success = db.addFoodItem(food);
-        if (success) Log.d("Success", "Successfully loaded to database");
-        else Log.d("Error", "Failed to put food to database");
+        groupFoodItems();
     }
 
     /***
@@ -538,7 +478,6 @@ public class FoodPage extends AppCompatActivity {
                 }
             }
         }
-
         generateFoodCards();
     }
 
@@ -546,33 +485,8 @@ public class FoodPage extends AppCompatActivity {
      * Food cards list
      */
     private void generateFoodCards() {
-
-    }
-
-
-    /***
-     * Development Utility for SQLite
-     */
-    private void importFromCSV() {
-        InputStream inputStream = getResources().openRawResource(R.raw.food_list);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(inputStream, StandardCharsets.UTF_8)
-        );
-
-        String line;
-        try {
-            reader.readLine();
-            while ( (line = reader.readLine()) != null ) {
-                String[] tokens = line.split(";");
-                FoodItem food = new FoodItem(
-                        Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4],
-                        Integer.parseInt(tokens[5]), tokens[6]
-                );
-                addFoodItemToDatabase(food);
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+        for (FoodItem f : displayFoodItems) {
+            System.out.println(f.getFood_item());
         }
     }
 }
