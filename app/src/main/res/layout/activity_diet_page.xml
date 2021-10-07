@@ -60,8 +60,7 @@
                     android:layout_height="100dp"
                     android:layout_row="1"
                     android:layout_column="1"
-                    android:layout_gravity="center"
-                    />
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/monday_edit_button"
@@ -70,7 +69,7 @@
                     android:layout_row="1"
                     android:layout_column="2"
                     android:layout_gravity="center"
-                    android:background="@drawable/dietary_shape"
+                    android:background="@drawable/dietary_shape_I"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
                     android:textColor="@color/ghost_white" />
@@ -84,6 +83,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/rubik"
                     android:text="0"
+                    android:background="@drawable/dietary_shape_II"
                     android:textAlignment="center"
                     android:textColor="@color/wine" />
 
@@ -120,8 +120,7 @@
                     android:layout_height="100dp"
                     android:layout_row="0"
                     android:layout_column="1"
-                    android:layout_gravity="center"
-                    />
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/tuesday_edit_button"
@@ -130,7 +129,7 @@
                     android:layout_row="0"
                     android:layout_column="2"
                     android:layout_gravity="center"
-                    android:background="@drawable/dietary_shape"
+                    android:background="@drawable/dietary_shape_I"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
                     android:textColor="@color/ghost_white" />
@@ -144,6 +143,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/rubik"
                     android:text="0"
+                    android:background="@drawable/dietary_shape_II"
                     android:textAlignment="center"
                     android:textColor="@color/wine" />
 
@@ -180,8 +180,7 @@
                     android:layout_height="100dp"
                     android:layout_row="1"
                     android:layout_column="1"
-                    android:layout_gravity="center"
-                    />
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/wednesday_edit_button"
@@ -190,7 +189,7 @@
                     android:layout_row="1"
                     android:layout_column="2"
                     android:layout_gravity="center"
-                    android:background="@drawable/dietary_shape"
+                    android:background="@drawable/dietary_shape_I"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
                     android:textColor="@color/ghost_white" />
@@ -204,6 +203,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/rubik"
                     android:text="0"
+                    android:background="@drawable/dietary_shape_II"
                     android:textAlignment="center"
                     android:textColor="@color/wine" />
 
@@ -241,12 +241,7 @@
                     android:layout_height="100dp"
                     android:layout_row="1"
                     android:layout_column="1"
-                    android:layout_gravity="center"
-                    />
-              
-            android:text="@string/dietary_planer"
-            android:textColor="@color/wine"
-            android:textSize="35sp" />
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/thursday_edit_button"
@@ -255,7 +250,7 @@
                     android:layout_row="1"
                     android:layout_column="2"
                     android:layout_gravity="center"
-                    android:background="@drawable/dietary_shape"
+                    android:background="@drawable/dietary_shape_I"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
                     android:textColor="@color/ghost_white" />
@@ -269,6 +264,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/rubik"
                     android:text="0"
+                    android:background="@drawable/dietary_shape_II"
                     android:textAlignment="center"
                     android:textColor="@color/wine" />
 
@@ -305,8 +301,7 @@
                     android:layout_height="100dp"
                     android:layout_row="1"
                     android:layout_column="1"
-                    android:layout_gravity="center"
-                    />
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/friday_edit_button"
@@ -315,7 +310,7 @@
                     android:layout_row="1"
                     android:layout_column="2"
                     android:layout_gravity="center"
-                    android:background="@drawable/dietary_shape"
+                    android:background="@drawable/dietary_shape_I"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
                     android:textColor="@color/ghost_white" />
@@ -329,6 +324,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/rubik"
                     android:text="0"
+                    android:background="@drawable/dietary_shape_II"
                     android:textAlignment="center"
                     android:textColor="@color/wine" />
 
@@ -365,8 +361,7 @@
                     android:layout_height="100dp"
                     android:layout_row="1"
                     android:layout_column="1"
-                    android:layout_gravity="center"
-                    />
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/saturday_edit_button"
@@ -375,7 +370,7 @@
                     android:layout_row="1"
                     android:layout_column="2"
                     android:layout_gravity="center"
-                    android:background="@drawable/dietary_shape"
+                    android:background="@drawable/dietary_shape_I"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
                     android:textColor="@color/ghost_white" />
@@ -389,6 +384,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/rubik"
                     android:text="0"
+                    android:background="@drawable/dietary_shape_II"
                     android:textAlignment="center"
                     android:textColor="@color/wine" />
 
@@ -425,8 +421,7 @@
                     android:layout_height="100dp"
                     android:layout_row="1"
                     android:layout_column="1"
-                    android:layout_gravity="center"
-                    />
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/sunday_edit_button"
@@ -435,7 +430,7 @@
                     android:layout_row="1"
                     android:layout_column="2"
                     android:layout_gravity="center"
-                    android:background="@drawable/dietary_shape"
+                    android:background="@drawable/dietary_shape_I"
                     android:fontFamily="@font/rubik"
                     android:text="@string/edit"
                     android:textColor="@color/ghost_white" />
@@ -449,6 +444,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/rubik"
                     android:text="0"
+                    android:background="@drawable/dietary_shape_II"
                     android:textAlignment="center"
                     android:textColor="@color/wine" />
 
