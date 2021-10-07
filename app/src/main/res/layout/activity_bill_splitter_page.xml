@@ -204,7 +204,6 @@
                                     android:paddingEnd="0dp"
                                     android:textColorHint="@color/wine"
                                     android:textSize="20sp">
-
                                 </EditText>
 
                                 <Button
@@ -236,8 +235,7 @@
                                 android:textAlignment="textStart"
                                 android:textAllCaps="false"
                                 android:textColor="@color/wine"
-                                android:textSize="20sp" />
-
+                                android:textSize="20sp"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -264,7 +262,6 @@
                 android:text="@string/create_bill"
                 android:textAllCaps="false"
                 android:textSize="20sp" />
-
         </LinearLayout>
     </ScrollView>
 
