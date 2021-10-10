@@ -43,13 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
     );
-    DatabaseHelper db = DatabaseHelper.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_page);
-        loadData();
 
         /* Pages for Testing
         openHomePage();
@@ -73,63 +71,6 @@ public class MainActivity extends AppCompatActivity {
       startActivity(new Intent(this, BillSplitterPage.class));
     }
 
-    // Load Data from SQLite to Device
-    private void loadData() {
-        File database = getApplicationContext().getDatabasePath(DatabaseHelper.DB_NAME);
-        if (!database.exists()) {
-            db.getReadableDatabase();
-            if (copyDatabase(this))
-                Log.d("FoodPage", "Database Copied Successfully");
-            else
-                Log.d("FoodPage", "Database Not Copied");
-        }
-    }
-
-    // Copies the Application Database to User Device
-    private boolean copyDatabase(Context context) {
-        try {
-            InputStream inputStream = context.getAssets().open(DatabaseHelper.DB_NAME);
-            String outFileName = DatabaseHelper.DB_LOCATION + DatabaseHelper.DB_NAME;
-            OutputStream outputStream = new FileOutputStream(outFileName);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = inputStream.read(buffer)) > 0)
-                outputStream.write(buffer, 0, length);
-            outputStream.flush();
-            outputStream.close();
-            Log.w("FoodPage", "DB Copied");
-            return true;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    /***
-     * Development Utility for SQLite
-     * Use for uploading new data into SQLite using CSV file
-     */
-    private void importFromCSV() {
-        InputStream inputStream = getResources().openRawResource(R.raw.food_list);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(inputStream, StandardCharsets.UTF_8)
-        );
-
-        String line;
-        try {
-            reader.readLine();
-            while ( (line = reader.readLine()) != null ) {
-                String[] tokens = line.split(";");
-                FoodItem food = new FoodItem(
-                        Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3],
-                        tokens[4], Integer.parseInt(tokens[5]), tokens[6]
-                );
-                db.addFoodItem(food);
-            }
-        }
-        catch (IOException e) { e.printStackTrace(); }
-    }
     public void createSignIn(){
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
@@ -145,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         signInLauncher.launch(signInIntent);
     }
+
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
@@ -158,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             // ...
         }
     }
+
     public void emailLinker(){
         ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
                 .setAndroidPackageName(
@@ -180,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         signInLauncher.launch(signInIntent);
     }
+
     public void catchEmailLinker(){
         List<AuthUI.IdpConfig> providers = Collections.emptyList();
 
@@ -200,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         }
         // [END auth_fui_email_link_catch]
     }
+
     public void signOut(){
         AuthUI.getInstance()
                 .signOut(this)
@@ -209,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
     public void deleteAccount(){
         AuthUI.getInstance()
                 .delete(this)

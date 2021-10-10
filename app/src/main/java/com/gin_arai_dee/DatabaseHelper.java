@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (db != null) db.close();
     }
 
-    public boolean addFoodItem(FoodItem food) {
+    public void addFoodItem(FoodItem food) {
         openDatabase();
         ContentValues cv = new ContentValues();
 
@@ -79,7 +79,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         long insert = db.insert(FOOD_ITEMS_TABLE, null, cv);
         closeDatabase();
-        return insert != -1;
     }
 
     public List<FoodItem> getAllFoodItems() {
