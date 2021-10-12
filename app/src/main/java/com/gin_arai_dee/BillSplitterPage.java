@@ -2,6 +2,7 @@ package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.FragmentManager;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,9 +16,39 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 
 public class BillSplitterPage extends AppCompatActivity {
+    private class FoodItem {
+        private String name;
+        private int price;
+
+        public FoodItem(String name, int price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        public String getName() { return name; }
+        public void setName(String name) { this.name = name; }
+
+        public int getPrice() { return price; }
+        public void setPrice(int price) { this.price = price; }
+    }
+
+    private class Person {
+        private String name;
+        private int payment;
+
+        public Person(String name) { this.name = name; }
+    }
+
+    private void showFoodDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        BillDialog billDialog = BillDialog.newInstance("Bill Dialog");
+        billDialog.show(fm, "fragment_edit_name");
+    }
+
     ScrollView scrollView;
     EditText list_input;
     TabHost tabHost;
+    Button add_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,5 +81,13 @@ public class BillSplitterPage extends AppCompatActivity {
             tv.setAllCaps(false);
             tv.setTypeface(rubik_bold);
         }
+
+        add_list = findViewById(R.id.add_list_button);
+        add_list.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                showFoodDialog();
+            }
+        });
     }
 }

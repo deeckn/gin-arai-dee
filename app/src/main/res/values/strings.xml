@@ -56,6 +56,9 @@
     <string name="create_bill">Create Bill ⏎</string>
     <string name="list_text">List</string>
     <string name="select_all_text">Select All</string>
+    <string name="payer_name_text">Name</string>
+    <string name="payment_text">Pay</string>
+    <string name="clear_name">Clear All Name ⌫</string>
     <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>
