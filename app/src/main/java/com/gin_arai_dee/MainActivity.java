@@ -21,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bill_food_dialog);
+        setContentView(R.layout.activity_home_page);
         loadData();
 
-        /* Pages for Testing
-        openHomePage();
-        openFoodPage();
+//        Pages for Testing
+//        openHomePage();
+//        openFoodPage();
         openBillSplitterPage();
-        */
+
     }
 
     // Opens the home page
