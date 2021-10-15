@@ -76,6 +76,7 @@ public class BillSplitterPage extends AppCompatActivity {
     GridLayout name_list;
     TextView person_name;
     TextView person_payment;
+    TextView num_people;
 
     // Initialize Person
     Person person;
@@ -125,6 +126,7 @@ public class BillSplitterPage extends AppCompatActivity {
         add_name = findViewById(R.id.add_name_button);
         name_add_bar = findViewById(R.id.name_add_bar);
         name_list = findViewById(R.id.name_list);
+        num_people = findViewById(R.id.num_people);
 
         name_list.setColumnCount(2);
         add_name.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +154,7 @@ public class BillSplitterPage extends AppCompatActivity {
                     name_list.addView(person_name);
                     name_list.addView(person_payment);
                     person.setTextView(person_name.getId(), person_payment.getId());
+                    num_people.setText(String.valueOf(people.size()));
                 }
             }
         });
