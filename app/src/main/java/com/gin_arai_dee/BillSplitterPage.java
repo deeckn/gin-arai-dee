@@ -66,22 +66,25 @@ public class BillSplitterPage extends AppCompatActivity {
         billDialog.show(fm, "fragment_edit_name");
     }
 
-    // Initialize UI
+    // Tab Widget Layout
     ScrollView scrollView;
-    EditText list_input;
     TabHost tabHost;
+    TabHost.TabSpec spec;
+    // Food Item
+    EditText list_input;
     Button add_list;
+    // Payer
+    GridLayout name_list;
     Button add_name;
     EditText name_add_bar;
-    GridLayout name_list;
     TextView person_name;
     TextView person_payment;
     TextView num_people;
-
-    // Initialize Person
     Person person;
     ArrayList<Person> people = new ArrayList<Person>();
     String name_input;
+    // Font
+    Typeface rubik_bold;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +95,9 @@ public class BillSplitterPage extends AppCompatActivity {
         list_input = findViewById(R.id.list_add_bar);
 
         // Set TabWidget name
-        tabHost =  findViewById(R.id.tabhost);
+        tabHost = findViewById(R.id.tabhost);
         tabHost.setup();
-        TabHost.TabSpec spec = tabHost.newTabSpec("List Tab");
+        spec = tabHost.newTabSpec("List Tab");
         spec.setContent(R.id.list_tab);
         spec.setIndicator("☰ List");
         tabHost.addTab(spec);
@@ -105,7 +108,7 @@ public class BillSplitterPage extends AppCompatActivity {
 
         // Set TabWidget text style
         final TabWidget tw = tabHost.findViewById(android.R.id.tabs);
-        Typeface rubik_bold = ResourcesCompat.getFont(this, R.font.rubik_bold);
+        rubik_bold = ResourcesCompat.getFont(this, R.font.rubik_bold);
         for (int i = 0; i < tw.getChildCount(); ++i)
         {
             final View tabView = tw.getChildTabViewAt(i);
@@ -115,20 +118,23 @@ public class BillSplitterPage extends AppCompatActivity {
             tv.setTypeface(rubik_bold);
         }
 
+        // Add food item and show dialog
         add_list = findViewById(R.id.add_list_button);
         add_list.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 showFoodDialog();
             }
         });
 
+        // Payer tab's view
         add_name = findViewById(R.id.add_name_button);
         name_add_bar = findViewById(R.id.name_add_bar);
         name_list = findViewById(R.id.name_list);
         num_people = findViewById(R.id.num_people);
 
         name_list.setColumnCount(2);
+
+        // Add name to Payer's tab and add to people's list
         add_name.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 name_input = name_add_bar.getText().toString();
@@ -143,6 +149,7 @@ public class BillSplitterPage extends AppCompatActivity {
                     person_name.setTypeface(getResources().getFont(R.font.rubik));
                     person_name.setTextSize(20);
                     person_name.setTextColor(getResources().getColor(R.color.ghost_white));
+                    person_name.setMinWidth(getResources().getDisplayMetrics().widthPixels/2+170);
 
                     person_payment = new TextView(getApplicationContext());
                     person_payment.setText(String.valueOf(person.getPayment()));
