@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 public class BillDialog extends DialogFragment {
-    public void show_dialog() { }
 
     public static BillDialog newInstance(String title) {
         BillDialog frag = new BillDialog();

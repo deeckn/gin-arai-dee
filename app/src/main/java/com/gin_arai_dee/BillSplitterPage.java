@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -71,8 +70,12 @@ public class BillSplitterPage extends AppCompatActivity {
     TabHost tabHost;
     TabHost.TabSpec spec;
     // Food Item
-    EditText list_input;
+    EditText list_add_bar;
     Button add_list;
+    String list_input;
+    ArrayList<FoodItem> list = new ArrayList<>();
+    // Food Dialog
+    TextView food_name;
     // Payer
     GridLayout name_list;
     Button add_name;
@@ -81,7 +84,7 @@ public class BillSplitterPage extends AppCompatActivity {
     TextView person_payment;
     TextView num_people;
     Person person;
-    ArrayList<Person> people = new ArrayList<Person>();
+    ArrayList<Person> people = new ArrayList<>();
     String name_input;
     // Font
     Typeface rubik_bold;
@@ -92,7 +95,7 @@ public class BillSplitterPage extends AppCompatActivity {
         setContentView(R.layout.activity_bill_splitter_page);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         scrollView = findViewById(R.id.bill_scroll_area);
-        list_input = findViewById(R.id.list_add_bar);
+        list_add_bar = findViewById(R.id.list_add_bar);
 
         // Set TabWidget name
         tabHost = findViewById(R.id.tabhost);
@@ -120,9 +123,17 @@ public class BillSplitterPage extends AppCompatActivity {
 
         // Add food item and show dialog
         add_list = findViewById(R.id.add_list_button);
+        food_name = findViewById(R.id.food_name);
         add_list.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showFoodDialog();
+                list_input = list_add_bar.getText().toString();
+                if (TextUtils.isEmpty(list_input)) System.out.println("empty");
+                else {
+                    System.out.println(list_input);
+//                    list = new FoodItem(list_input, );
+                    food_name.setText(list_add_bar.getText());
+                    showFoodDialog();
+                }
             }
         });
 
