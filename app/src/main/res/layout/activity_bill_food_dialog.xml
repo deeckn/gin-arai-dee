@@ -37,7 +37,7 @@
             android:textColor="@color/charcoal"
             android:textSize="30sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/food_price"
             android:layout_width="350sp"
             android:layout_height="50sp"
@@ -48,7 +48,7 @@
             android:textAlignment="center"
             android:textColor="@color/charcoal"
             android:textSize="30sp">
-        </TextView>
+        </EditText>
 
         <ScrollView
             android:layout_width="350sp"
