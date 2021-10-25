@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         openFoodPage();
         openBillSplitterPage();
         */
+        openDietPage();
     }
 
     // Opens the home page
@@ -70,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
     // Opens the bill splitter page
     private void openBillSplitterPage() { 
       startActivity(new Intent(this, BillSplitterPage.class));
+    }
+
+    private void openDietPage() {
+        startActivity(new Intent(this, DietPage.class));
     }
 
     public void createSignIn(){
