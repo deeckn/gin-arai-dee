@@ -20,6 +20,8 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -139,6 +141,9 @@ public class BillSplitterPage extends AppCompatActivity {
         add_list.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 list_input = list_add_bar.getText().toString();
+//                ListNameEvent listNameEvent = new ListNameEvent();
+//                listNameEvent.setList_name(list_input);
+//                EventBus.getDefault().post(listNameEvent);
                 if (TextUtils.isEmpty(list_input)) System.out.println("empty");
                 else {
                     System.out.println(list_input);
