@@ -2,12 +2,15 @@ package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Dialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +21,7 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class BillSplitterPage extends AppCompatActivity {
     private class FoodItem {
@@ -62,7 +66,8 @@ public class BillSplitterPage extends AppCompatActivity {
     private void showFoodDialog() {
         FragmentManager fm = getSupportFragmentManager();
         BillDialog billDialog = BillDialog.newInstance("Bill Dialog");
-        billDialog.show(fm, "fragment_edit_name");
+//        Objects.requireNonNull(billDialog.getDialog()).getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        billDialog.show(fm, "Bill Dialog");
     }
 
     // Tab Widget Layout
@@ -76,6 +81,7 @@ public class BillSplitterPage extends AppCompatActivity {
     ArrayList<FoodItem> list = new ArrayList<>();
     // Food Dialog
     TextView food_name;
+//    DialogFragment food_dialog;
     // Payer
     GridLayout name_list;
     Button add_name;
@@ -121,6 +127,12 @@ public class BillSplitterPage extends AppCompatActivity {
             tv.setTypeface(rubik_bold);
         }
 
+//        food_dialog = new DialogFragment(R.layout.activity_bill_food_dialog);
+//        food_dialog.setContentView(R.layout.activity_bill_food_dialog);
+//        food_dialog.getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        food_dialog.setCancelable(false);
+
+
         // Add food item and show dialog
         add_list = findViewById(R.id.add_list_button);
         food_name = findViewById(R.id.food_name);
@@ -131,8 +143,10 @@ public class BillSplitterPage extends AppCompatActivity {
                 else {
                     System.out.println(list_input);
 //                    list = new FoodItem(list_input, );
-                    food_name.setText(list_add_bar.getText());
                     showFoodDialog();
+//                    BillDialog.newInstance("")
+//                    food_dialog.show
+//                    food_name.setText(list_add_bar.getText());
                 }
             }
         });
