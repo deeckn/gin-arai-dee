@@ -40,22 +40,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_page);
 
-        Button button = findViewById(R.id.loginButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-
-                createSignIn();
-
-
-            }
-        });
-        /* Pages for Testing
-        openHomePage();
-        openFoodPage();
-        openBillSplitterPage();
-        */
-        openDietPage();
+//        Button button = findViewById(R.id.loginButton);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // Code here executes on main thread after user presses button
+//
+//                createSignIn();
+//
+//
+//            }
+//        });
+//        openHomePage();
+//        openFoodPage();
+//        openBillSplitterPage();
+//        openDietPage();
     }
 
     // Opens the home page
