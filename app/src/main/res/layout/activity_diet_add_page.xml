@@ -1,45 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ghost_white">
+    android:background="@color/fuzzy_wuzzy"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/dietary_planner"
-        android:textAlignment="center"
-        android:textColor="@color/wine"
-        android:textSize="36sp" />
+        android:background="@drawable/diet_time_button"
+        android:layout_gravity="center"
+        android:layout_margin="25dp"
+        android:text="Time"
+        android:textColor="@color/ghost_white"
+        android:textSize="25sp" />
 
     <GridLayout
-        android:layout_marginTop="75dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="Add Item(s)"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:textColor="@color/charcoal"
-            android:textSize="25sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_margin="15dp"
-            android:layout_height="5dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:background="@drawable/dietary_line"/>
+        android:layout_height="wrap_content">
 
     </GridLayout>
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/dietary_line" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

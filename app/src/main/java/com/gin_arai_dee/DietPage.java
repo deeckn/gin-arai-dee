@@ -10,6 +10,6 @@ public class DietPage extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diet_page);
+        setContentView(R.layout.activity_diet_page_main);
     }
 }

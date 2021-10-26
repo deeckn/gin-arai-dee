@@ -2,19 +2,24 @@ package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +35,7 @@ public class FoodPage extends AppCompatActivity {
 
     // Food Data
     List<FoodItem> allFoodItems;
-    Set<FoodItem> displayFoodItems;
+    List<FoodItem> displayFoodItems;
     HashMap<String, List<FoodItem>> categoryFoodGroup;
     HashMap<String, List<FoodItem>> nationalityFoodGroup;
     List<String> categoryFilter;
@@ -38,9 +43,6 @@ public class FoodPage extends AppCompatActivity {
 
     // Main Grid Layout
     GridLayout parentGridLayout;
-
-    // Navigation Bar
-    BottomNavigationView bottomNavigationView;
 
     // Category Selector Box
     boolean categoryBoxState = true;
@@ -81,7 +83,8 @@ public class FoodPage extends AppCompatActivity {
     CheckBox korean_checkbox;
 
     // Food Cards
-    LinearLayout foodCardLayout;
+    RecyclerView recyclerView;
+    CardAdapter cardAdapter;
 
     // String Constants
     public static final String MAIN_DISH    = "main_dish";
@@ -103,23 +106,11 @@ public class FoodPage extends AppCompatActivity {
         initializeInstances();
         loadData();
 
-        // Navigation Bar Settings
-        bottomNavigationView.setSelectedItemId(R.id.food_hub);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int currentItem = item.getItemId();
-            if (currentItem == R.id.home_page) {
-                startActivity(new Intent(getApplicationContext(), HomePage.class));
-                overridePendingTransition(0, 0);
-                return true;
-            }
-            else if (currentItem == R.id.food_hub) {
-                return true;
-            }
-            else {
-                System.out.println("Not implemented");
-                return false;
-            }
-        });
+        // RecyclerView
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        cardAdapter = new CardAdapter(this, getMyList());
+        recyclerView.setAdapter(cardAdapter);
 
         // Category Dropdown Settings
         chooseCategoryTitle.setOnClickListener(this::toggleCategoryBox);
@@ -194,12 +185,12 @@ public class FoodPage extends AppCompatActivity {
 
     private void initializeInstances() {
         // Databases
-        storageReference = FirebaseStorage.getInstance()
-                .getReference().child("food_images/carbonara.jpg");
+//        storageReference = FirebaseStorage.getInstance()
+//                .getReference().child("food_images/carbonara.jpg");
         db = DatabaseHelper.getInstance(this);
 
         // Food Data
-        displayFoodItems = new HashSet<>();
+        displayFoodItems = new ArrayList<>();
         categoryFoodGroup = new HashMap<>();
         categoryFoodGroup.put(MAIN_DISH,    new ArrayList<>());
         categoryFoodGroup.put(APPETIZERS,   new ArrayList<>());
@@ -219,7 +210,6 @@ public class FoodPage extends AppCompatActivity {
 
         // Initializing page elements and objects
         parentGridLayout            = findViewById(R.id.main_grid_layout);
-        bottomNavigationView        = findViewById(R.id.dock_navigation);
         chooseCategoryTitle         = findViewById(R.id.choose_category_title);
         categorySelectorBox         = findViewById(R.id.category_selector_box);
         categoryDropdownArrow       = findViewById(R.id.category_arrow);
@@ -256,9 +246,18 @@ public class FoodPage extends AppCompatActivity {
         italian_checkbox    = new CheckBox(this);
         chinese_checkbox    = new CheckBox(this);
         korean_checkbox     = new CheckBox(this);
+    }
 
-        // Food Cards
-        foodCardLayout = findViewById(R.id.food_card_linear_layout);
+    // RecyclerView Items
+    private ArrayList<FoodCardModel> getMyList() {
+        ArrayList<FoodCardModel> models = new ArrayList<>();
+
+        FoodCardModel model;
+        for (FoodItem f : displayFoodItems) {
+            model = new FoodCardModel(f.getFood_item(), f.getDescription(), R.drawable.ic_food);
+            models.add(model);
+        }
+        return models;
     }
 
     private int getValueInDp(int value) {
@@ -399,6 +398,7 @@ public class FoodPage extends AppCompatActivity {
     private void loadData() {
         allFoodItems = db.getAllFoodItems();
         groupFoodItems();
+        updateDisplayFoodItems();
     }
 
     /***
@@ -449,16 +449,17 @@ public class FoodPage extends AppCompatActivity {
     }
 
     private void updateDisplayFoodItems() {
+        Set<FoodItem> tempList = new HashSet<>();
         displayFoodItems.clear();
 
         if (categoryFilter.isEmpty() && nationalityFilter.isEmpty())
-            displayFoodItems.addAll(allFoodItems);
+            tempList.addAll(allFoodItems);
 
         if (!categoryFilter.isEmpty() && nationalityFilter.isEmpty()) {
             for (String type : categoryFilter) {
                 List<FoodItem> temp = categoryFoodGroup.get(type);
                 if (temp == null || temp.isEmpty()) break;
-                displayFoodItems.addAll(temp);
+                tempList.addAll(temp);
             }
         }
 
@@ -466,7 +467,7 @@ public class FoodPage extends AppCompatActivity {
             for (String type : nationalityFilter) {
                 List<FoodItem> temp = nationalityFoodGroup.get(type);
                 if (temp == null || temp.isEmpty()) break;
-                displayFoodItems.addAll(temp);
+                tempList.addAll(temp);
             }
         }
 
@@ -474,10 +475,12 @@ public class FoodPage extends AppCompatActivity {
             for (FoodItem f : allFoodItems) {
                 if (categoryFilter.contains(f.getDish_type())
                         && nationalityFilter.contains(f.getNationality())) {
-                    displayFoodItems.add(f);
+                    tempList.add(f);
                 }
             }
         }
+
+        displayFoodItems.addAll(tempList);
         generateFoodCards();
     }
 
@@ -489,4 +492,12 @@ public class FoodPage extends AppCompatActivity {
             System.out.println(f.getFood_item());
         }
     }
+
+    private void setCurrentUser() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        String name = user.getDisplayName();
+        System.out.println(name);
+    }
+
 }

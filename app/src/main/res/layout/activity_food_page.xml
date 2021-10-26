@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ghost_white"
-    tools:context=".HomePage">
+    tools:context=".FoodPage">
 
     <ScrollView
         android:id="@+id/scroll_area"
@@ -17,8 +17,8 @@
             android:id="@+id/main_grid_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:rowCount="4"
-            android:columnCount="3">
+            android:columnCount="3"
+            android:rowCount="4">
 
             <EditText
                 android:id="@+id/search_bar"
@@ -28,28 +28,26 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
-                android:paddingStart="20dp"
                 android:background="@drawable/search_bar"
+                android:fontFamily="@font/montserrat_bold"
                 android:hint="@string/search"
                 android:importantForAutofill="no"
                 android:inputType="text"
+                android:paddingStart="20dp"
                 android:textColor="@color/ghost_white"
-                android:fontFamily="@font/montserrat_bold"
                 android:textSize="20sp"
-                tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TextContrastCheck"
-            />
+                tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TextContrastCheck" />
 
             <ImageButton
                 android:id="@+id/search_button"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="40dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_search"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="15dp"
                 android:background="@drawable/search_button"
                 android:contentDescription="@string/search"
-            />
+                android:src="@drawable/ic_search" />
 
             <GridLayout
                 android:id="@+id/category_selector_box"
@@ -57,28 +55,27 @@
                 android:layout_height="wrap_content"
                 android:layout_columnSpan="3"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:animateLayoutChanges="true"
                 android:background="@drawable/dropdown_box"
-                android:rowCount="6"
-                android:columnCount="2">
+                android:columnCount="2"
+                android:rowCount="6">
 
                 <TextView
                     android:id="@+id/choose_category_title"
-                    android:text="@string/choose_category"
-                    android:layout_height="40dp"
                     android:layout_width="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_rowSpan="1"
                     android:layout_columnSpan="1"
+                    android:fontFamily="@font/rubik_bold"
                     android:paddingStart="20dp"
                     android:paddingTop="8dp"
-                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/choose_category"
                     android:textColor="@color/ghost_white"
                     android:textSize="20sp"
-                    tools:ignore="RtlSymmetry"
-                />
+                    tools:ignore="RtlSymmetry" />
 
                 <ImageButton
                     android:id="@+id/category_arrow"
@@ -90,8 +87,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/choose_category"
                     android:src="@drawable/ic_dropdown_triangle"
-                    tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck"
-                />
+                    tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck" />
             </GridLayout>
 
             <!-- Nationality Selector Dropdown -->
@@ -101,28 +97,27 @@
                 android:layout_height="wrap_content"
                 android:layout_columnSpan="3"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:animateLayoutChanges="true"
                 android:background="@drawable/dropdown_box"
-                android:rowCount="6"
-                android:columnCount="2">
+                android:columnCount="2"
+                android:rowCount="6">
 
                 <TextView
                     android:id="@+id/choose_nationality_title"
-                    android:text="@string/choose_nationality"
-                    android:layout_height="40dp"
                     android:layout_width="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_rowSpan="1"
                     android:layout_columnSpan="1"
+                    android:fontFamily="@font/rubik_bold"
                     android:paddingStart="20dp"
                     android:paddingTop="8dp"
-                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/choose_nationality"
                     android:textColor="@color/ghost_white"
                     android:textSize="20sp"
-                    tools:ignore="RtlSymmetry"
-                    />
+                    tools:ignore="RtlSymmetry" />
 
                 <ImageButton
                     android:id="@+id/nationality_arrow"
@@ -134,46 +129,24 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/choose_nationality"
                     android:src="@drawable/ic_dropdown_triangle"
-                    tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck"
-                    />
+                    tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck" />
+
+
             </GridLayout>
 
             <LinearLayout
-                android:id="@+id/food_card_linear_layout"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:layout_rowSpan="1"
+                android:layout_height="wrap_content"
                 android:layout_columnSpan="3"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="20dp">
+                android:layout_margin="20dp">
 
-                <TextView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="PlaceHolder!"
-                    android:textColor="@color/charcoal"/>
-
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
-
         </GridLayout>
 
     </ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/dock_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/maximum_yellow_red"
-        app:itemBackground="@color/maximum_yellow_red"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_navigation" />
 </RelativeLayout>
