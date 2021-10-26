@@ -25,6 +25,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static FirebaseUser user;
+
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
             new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
@@ -40,16 +42,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_page);
 
-//        Button button = findViewById(R.id.loginButton);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                // Code here executes on main thread after user presses button
-//
-//                createSignIn();
-//
-//
-//            }
-//        });
+
+        Button button = findViewById(R.id.loginButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+
+                createSignIn();
+            }
+        });
 //        openHomePage();
 //        openFoodPage();
 //        openBillSplitterPage();
@@ -94,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            openFoodPage();
             // ...
         } else {
             // Sign in failed. If response is null the user canceled the

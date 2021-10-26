@@ -66,6 +66,9 @@
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/home_page.xml" value="0.15260416666666668" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/layout.xml" value="0.11458333333333333" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/welcome_page.xml" value="0.13020833333333334" />
+        <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_bill_splitter_page.xml" value="0.36666666666666664" />
+        <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_food_page.xml" value="0.25" />
+        <entry key="..\:/gin-arai-dee/app/src/main/res/layout/food_card.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable-v24/round_button_yellow.xml" value="0.4046875" />
         <entry key="app/src/main/res/drawable/add_bar.xml" value="0.340625" />
         <entry key="app/src/main/res/drawable/create_bill_button.xml" value="0.340625" />

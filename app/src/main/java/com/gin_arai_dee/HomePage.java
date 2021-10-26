@@ -49,6 +49,23 @@ public class HomePage extends AppCompatActivity {
                 return false;
             }
         });
+
+        openFoodPage();
+    }
+
+    // Opens the home page
+    private void openHomePage() {
+        startActivity(new Intent(this, HomePage.class));
+    }
+
+    // Opens the food page
+    private void openFoodPage() {
+        startActivity(new Intent(this, FoodPage.class));
+    }
+
+    // Opens the bill splitter page
+    private void openBillSplitterPage() {
+        startActivity(new Intent(this, BillSplitterPage.class));
     }
 
     // Load Data from SQLite to Device
