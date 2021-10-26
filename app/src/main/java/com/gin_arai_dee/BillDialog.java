@@ -23,10 +23,12 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.Objects;
 
 public class BillDialog extends DialogFragment {
-//    private TextView food_name;
+    private TextView food_name;
     private EditText food_price;
     private Button one, two, three, four, five, six, seven, eight, nine, zero, del, clear, plus, minus, multiply, divide, equal, done;
-    private String input = "", result;
+    boolean isPlus, isMinus, isDivide, isMultiply;
+    private String input = "";
+    private int result = 0;
     public static BillDialog newInstance(String title) {
         BillDialog frag = new BillDialog();
         Bundle args = new Bundle();
@@ -149,21 +151,87 @@ public class BillDialog extends DialogFragment {
             public void onClick(View view) {
                 food_price.setText("");
                 input = "";
+                result = 0;
             }
         });
 
         plus = view.findViewById(R.id.plus_button);
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { mathOp("+"); }
+        });
+
         minus = view.findViewById(R.id.minus_button);
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { mathOp("-"); }
+        });
+
         multiply = view.findViewById(R.id.multiply_button);
+        multiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { mathOp("×"); }
+        });
+
         divide = view.findViewById(R.id.divide_button);
+        divide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { mathOp("÷"); }
+        });
+
         equal = view.findViewById(R.id.equal_button);
+        equal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isPlus || isMinus || isMultiply || isDivide) {
+                    if (isPlus) {
+                        result += Integer.parseInt(input);
+                        isPlus = false;
+                    }
+                    if (isMinus) {
+                        result -= Integer.parseInt(input);
+                        isMinus = false;
+                    }
+                    if (isMultiply) {
+                        result *= Integer.parseInt(input);
+                        isMultiply = false;
+                    }
+                    if (isDivide) {
+                        result /= Integer.parseInt(input);
+                        isDivide = false;
+                    }
+                }
+                food_price.setText(String.valueOf(result));
+                input = String.valueOf(result);
+            }
+        });
+
         done = view.findViewById(R.id.done_button);
 //        initial();
     }
 
     private void updateNumber(String addedStr) {
         input += addedStr;
-        System.out.println(input);
         food_price.setText(input);
+    }
+
+    private void mathOp(String op) {
+        switch (op) {
+            case "+":
+                isPlus = true;
+                break;
+            case "-":
+                isMinus = true;
+                break;
+            case "×":
+                isMultiply = true;
+                break;
+            case "÷":
+                isDivide = true;
+                break;
+        }
+        food_price.setText("");
+        result = Integer.parseInt(input);
+        input = "";
     }
 }
