@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_page);
 
+
         Button button = findViewById(R.id.loginButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -50,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
                 createSignIn();
             }
         });
-//        /* Pages for Testing
-        openHomePage();
+//        openHomePage();
+//        openFoodPage();
 //        openBillSplitterPage();
-//        */
+//        openDietPage();
     }
 
     // Opens the home page
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
     // Opens the bill splitter page
     private void openBillSplitterPage() { 
       startActivity(new Intent(this, BillSplitterPage.class));
+    }
+
+    private void openDietPage() {
+        startActivity(new Intent(this, DietPage.class));
     }
 
     public void createSignIn(){
