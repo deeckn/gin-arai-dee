@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gin_arai_dee.Holder.CardHolder;
-import com.gin_arai_dee.FoodCardModel;
+import com.gin_arai_dee.Domain.FoodCardModel;
 import com.gin_arai_dee.R;
 
 import java.util.ArrayList;
