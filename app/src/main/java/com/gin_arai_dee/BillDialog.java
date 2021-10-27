@@ -47,19 +47,17 @@ public class BillDialog extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.activity_bill_food_dialog, container);
+        final View view = inflater.inflate(R.layout.activity_bill_food_dialog, container, false);
         Objects.requireNonNull(getDialog()).requestWindowFeature(Window.FEATURE_NO_TITLE);
-        food_name = (TextView)view.findViewById(R.id.food_name);
+        BillSplitterPage bill = (BillSplitterPage) getActivity();
+
+        String name = Objects.requireNonNull(bill).getFoodName();
+        food_name = view.findViewById(R.id.food_name);
+        food_name.setText(name);
+
         food_price = view.findViewById(R.id.food_price);
         food_price.setShowSoftInputOnFocus(false);
-
-//        if(!EventBus.getDefault().hasSubscriberForEvent(ListNameEvent.class)) {
-//            EventBus.getDefault().register(this);
-//            System.out.println("eventtttttt");
-//        }
 //        EventBus.getDefault().register(this);
-//        ((TextView)view.findViewById(R.id.food_name)).setText("text");
-
 //        System.out.println("set text");
         return view;
     }
