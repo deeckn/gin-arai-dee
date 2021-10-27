@@ -1,10 +1,13 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.gin_arai_dee.Activity.BillSplitterPage;
+import com.gin_arai_dee.Activity.HomePage;
+import com.gin_arai_dee.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class FoodHub extends AppCompatActivity {

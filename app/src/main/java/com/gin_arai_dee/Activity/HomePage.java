@@ -1,10 +1,14 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.gin_arai_dee.Helper.DatabaseHelper;
+import com.gin_arai_dee.Domain.FoodItem;
+import com.gin_arai_dee.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.BufferedReader;
 import java.io.File;

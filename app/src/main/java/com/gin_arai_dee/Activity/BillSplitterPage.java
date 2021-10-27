@@ -1,16 +1,10 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-
-import android.app.Dialog;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,10 +14,15 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-import org.greenrobot.eventbus.EventBus;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.FragmentManager;
+
+import com.gin_arai_dee.Dialog.BillDialog;
+import com.gin_arai_dee.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class BillSplitterPage extends AppCompatActivity {
     private class FoodItem {
@@ -166,6 +165,7 @@ public class BillSplitterPage extends AppCompatActivity {
 
         // Add name to Payer's tab and add to people's list
         add_name.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onClick(View v) {
                 name_input = name_add_bar.getText().toString();
                 if (TextUtils.isEmpty(name_input)) System.out.println("empty");

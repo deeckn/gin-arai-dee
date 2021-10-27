@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.gin_arai_dee.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -104,7 +105,7 @@ public class AnonymousAuthActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         if(user != null){
             signInAnonymously();
-            Intent intent = new Intent(this,HomePage.class);
+            Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);
         }
         else{

@@ -1,23 +1,25 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import com.gin_arai_dee.Adapter.CardAdapter;
+import com.gin_arai_dee.Helper.DatabaseHelper;
+import com.gin_arai_dee.Domain.FoodCardModel;
+import com.gin_arai_dee.Domain.FoodItem;
+import com.gin_arai_dee.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.StorageReference;

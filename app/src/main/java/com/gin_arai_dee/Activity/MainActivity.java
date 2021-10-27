@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Activity;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -14,6 +14,11 @@ import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.firebase.ui.auth.util.ExtraConstants;
+import com.gin_arai_dee.Activity.BillSplitterPage;
+import com.gin_arai_dee.Activity.DietPage;
+import com.gin_arai_dee.Activity.FoodPage;
+import com.gin_arai_dee.Activity.HomePage;
+import com.gin_arai_dee.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.ActionCodeSettings;

@@ -10,22 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GinAraiDee">
         <activity
-            android:name=".FoodHub"
+            android:name=".Activity.FoodHub"
             android:exported="true" />
         <activity
-            android:name=".BillSplitterPage"
+            android:name=".Activity.BillSplitterPage"
             android:exported="true" />
         <activity
-            android:name=".FoodPage"
+            android:name=".Activity.FoodPage"
             android:exported="true" />
         <activity
-            android:name=".DietPage"
+            android:name=".Activity.DietPage"
             android:exported="true" />
         <activity
-            android:name=".HomePage"
+            android:name=".Activity.HomePage"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

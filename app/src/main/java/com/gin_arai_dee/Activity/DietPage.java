@@ -1,9 +1,11 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Activity;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.gin_arai_dee.R;
 
 public class DietPage extends AppCompatActivity {
 
