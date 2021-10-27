@@ -26,45 +26,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class BillSplitterPage extends AppCompatActivity {
-    private class FoodItem {
-        private String name;
-        private int price;
-
-        public FoodItem(String name, int price) {
-            this.name = name;
-            this.price = price;
-        }
-
-        public String getName() { return name; }
-        public void setName(String name) { this.name = name; }
-
-        public int getPrice() { return price; }
-        public void setPrice(int price) { this.price = price; }
-    }
-
-    private class Person {
-        private String name;
-        private int payment;
-        private TextView name_textView;
-        private TextView payment_textView;
-
-        public Person(String name) {
-            this.name = name;
-            this.payment = 0;
-        }
-
-        public String getName() { return name; }
-        public void setName(String name) { this.name = name; }
-
-        public int getPayment() { return payment; }
-        public void setPayment(int payment) { this.payment = payment; }
-
-        public void setTextView(int nameId, int paymentId) {
-            name_textView = findViewById(nameId);
-            payment_textView = findViewById(paymentId);
-        }
-    }
-
     private void showFoodDialog() {
         FragmentManager fm = getSupportFragmentManager();
         BillDialog billDialog = BillDialog.newInstance("Bill Dialog");
@@ -141,9 +102,9 @@ public class BillSplitterPage extends AppCompatActivity {
         add_list.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 list_input = list_add_bar.getText().toString();
-//                ListNameEvent listNameEvent = new ListNameEvent();
-//                listNameEvent.setList_name(list_input);
-//                EventBus.getDefault().post(listNameEvent);
+                ListNameEvent listNameEvent = new ListNameEvent();
+                listNameEvent.setList_name(list_input);
+                EventBus.getDefault().post(listNameEvent);
                 if (TextUtils.isEmpty(list_input)) System.out.println("empty");
                 else {
                     System.out.println(list_input);
