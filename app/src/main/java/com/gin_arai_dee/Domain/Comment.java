@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Domain;
 
 public class Comment {
     private User user;

@@ -1,4 +1,7 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Domain;
+
+import com.gin_arai_dee.Domain.FoodItem;
+import com.gin_arai_dee.Domain.Recipe;
 
 import java.util.ArrayList;
 
