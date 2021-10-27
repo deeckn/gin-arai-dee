@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.Holder;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -7,11 +7,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gin_arai_dee.R;
+
 public class CardHolder extends RecyclerView.ViewHolder {
 
-    ImageView imageView;
-    TextView title;
-    TextView description;
+    public ImageView imageView;
+    public TextView title;
+    public TextView description;
 
     public CardHolder(@NonNull View itemView) {
         super(itemView);
