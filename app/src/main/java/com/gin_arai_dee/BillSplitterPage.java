@@ -3,6 +3,7 @@ package com.gin_arai_dee;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.Dialog;
@@ -32,6 +33,8 @@ public class BillSplitterPage extends AppCompatActivity {
 //        Objects.requireNonNull(billDialog.getDialog()).getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         billDialog.show(fm, "Bill Dialog");
     }
+
+    public String getFoodName() { return list_input; }
 
     // Tab Widget Layout
     ScrollView scrollView;
@@ -102,9 +105,8 @@ public class BillSplitterPage extends AppCompatActivity {
         add_list.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 list_input = list_add_bar.getText().toString();
-                ListNameEvent listNameEvent = new ListNameEvent();
-                listNameEvent.setList_name(list_input);
-                EventBus.getDefault().post(listNameEvent);
+//                ListNameEvent listNameEvent = new ListNameEvent(list_input);
+//                EventBus.getDefault().post(listNameEvent);
                 if (TextUtils.isEmpty(list_input)) System.out.println("empty");
                 else {
                     System.out.println(list_input);
