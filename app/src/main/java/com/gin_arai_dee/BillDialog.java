@@ -1,34 +1,37 @@
 package com.gin_arai_dee;
 
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.DialogFragment;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class BillDialog extends DialogFragment {
-    private TextView food_name;
-    private EditText food_price;
-    private Button one, two, three, four, five, six, seven, eight, nine, zero, del, clear, plus, minus, multiply, divide, equal, done;
-    boolean isPlus, isMinus, isDivide, isMultiply;
+    private LinearLayout personList;
+    private ToggleButton selectAll;
+    private CheckBox personBox;
+    private TextView foodName;
+    private EditText foodPrice;
+    private Button one, two, three, four, five, six, seven, eight, nine, zero;
+    private Button del, clear, plus, minus, multiply, divide, equal, done;
+    private boolean isPlus, isMinus, isDivide, isMultiply;
     private String input = "";
-    private int result = 0;
+    private int result = 0, numPerson = 0, perPerson = 0;
+    private ArrayList<CheckBox> checked = new ArrayList<CheckBox>();
     public static BillDialog newInstance(String title) {
         BillDialog frag = new BillDialog();
         Bundle args = new Bundle();
@@ -47,16 +50,48 @@ public class BillDialog extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.activity_bill_food_dialog, container, false);
+        final View view = inflater.inflate(
+                R.layout.activity_bill_food_dialog, container, false
+        );
         Objects.requireNonNull(getDialog()).requestWindowFeature(Window.FEATURE_NO_TITLE);
         BillSplitterPage bill = (BillSplitterPage) getActivity();
 
         String name = Objects.requireNonNull(bill).getFoodName();
-        food_name = view.findViewById(R.id.food_name);
-        food_name.setText(name);
+        foodName = view.findViewById(R.id.food_name);
+        foodName.setText(name);
 
-        food_price = view.findViewById(R.id.food_price);
-        food_price.setShowSoftInputOnFocus(false);
+        foodPrice = view.findViewById(R.id.food_price);
+        foodPrice.setShowSoftInputOnFocus(false);
+
+        ArrayList<Person> people = bill.getPeople();
+        personList = view.findViewById(R.id.person_list);
+        for(Person p : people) {
+            personBox = new CheckBox(this.getContext());
+            checked.add(personBox);
+            personBox.setText(p.getName());
+            personBox.setTypeface(getResources().getFont(R.font.rubik));
+            personBox.setTextColor(getResources().getColor(R.color.ghost_white));
+            personBox.setTextSize(20);
+            personList.addView(personBox);
+        }
+
+        selectAll = view.findViewById(R.id.select_all);
+        selectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                for (int i = 0; i < checked.size(); i++) {
+                    if(selectAll.isChecked()) {
+                        selectAll.setTextColor(getResources().getColor(R.color.ghost_white));
+                        checked.get(i).setChecked(true);
+                    }
+                    else {
+                        selectAll.setTextColor(getResources().getColor(R.color.charcoal));
+                        checked.get(i).setChecked(false);
+                    }
+                }
+            }
+        });
+
 //        EventBus.getDefault().register(this);
 //        System.out.println("set text");
         return view;
@@ -147,7 +182,7 @@ public class BillDialog extends DialogFragment {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                food_price.setText("");
+                foodPrice.setText("");
                 input = "";
                 result = 0;
             }
@@ -199,18 +234,35 @@ public class BillDialog extends DialogFragment {
                         isDivide = false;
                     }
                 }
-                food_price.setText(String.valueOf(result));
+                else { result = Integer.parseInt(input); }
+                foodPrice.setText(String.valueOf(result));
                 input = String.valueOf(result);
             }
         });
 
         done = view.findViewById(R.id.done_button);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!equal.isPressed()) result = Integer.parseInt(input);
+                for (int i = 0; i < checked.size(); i++) {
+                    if (checked.get(i).isChecked()) numPerson++;
+//                    System.out.println("num" + numPerson);
+//                    System.out.println("result" + result);
+                }
+
+                if (numPerson > 0 && result > 0) {
+                    perPerson = result/numPerson;
+//                    System.out.println("person" + perPerson);
+                }
+            }
+        });
 //        initial();
     }
 
     private void updateNumber(String addedStr) {
         input += addedStr;
-        food_price.setText(input);
+        foodPrice.setText(input);
     }
 
     private void mathOp(String op) {
@@ -228,7 +280,7 @@ public class BillDialog extends DialogFragment {
                 isDivide = true;
                 break;
         }
-        food_price.setText("");
+        foodPrice.setText("");
         result = Integer.parseInt(input);
         input = "";
     }
