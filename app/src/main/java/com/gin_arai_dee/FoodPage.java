@@ -2,24 +2,19 @@ package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -106,12 +101,6 @@ public class FoodPage extends AppCompatActivity {
         initializeInstances();
         loadData();
 
-        // RecyclerView
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        cardAdapter = new CardAdapter(this, getMyList());
-        recyclerView.setAdapter(cardAdapter);
-
         // Category Dropdown Settings
         chooseCategoryTitle.setOnClickListener(this::toggleCategoryBox);
         categoryDropdownArrow.setOnClickListener(this::toggleCategoryBox);
@@ -184,9 +173,7 @@ public class FoodPage extends AppCompatActivity {
     }
 
     private void initializeInstances() {
-        // Databases
-//        storageReference = FirebaseStorage.getInstance()
-//                .getReference().child("food_images/carbonara.jpg");
+        // Database
         db = DatabaseHelper.getInstance(this);
 
         // Food Data
@@ -246,12 +233,17 @@ public class FoodPage extends AppCompatActivity {
         italian_checkbox    = new CheckBox(this);
         chinese_checkbox    = new CheckBox(this);
         korean_checkbox     = new CheckBox(this);
+
+        // RecyclerView
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        cardAdapter = new CardAdapter(this, getCardList());
+        recyclerView.setAdapter(cardAdapter);
     }
 
     // RecyclerView Items
-    private ArrayList<FoodCardModel> getMyList() {
+    private ArrayList<FoodCardModel> getCardList() {
         ArrayList<FoodCardModel> models = new ArrayList<>();
-
         FoodCardModel model;
         for (FoodItem f : displayFoodItems) {
             model = new FoodCardModel(f.getFood_item(), f.getDescription(), R.drawable.ic_food);
@@ -406,42 +398,44 @@ public class FoodPage extends AppCompatActivity {
      */
     private void groupFoodItems() {
         for (FoodItem food : allFoodItems) {
-            if (food == null) continue;
-            else {
-                String dishType = food.getDish_type();
-                switch (dishType) {
-                    case MAIN_DISH:
-                        Objects.requireNonNull(categoryFoodGroup.get(MAIN_DISH)).add(food);
-                        break;
-                    case APPETIZERS:
-                        Objects.requireNonNull(categoryFoodGroup.get(APPETIZERS)).add(food);
-                        break;
-                    case SNACKS:
-                        Objects.requireNonNull(categoryFoodGroup.get(SNACKS)).add(food);
-                        break;
-                    case DESSERTS:
-                        Objects.requireNonNull(categoryFoodGroup.get(DESSERTS)).add(food);
-                        break;
-                    case BEVERAGES:
-                        Objects.requireNonNull(categoryFoodGroup.get(BEVERAGES)).add(food);
-                        break;
-                    default:
-                        System.out.println("No category");
-                }
+            String dishType = food.getDish_type();
+            switch (dishType) {
+                case MAIN_DISH:
+                    Objects.requireNonNull(categoryFoodGroup.get(MAIN_DISH)).add(food);
+                    break;
+                case APPETIZERS:
+                    Objects.requireNonNull(categoryFoodGroup.get(APPETIZERS)).add(food);
+                    break;
+                case SNACKS:
+                    Objects.requireNonNull(categoryFoodGroup.get(SNACKS)).add(food);
+                    break;
+                case DESSERTS:
+                    Objects.requireNonNull(categoryFoodGroup.get(DESSERTS)).add(food);
+                    break;
+                case BEVERAGES:
+                    Objects.requireNonNull(categoryFoodGroup.get(BEVERAGES)).add(food);
+                    break;
+                default:
+                    System.out.println("No category");
             }
 
             String nationality = food.getNationality();
             switch (nationality) {
                 case THAI:
                     Objects.requireNonNull(nationalityFoodGroup.get(THAI)).add(food);
+                    break;
                 case ITALIAN:
                     Objects.requireNonNull(nationalityFoodGroup.get(ITALIAN)).add(food);
+                    break;
                 case JAPANESE:
                     Objects.requireNonNull(nationalityFoodGroup.get(JAPANESE)).add(food);
+                    break;
                 case CHINESE:
                     Objects.requireNonNull(nationalityFoodGroup.get(CHINESE)).add(food);
+                    break;
                 case KOREAN:
                     Objects.requireNonNull(nationalityFoodGroup.get(KOREAN)).add(food);
+                    break;
                 default:
                     System.out.println("No nationality");
             }
@@ -458,7 +452,7 @@ public class FoodPage extends AppCompatActivity {
         if (!categoryFilter.isEmpty() && nationalityFilter.isEmpty()) {
             for (String type : categoryFilter) {
                 List<FoodItem> temp = categoryFoodGroup.get(type);
-                if (temp == null || temp.isEmpty()) break;
+                if (temp == null || temp.isEmpty()) continue;
                 tempList.addAll(temp);
             }
         }
@@ -466,7 +460,7 @@ public class FoodPage extends AppCompatActivity {
         if (categoryFilter.isEmpty() && !nationalityFilter.isEmpty()) {
             for (String type : nationalityFilter) {
                 List<FoodItem> temp = nationalityFoodGroup.get(type);
-                if (temp == null || temp.isEmpty()) break;
+                if (temp == null || temp.isEmpty()) continue;
                 tempList.addAll(temp);
             }
         }
@@ -488,16 +482,7 @@ public class FoodPage extends AppCompatActivity {
      * Food cards list
      */
     private void generateFoodCards() {
-        for (FoodItem f : displayFoodItems) {
-            System.out.println(f.getFood_item());
-        }
+        cardAdapter = new CardAdapter(this, getCardList());
+        recyclerView.setAdapter(cardAdapter);
     }
-
-    private void setCurrentUser() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        assert user != null;
-        String name = user.getDisplayName();
-        System.out.println(name);
-    }
-
 }
