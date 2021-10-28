@@ -35,6 +35,7 @@ public class BillSplitterPage extends AppCompatActivity {
     }
 
     public String getFoodName() { return list_input; }
+    public ArrayList<Person> getPeople() { return people; }
 
     // Tab Widget Layout
     ScrollView scrollView;
