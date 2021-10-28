@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardCornerRadius="8dp"
+    android:id="@+id/food_dialog">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/champagne_pink">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp">
+
+        <TextView
+            android:id="@+id/food_name"
+            android:layout_width="match_parent"
+            android:layout_height="35sp"
+            android:layout_marginTop="10sp"
+            android:fontFamily="@font/rubik_bold"
+
+            android:textAlignment="center"
+            android:textColor="@color/charcoal"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/food_price"
+            android:layout_width="350sp"
+            android:layout_height="50sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/add_bar"
+            android:fontFamily="@font/rubik_bold"
+            android:textAlignment="center"
+            android:textColor="@color/charcoal"
+            android:textSize="30sp">
+        </EditText>
+
+        <ScrollView
+            android:layout_width="350sp"
+            android:layout_height="150sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/bill_name_box">
+        </ScrollView>
+
+        <ToggleButton
+            android:layout_width="350sp"
+            android:layout_height="50sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/select_all_toggle"
+            android:checked="false"
+            android:fontFamily="@font/rubik_bold"
+            android:textAllCaps="false"
+            android:textColor="@color/charcoal"
+            android:textOff="@string/select_all_text"
+            android:textOn="@string/select_all_text"
+            android:textSize="20sp">
+        </ToggleButton>
+
+        <TableLayout
+            android:layout_width="355sp"
+            android:layout_height="250sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginStart="2sp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/seven_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/seven"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/eight_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/eight"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/nine_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/nine"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/divide_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/operator_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/divide"
+                    android:textColor="@color/wine"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/four_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/four"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/five_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/five"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/six_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/six"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/multiply_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/operator_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/multiply"
+                    android:textColor="@color/wine"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/one_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/one"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/two_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/two"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/three_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/three"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/minus_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/operator_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/minus"
+                    android:textColor="@color/wine"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/clear_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/clear"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp"
+                    android:onClick="buttonClick"/>
+
+                <Button
+                    android:id="@+id/zero_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/zero"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/delete_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/delete"
+                    android:textColor="@color/charcoal"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/plus_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/operator_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/plus"
+                    android:textColor="@color/wine"
+                    android:textSize="20sp" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/done_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="3"
+                    android:background="@drawable/done_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/done"
+                    android:textAllCaps="false"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/equal_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/operator_button"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="@string/equal"
+                    android:textColor="@color/wine"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

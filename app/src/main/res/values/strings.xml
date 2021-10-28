@@ -54,7 +54,30 @@
     <string name="add_list">⏎</string>
     <string name="clear_list">Clear All List ⌫</string>
     <string name="create_bill">Create Bill ⏎</string>
-  
+    <string name="list_text">List</string>
+    <string name="select_all_text">Select All</string>
+    <string name="payer_name_text">Name</string>
+    <string name="payment_text">Amount to Pay</string>
+    <string name="clear_name">Clear All Name ⌫</string>
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="plus">+</string>
+    <string name="minus">−</string>
+    <string name="multiply">×</string>
+    <string name="divide">÷</string>
+    <string name="equal">=</string>
+    <string name="clear">AC</string>
+    <string name="delete">⌫</string>
+    <string name="done">Done⏎</string>
+
     <!-- Food Hub Page -->
     <string name="food_hub">Food Hub</string>
     <string name="recipes">Recipes</string>
