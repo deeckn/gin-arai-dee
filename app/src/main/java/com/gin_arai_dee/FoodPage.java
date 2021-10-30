@@ -15,7 +15,6 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -471,14 +470,14 @@ public class FoodPage extends AppCompatActivity {
      */
     private ArrayList<FoodCardModel> getCardList() {
         ArrayList<FoodCardModel> models = new ArrayList<>();
-        FoodCardModel model;
         for (FoodItem f : displayFoodItems) {
-            model = new FoodCardModel(
+            models.add(
+                    new FoodCardModel(
                     f.getFood_item(),
                     f.getDescription(),
-                    "kCal: " + String.valueOf(f.getKcal()),
-                    R.drawable.ic_food);
-            models.add(model);
+                    "kCal: " + f.getKcal(),
+                    R.drawable.ic_food)
+            );
         }
         return models;
     }
