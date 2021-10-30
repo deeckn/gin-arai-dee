@@ -25,7 +25,6 @@ import java.util.Set;
 
 public class FoodPage extends AppCompatActivity {
     // Database
-    StorageReference storageReference;
     DatabaseHelper db;
 
     // Food Data
@@ -241,17 +240,6 @@ public class FoodPage extends AppCompatActivity {
         recyclerView.setAdapter(cardAdapter);
     }
 
-    // RecyclerView Items
-    private ArrayList<FoodCardModel> getCardList() {
-        ArrayList<FoodCardModel> models = new ArrayList<>();
-        FoodCardModel model;
-        for (FoodItem f : displayFoodItems) {
-            model = new FoodCardModel(f.getFood_item(), f.getDescription(), R.drawable.ic_food);
-            models.add(model);
-        }
-        return models;
-    }
-
     private int getValueInDp(int value) {
         float scale = getResources().getDisplayMetrics().density;
         return (int) (value * scale + 0.5f);
@@ -260,6 +248,7 @@ public class FoodPage extends AppCompatActivity {
     /***
      * UI Page Functionality
      */
+
     // Expand and minimize category selector box
     public void toggleCategoryBox(View view) {
         if (!categoryLoaded) {
@@ -386,7 +375,6 @@ public class FoodPage extends AppCompatActivity {
     /***
      * Database Management Section
      */
-    // Load Data
     private void loadData() {
         allFoodItems = db.getAllFoodItems();
         groupFoodItems();
@@ -481,6 +469,20 @@ public class FoodPage extends AppCompatActivity {
     /***
      * Food cards list
      */
+    private ArrayList<FoodCardModel> getCardList() {
+        ArrayList<FoodCardModel> models = new ArrayList<>();
+        FoodCardModel model;
+        for (FoodItem f : displayFoodItems) {
+            model = new FoodCardModel(
+                    f.getFood_item(),
+                    f.getDescription(),
+                    "kCal: " + String.valueOf(f.getKcal()),
+                    R.drawable.ic_food);
+            models.add(model);
+        }
+        return models;
+    }
+
     private void generateFoodCards() {
         cardAdapter = new CardAdapter(this, getCardList());
         recyclerView.setAdapter(cardAdapter);

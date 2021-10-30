@@ -31,6 +31,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
     public void onBindViewHolder(@NonNull CardHolder holder, int position) {
         holder.title.setText(models.get(position).getTitle());
         holder.description.setText(models.get(position).getDescription());
+        holder.calorie.setText(models.get(position).getCalories());
         holder.imageView.setImageResource(models.get(position).getImage());
     }
 
