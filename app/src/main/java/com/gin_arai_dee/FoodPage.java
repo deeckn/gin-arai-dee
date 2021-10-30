@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -79,6 +80,10 @@ public class FoodPage extends AppCompatActivity {
     RecyclerView recyclerView;
     CardAdapter cardAdapter;
 
+    // Search Elements
+    EditText searchBar;
+    ImageButton searchButton;
+
     // String Constants
     public static final String MAIN_DISH    = "main_dish";
     public static final String APPETIZERS   = "appetizers";
@@ -111,63 +116,79 @@ public class FoodPage extends AppCompatActivity {
         main_dish_checkbox.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) categoryFilter.add(MAIN_DISH);
             else categoryFilter.remove(MAIN_DISH);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         });
 
         appetizer_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) categoryFilter.add(APPETIZERS);
             else categoryFilter.remove(APPETIZERS);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         }));
 
         snacks_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) categoryFilter.add(SNACKS);
             else categoryFilter.remove(SNACKS);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         }));
 
         desserts_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) categoryFilter.add(DESSERTS);
             else categoryFilter.remove(DESSERTS);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         }));
 
         beverages_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) categoryFilter.add(BEVERAGES);
             else categoryFilter.remove(BEVERAGES);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         }));
 
         // Nationality Checkbox Settings
         thai_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) nationalityFilter.add(THAI);
             else nationalityFilter.remove(THAI);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         }));
 
         italian_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) nationalityFilter.add(ITALIAN);
             else nationalityFilter.remove(ITALIAN);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         }));
 
         japanese_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) nationalityFilter.add(JAPANESE);
             else nationalityFilter.remove(JAPANESE);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         }));
 
         chinese_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) nationalityFilter.add(CHINESE);
             else nationalityFilter.remove(CHINESE);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         }));
 
         korean_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) nationalityFilter.add(KOREAN);
             else nationalityFilter.remove(KOREAN);
-            updateDisplayFoodItems();
+            filterFoodItems();
+            updateFoodCards();
         }));
+
+        // Search button onClick listener
+        searchButton.setOnClickListener(v -> {
+            searchFood(searchBar.getText().toString());
+            updateFoodCards();
+        });
     }
 
     private void initializeInstances() {
@@ -237,6 +258,10 @@ public class FoodPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardAdapter(this, getCardList());
         recyclerView.setAdapter(cardAdapter);
+
+        // Search Elements
+        searchBar = findViewById(R.id.search_bar);
+        searchButton = findViewById(R.id.search_button);
     }
 
     private int getValueInDp(int value) {
@@ -377,7 +402,8 @@ public class FoodPage extends AppCompatActivity {
     private void loadData() {
         allFoodItems = db.getAllFoodItems();
         groupFoodItems();
-        updateDisplayFoodItems();
+        filterFoodItems();
+        updateFoodCards();
     }
 
     /***
@@ -429,7 +455,7 @@ public class FoodPage extends AppCompatActivity {
         }
     }
 
-    private void updateDisplayFoodItems() {
+    private void filterFoodItems() {
         Set<FoodItem> tempList = new HashSet<>();
         displayFoodItems.clear();
 
@@ -462,7 +488,6 @@ public class FoodPage extends AppCompatActivity {
         }
 
         displayFoodItems.addAll(tempList);
-        generateFoodCards();
     }
 
     /***
@@ -482,8 +507,22 @@ public class FoodPage extends AppCompatActivity {
         return models;
     }
 
-    private void generateFoodCards() {
+    private void updateFoodCards() {
         cardAdapter = new CardAdapter(this, getCardList());
         recyclerView.setAdapter(cardAdapter);
+    }
+
+    /***
+     * Food Search
+     */
+    public void searchFood(String keyword) {
+        ArrayList<FoodItem> temp = new ArrayList<>();
+        for (FoodItem food : displayFoodItems) {
+            if (food.getFood_item().toLowerCase().contains(keyword.toLowerCase())) {
+                temp.add(food);
+            }
+        }
+        displayFoodItems.clear();
+        displayFoodItems.addAll(temp);
     }
 }
