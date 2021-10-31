@@ -193,7 +193,7 @@ public class FoodPage extends AppCompatActivity {
 
     private void initializeInstances() {
         // Database
-        db = DatabaseHelper.getInstance(this);
+        db = new DatabaseHelper(this);
 
         // Food Data
         displayFoodItems = new ArrayList<>();
