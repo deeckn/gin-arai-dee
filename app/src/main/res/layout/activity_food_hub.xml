@@ -61,9 +61,12 @@
             <!-- Browse Food Card -->
 
             <!-- Browse Recipes Card -->
+
             <FrameLayout
                 android:layout_width="178dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_row="0"
+                android:layout_column="0">
 
                 <ImageButton
                     android:id="@+id/FoodButton"
@@ -81,12 +84,117 @@
                     app:srcCompat="@drawable/food_food_menu" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="69dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
+                    android:fontFamily="@font/rubik"
                     android:text="Food"
                     android:textColor="@color/ghost_white"
+                    android:textSize="24sp"
+                    android:visibility="visible"></TextView>
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="214dp"
+                android:layout_height="match_parent"
+                android:layout_row="0"
+                android:layout_column="1">
+
+                <ImageButton
+                    android:id="@+id/DietaryButton"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:adjustViewBounds="false"
+                    android:backgroundTint="@color/middle_red_purple"
+                    android:contentDescription="@string/dietary_planner"
+                    android:cropToPadding="true"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/dietary_home_page" />
+
+                <TextView
+                    android:layout_width="131dp"
+                    android:layout_height="39dp"
+                    android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
+                    android:clickable="false"
+                    android:fontFamily="@font/rubik"
+                    android:text="Dietary"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="24sp"
+                    android:visibility="visible"></TextView>
+            </FrameLayout>
+
+            <FrameLayout>
+                android:layout_width="214dp"
+                android:layout_height="200dp"
+                android:layout_row="3"
+                android:layout_column="1" >
+
+                <ImageButton
+                    android:id="@+id/RecipeButton"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:adjustViewBounds="false"
+                    android:backgroundTint="@color/middle_red_purple"
+                    android:contentDescription="@string/dietary_planner"
+                    android:cropToPadding="true"
+                    android:scaleType="centerCrop"
+                    android:clickable="false"
+                    app:srcCompat="@drawable/recipe_food_hub" />
+
+                <TextView
+                    android:layout_width="144dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
+                    android:clickable="false"
+                    android:fontFamily="@font/rubik"
+                    android:text="Recipes"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="24sp"
+                    android:visibility="visible"></TextView>
+            </FrameLayout>
+
+            <FrameLayout>
+                android:layout_width="214dp"
+                android:layout_height="200dp"
+                android:layout_row="3"
+                android:layout_column="4"
+
+                >
+                <ImageButton
+                    android:id="@+id/RandomButton"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_row="1"
+                    android:layout_column="4"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:adjustViewBounds="false"
+                    android:backgroundTint="@color/middle_red_purple"
+                    android:contentDescription="random"
+                    android:cropToPadding="true"
+                    android:scaleType="centerCrop"
+                    android:clickable="false"
+                    app:srcCompat="@drawable/random_food_menu" />
+
+                <TextView
+                    android:layout_width="149dp"
+                    android:layout_height="41dp"
+                    android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
+                    android:clickable="false"
+                    android:fontFamily="@font/rubik"
+                    android:text="Random"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="24sp"
                     android:visibility="visible"></TextView>
             </FrameLayout>
 
