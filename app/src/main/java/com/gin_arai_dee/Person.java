@@ -17,7 +17,7 @@ public class Person {
     public void setName(String name) { this.name = name; }
 
     public int getPayment() { return payment; }
-    public void setPayment(int payment) { this.payment = payment; }
+    public void setPayment(int perPerson) { this.payment += perPerson; }
 
     public void setTextView(int nameId, int paymentId) {
         name_textView = nameId;
