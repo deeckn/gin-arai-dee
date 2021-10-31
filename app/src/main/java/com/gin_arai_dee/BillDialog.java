@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class BillDialog extends DialogFragment {
+    private BillSplitterPage bill;
+    private ListItem food;
+    private ArrayList<Person> people;
     private LinearLayout personList;
     private ToggleButton selectAll;
     private CheckBox personBox;
@@ -29,7 +32,7 @@ public class BillDialog extends DialogFragment {
     private Button one, two, three, four, five, six, seven, eight, nine, zero;
     private Button del, clear, plus, minus, multiply, divide, equal, done;
     private boolean isPlus, isMinus, isDivide, isMultiply;
-    private String input = "";
+    private String input = "", name;
     private int result = 0, numPerson = 0, perPerson = 0;
     private ArrayList<CheckBox> checked = new ArrayList<CheckBox>();
     public static BillDialog newInstance(String title) {
@@ -54,16 +57,15 @@ public class BillDialog extends DialogFragment {
                 R.layout.activity_bill_food_dialog, container, false
         );
         Objects.requireNonNull(getDialog()).requestWindowFeature(Window.FEATURE_NO_TITLE);
-        BillSplitterPage bill = (BillSplitterPage) getActivity();
+        bill = (BillSplitterPage) getActivity();
 
-        String name = Objects.requireNonNull(bill).getFoodName();
+        name = Objects.requireNonNull(bill).getFoodName();
         foodName = view.findViewById(R.id.food_name);
         foodName.setText(name);
-
         foodPrice = view.findViewById(R.id.food_price);
         foodPrice.setShowSoftInputOnFocus(false);
 
-        ArrayList<Person> people = bill.getPeople();
+        people = bill.getPeople();
         personList = view.findViewById(R.id.person_list);
         for(Person p : people) {
             personBox = new CheckBox(this.getContext());
@@ -248,13 +250,24 @@ public class BillDialog extends DialogFragment {
                 for (int i = 0; i < checked.size(); i++) {
                     if (checked.get(i).isChecked()) numPerson++;
 //                    System.out.println("num" + numPerson);
-//                    System.out.println("result" + result);
+//                    System.out.println("result " + result);
                 }
 
                 if (numPerson > 0 && result > 0) {
                     perPerson = result/numPerson;
-//                    System.out.println("person" + perPerson);
+//                    System.out.println("per person " + perPerson);
+                    for (int i = 0; i < checked.size(); i++) {
+                        if (checked.get(i).isChecked()) {
+//                            System.out.println("checked: " + checked.get(i).getText());
+                            for (Person p: people) {
+                                if (checked.get(i).getText() == p.getName()) p.setPayment(perPerson);
+                            }
+                        }
+                    }
                 }
+                food = new ListItem(name, result, perPerson);
+//                System.out.println(food.getName() + " " +food.getPrice() + " " + food.getPerPerson());
+                dismiss();
             }
         });
 //        initial();
@@ -284,4 +297,6 @@ public class BillDialog extends DialogFragment {
         result = Integer.parseInt(input);
         input = "";
     }
+
+    public ListItem getFood() { return food; }
 }
