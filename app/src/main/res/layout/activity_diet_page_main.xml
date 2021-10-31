@@ -16,12 +16,20 @@
         android:textColor="@color/wine"
         android:textSize="36sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/day_list"
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="15dp">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:columnCount="2">
+        <TextView
+            android:text="@string/monday"
+            android:textColor="@color/wine"
+            android:textSize="25dp"
+            android:layout_row="0"
+            android:layout_column="0"/>
+
+
+    </GridLayout>
 
 
 </LinearLayout>
