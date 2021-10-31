@@ -48,18 +48,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.welcome_page);
 
 
-        Button button = findViewById(R.id.loginButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-
-                createSignIn();
-            }
-        });
+//        Button button = findViewById(R.id.loginButton);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // Code here executes on main thread after user presses button
+//
+//                createSignIn();
+//            }
+//        });
 //        openHomePage();
-//        openFoodPage();
+//       openFoodPage();
 //        openBillSplitterPage();
-//        openDietPage();
+       openDietPage();
     }
 
     // Opens the home page
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openDietPage() {
-        startActivity(new Intent(this, DietPage.class));
+        startActivity(new Intent(this, DietDayPage.class));
     }
 
     public void createSignIn(){

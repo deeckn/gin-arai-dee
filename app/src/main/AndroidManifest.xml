@@ -22,6 +22,9 @@
             android:name=".Activity.DietPage"
             android:exported="true" />
         <activity
+            android:name=".Activity.DietDayPage"
+            android:exported="true" />
+        <activity
             android:name=".Activity.HomePage"
             android:exported="true" />
         <activity
