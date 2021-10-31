@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="15dp"
     android:layout_margin="15dp"
-    app:cardElevation="3dp"
-    app:cardBackgroundColor="@color/maximum_yellow_red">
+    android:clickable="true"
+    app:cardBackgroundColor="@color/maximum_yellow_red"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="3dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/card_time"
             android:layout_width="match_parent"
@@ -21,15 +22,15 @@
             android:text="Time"
             android:textColor="@color/wine"
             android:textSize="25dp" />
-       <GridLayout
-           android:id="@+id/foodList_grid"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_marginStart="5dp"
-           android:columnCount="1">
 
-       </GridLayout>
+        <GridLayout
+            android:id="@+id/foodList_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:columnCount="1">
 
+        </GridLayout>
 
     </LinearLayout>
 
