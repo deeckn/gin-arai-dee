@@ -32,6 +32,7 @@
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/drawable/create_bill_button.xml" value="0.1484375" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/drawable/dieatary_line.xml" value="0.1859375" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/drawable/diet_add_item_button.xml" value="0.2703125" />
+        <entry key="..\:/Project/gin-arai-dee/app/src/main/res/drawable/diet_check_button.xml" value="0.12864583333333332" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/drawable/diet_time_button.xml" value="0.1484375" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/drawable/dietary_add_button.xml" value="0.22708333333333333" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/drawable/dietary_add_vector.xml" value="0.10677083333333333" />
@@ -53,15 +54,17 @@
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/font/montserrat_bold.xml" value="0.16041666666666668" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_bill_splitter_page.xml" value="0.264" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_diet_add_page.xml" value="0.2" />
-        <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_diet_edit_page.xml" value="0.4" />
+        <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_diet_edit_page.xml" value="0.176" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_diet_page.xml" value="0.136" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_diet_page_main.xml" value="0.264" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_food_hub.xml" value="0.13020833333333334" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_food_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_home_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/card_diet.xml" value="0.4" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/cardview_daily.xml" value="0.264" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/cardview_diet_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/dialog_diet_add_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/diet_page.xml" value="0.176" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/home_page.xml" value="0.15260416666666668" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/layout.xml" value="0.11458333333333333" />

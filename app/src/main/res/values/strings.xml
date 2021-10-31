@@ -81,4 +81,5 @@
     <!-- Food Hub Page -->
     <string name="food_hub">Food Hub</string>
     <string name="recipes">Recipes</string>
+    <string name="check">Check!</string>
 </resources>
