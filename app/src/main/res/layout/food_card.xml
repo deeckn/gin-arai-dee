@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        android:background="@color/maximum_yellow_red">
+        android:background="@color/charcoal">
 
         <ImageView
             android:layout_width="75dp"
@@ -27,10 +27,22 @@
             android:id="@+id/cardTitle"
             android:text="Title"
             android:textSize="22sp"
-            android:textColor="#000"
+            android:textColor="@color/ghost_white"
             android:textStyle="bold"
             android:layout_toEndOf="@id/cardImage"
             android:layout_marginStart="10dp"
+            />
+
+        <TextView
+            android:id="@+id/cardCalorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calories"
+            android:textSize="18sp"
+            android:textColor="@color/ghost_white"
+            android:layout_toEndOf="@id/cardImage"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
             />
 
         <TextView
@@ -39,10 +51,10 @@
             android:id="@+id/cardDescription"
             android:text="Description"
             android:textSize="18sp"
-            android:textColor="#a9a9a9"
+            android:textColor="@color/ghost_white"
             android:layout_toEndOf="@id/cardImage"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
             />
 
     </RelativeLayout>
