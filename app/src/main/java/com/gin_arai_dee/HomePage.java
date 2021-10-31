@@ -46,7 +46,7 @@ public class HomePage extends AppCompatActivity {
         });
 
         // Open your pages here
-        openFoodPage();
+        openFoodHub();
     }
 
     // Opens the home page
@@ -62,6 +62,11 @@ public class HomePage extends AppCompatActivity {
     // Opens the bill splitter page
     private void openBillSplitterPage() {
         startActivity(new Intent(this, BillSplitterPage.class));
+    }
+
+    // Open the Food Hub
+    private void openFoodHub() {
+        startActivity(new Intent(this, FoodHub.class));
     }
 
     /***
