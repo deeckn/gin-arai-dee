@@ -2,16 +2,12 @@ package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.app.Dialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,21 +17,26 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class BillSplitterPage extends AppCompatActivity {
+public class BillSplitterPage extends AppCompatActivity implements BillDialog.onDoneListener{
     private void showFoodDialog() {
         FragmentManager fm = getSupportFragmentManager();
         BillDialog billDialog = BillDialog.newInstance("Bill Dialog");
 //        Objects.requireNonNull(billDialog.getDialog()).getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         billDialog.show(fm, "Bill Dialog");
+//        dialog = (BillDialog)
+//        dialog.getFood();
+        list_add_bar.getText().clear();
     }
 
-    public String getFoodName() { return list_input; }
+    public String getFoodName() { return listInput; }
     public ArrayList<Person> getPeople() { return people; }
+//    private BillDialog dialog;
+
+    // Info
+    TextView numPeople;
+    TextView total;
 
     // Tab Widget Layout
     ScrollView scrollView;
@@ -43,22 +44,23 @@ public class BillSplitterPage extends AppCompatActivity {
     TabHost.TabSpec spec;
     // Food Item
     EditText list_add_bar;
-    Button add_list;
-    String list_input;
+    Button addList;
+    String listInput;
     ArrayList<FoodItem> list = new ArrayList<>();
-    // Food Dialog
-    TextView food_name;
+    GridLayout foodList;
+    TextView foodName;
+    TextView foodPrice;
+    TextView foodPerPerson;
 //    DialogFragment food_dialog;
     // Payer
-    GridLayout name_list;
-    Button add_name;
+    GridLayout nameList;
+    Button addName;
     EditText name_add_bar;
-    TextView person_name;
-    TextView person_payment;
-    TextView num_people;
+    TextView personName;
+    TextView personPayment;
     Person person;
     ArrayList<Person> people = new ArrayList<>();
-    String name_input;
+    String nameInput;
     // Font
     Typeface rubik_bold;
 
@@ -69,6 +71,7 @@ public class BillSplitterPage extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         scrollView = findViewById(R.id.bill_scroll_area);
         list_add_bar = findViewById(R.id.list_add_bar);
+        total = findViewById(R.id.total);
 
         // Set TabWidget name
         tabHost = findViewById(R.id.tabhost);
@@ -99,18 +102,19 @@ public class BillSplitterPage extends AppCompatActivity {
 //        food_dialog.getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 //        food_dialog.setCancelable(false);
 
+        foodList = findViewById(R.id.food_list);
+        foodList.setColumnCount(3);
 
         // Add food item and show dialog
-        add_list = findViewById(R.id.add_list_button);
-        food_name = findViewById(R.id.food_name);
-        add_list.setOnClickListener(new View.OnClickListener() {
+        addList = findViewById(R.id.add_list_button);
+        addList.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                list_input = list_add_bar.getText().toString();
+                listInput = list_add_bar.getText().toString();
 //                ListNameEvent listNameEvent = new ListNameEvent(list_input);
 //                EventBus.getDefault().post(listNameEvent);
-                if (TextUtils.isEmpty(list_input)) System.out.println("empty");
+                if (TextUtils.isEmpty(listInput)) System.out.println("empty");
                 else {
-                    System.out.println(list_input);
+//                    System.out.println(list_input);
 //                    list = new FoodItem(list_input, );
                     showFoodDialog();
 //                    BillDialog.newInstance("")
@@ -121,43 +125,69 @@ public class BillSplitterPage extends AppCompatActivity {
         });
 
         // Payer tab's view
-        add_name = findViewById(R.id.add_name_button);
+        addName = findViewById(R.id.add_name_button);
         name_add_bar = findViewById(R.id.name_add_bar);
-        name_list = findViewById(R.id.name_list);
-        num_people = findViewById(R.id.num_people);
-
-        name_list.setColumnCount(2);
+        nameList = findViewById(R.id.name_list);
+        numPeople = findViewById(R.id.num_people);
+        nameList.setColumnCount(2);
 
         // Add name to Payer's tab and add to people's list
-        add_name.setOnClickListener(new View.OnClickListener() {
+        addName.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                name_input = name_add_bar.getText().toString();
-                if (TextUtils.isEmpty(name_input)) System.out.println("empty");
+                nameInput = name_add_bar.getText().toString();
+                if (TextUtils.isEmpty(nameInput)) System.out.println("empty");
                 else {
-                    System.out.println(name_input);
-                    person = new Person(name_input);
+//                    System.out.println(name_input);
+                    person = new Person(nameInput);
                     people.add(person);
 
-                    person_name = new TextView(getApplicationContext());
-                    person_name.setText(name_add_bar.getText());
-                    person_name.setTypeface(getResources().getFont(R.font.rubik));
-                    person_name.setTextSize(20);
-                    person_name.setTextColor(getResources().getColor(R.color.ghost_white));
-                    person_name.setMinWidth(getResources().getDisplayMetrics().widthPixels/2+170);
+                    personName = new TextView(getApplicationContext());
+                    personName.setText(name_add_bar.getText());
+                    personName.setTypeface(getResources().getFont(R.font.rubik));
+                    personName.setTextSize(20);
+                    personName.setTextColor(getResources().getColor(R.color.ghost_white));
+                    personName.setMinWidth(getResources().getDisplayMetrics().widthPixels/2+170);
 
-                    person_payment = new TextView(getApplicationContext());
-                    person_payment.setText(String.valueOf(person.getPayment()));
-                    person_payment.setTypeface(getResources().getFont(R.font.rubik));
-                    person_payment.setTextSize(20);
-                    person_payment.setTextColor(getResources().getColor(R.color.ghost_white));
+                    personPayment = new TextView(getApplicationContext());
+                    personPayment.setText(String.valueOf(person.getPayment()));
+                    personPayment.setTypeface(getResources().getFont(R.font.rubik));
+                    personPayment.setTextSize(20);
+                    personPayment.setTextColor(getResources().getColor(R.color.ghost_white));
 
-                    name_add_bar.setText("");
-                    name_list.addView(person_name);
-                    name_list.addView(person_payment);
-                    person.setTextView(person_name.getId(), person_payment.getId());
-                    num_people.setText(String.valueOf(people.size()));
+                    name_add_bar.getText().clear();
+                    nameList.addView(personName);
+                    nameList.addView(personPayment);
+                    person.setTextView(personName.getId(), personPayment.getId());
+                    numPeople.setText(String.valueOf(people.size()));
                 }
             }
         });
+    }
+
+    @Override
+    public void sendFood(ListItem food) {
+        foodName = new TextView(getApplicationContext());
+        foodName.setText(food.getName());
+        foodName.setTypeface(getResources().getFont(R.font.rubik));
+        foodName.setTextSize(20);
+        foodName.setTextColor(getResources().getColor(R.color.ghost_white));
+        foodName.setMinWidth(getResources().getDisplayMetrics().widthPixels/3+50);
+
+        foodPrice = new TextView(getApplicationContext());
+        foodPrice.setText(String.valueOf(food.getPrice()));
+        foodPrice.setTypeface(getResources().getFont(R.font.rubik));
+        foodPrice.setTextSize(20);
+        foodPrice.setTextColor(getResources().getColor(R.color.ghost_white));
+        foodPrice.setMinWidth(getResources().getDisplayMetrics().widthPixels/3);
+
+        foodPerPerson = new TextView(getApplicationContext());
+        foodPerPerson.setText(String.valueOf(food.getPerPerson()));
+        foodPerPerson.setTypeface(getResources().getFont(R.font.rubik));
+        foodPerPerson.setTextSize(20);
+        foodPerPerson.setTextColor(getResources().getColor(R.color.ghost_white));
+
+        foodList.addView(foodName);
+        foodList.addView(foodPrice);
+        foodList.addView(foodPerPerson);
     }
 }
