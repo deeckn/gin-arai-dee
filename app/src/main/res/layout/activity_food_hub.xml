@@ -149,7 +149,7 @@
                     android:cropToPadding="true"
                     android:scaleType="centerCrop"
                     android:clickable="false"
-                    app:srcCompat="@drawable/recipe_food_hub" />
+                    app:srcCompat="@drawable/recipes_food_menu" />
 
                 <TextView
                     android:layout_width="144dp"

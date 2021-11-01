@@ -7,19 +7,19 @@ public class FoodItem {
     private String dish_type;
     private String nationality;
     private int kcal;
-    private String image_name;
+    private String image_url;
 
     public FoodItem(int id, String food_item,
                     String description, String dish_type,
                     String nationality, int kcal,
-                    String image_name) {
+                    String image_url) {
         this.id = id;
         this.food_item = food_item;
         this.description = description;
         this.dish_type = dish_type;
         this.nationality = nationality;
         this.kcal = kcal;
-        this.image_name = image_name;
+        this.image_url = image_url;
     }
 
     public int getId() {
@@ -70,11 +70,11 @@ public class FoodItem {
         this.kcal = kcal;
     }
 
-    public String getImage_name() {
-        return image_name;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setImage_name(String image_name) {
-        this.image_name = image_name;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 }
