@@ -1,5 +1,6 @@
 package com.gin_arai_dee;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -29,5 +30,32 @@ public class DietPage extends AppCompatActivity {
         button_saturday = findViewById(R.id.saturday_edit);
         button_sunday = findViewById(R.id.sunday_edit);
 
+        button_monday.setOnClickListener(e ->{
+            startActivity(new Intent(this,DietDailyPage.class));
+        });
+
+        button_tuesday.setOnClickListener(e ->{
+            startActivity(new Intent(this,DietDailyPage.class));
+        });
+
+        button_wednesday.setOnClickListener(e ->{
+            startActivity(new Intent(this,DietDailyPage.class));
+        });
+
+        button_thursday.setOnClickListener(e ->{
+            startActivity(new Intent(this,DietDailyPage.class));
+        });
+
+        button_friday.setOnClickListener(e ->{
+            startActivity(new Intent(this,DietDailyPage.class));
+        });
+
+        button_saturday.setOnClickListener(e ->{
+            startActivity(new Intent(this,DietDailyPage.class));
+        });
+
+        button_sunday.setOnClickListener(e ->{
+            startActivity(new Intent(this,DietDailyPage.class));
+        });
     }
 }
