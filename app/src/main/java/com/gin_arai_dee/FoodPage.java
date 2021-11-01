@@ -86,10 +86,10 @@ public class FoodPage extends AppCompatActivity {
 
     // String Constants
     public static final String MAIN_DISH    = "main_dish";
-    public static final String APPETIZERS   = "appetizers";
-    public static final String SNACKS       = "snacks";
-    public static final String DESSERTS     = "desserts";
-    public static final String BEVERAGES    = "beverages";
+    public static final String APPETIZERS   = "appetizer";
+    public static final String SNACKS       = "snack";
+    public static final String DESSERTS     = "dessert";
+    public static final String BEVERAGES    = "beverage";
     public static final String THAI         = "thai";
     public static final String ITALIAN      = "italian";
     public static final String JAPANESE     = "japanese";
