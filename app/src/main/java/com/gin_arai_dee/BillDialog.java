@@ -1,5 +1,6 @@
 package com.gin_arai_dee;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
@@ -264,10 +266,11 @@ public class BillDialog extends DialogFragment {
                             }
                         }
                     }
-                }
-                food = new ListItem(name, result, perPerson);
+                    food = new ListItem(name, result, perPerson);
 //                System.out.println(food.getName() + " " +food.getPrice() + " " + food.getPerPerson());
-                dismiss();
+                    onDoneListener.sendFood(food);
+                    dismiss();
+                }
             }
         });
 //        initial();
@@ -299,4 +302,18 @@ public class BillDialog extends DialogFragment {
     }
 
     public ListItem getFood() { return food; }
+    public interface onDoneListener {
+        void sendFood(ListItem food);
+    }
+    public onDoneListener onDoneListener;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            onDoneListener = (onDoneListener)getActivity();
+        }catch (ClassCastException e) {
+            System.out.println("Class cast failed");
+        }
+    }
 }
