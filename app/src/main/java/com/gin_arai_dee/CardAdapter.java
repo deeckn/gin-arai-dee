@@ -4,9 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
         holder.title.setText(models.get(position).getTitle());
         holder.description.setText(models.get(position).getDescription());
         holder.calorie.setText(models.get(position).getCalories());
-        holder.imageView.setImageResource(models.get(position).getImage());
+        Picasso.get().load(models.get(position).getImage_url()).into(holder.imageView);
     }
 
     @Override

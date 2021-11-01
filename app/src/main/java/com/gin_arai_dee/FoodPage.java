@@ -501,7 +501,7 @@ public class FoodPage extends AppCompatActivity {
                     f.getFood_item(),
                     f.getDescription(),
                     "kCal: " + f.getKcal(),
-                    R.drawable.ic_food)
+                    f.getImage_url())
             );
         }
         return models;

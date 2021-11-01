@@ -4,13 +4,13 @@ public class FoodCardModel {
     private String title;
     private String description;
     private String calories;
-    private int image;
+    private String image_url;
 
-    public FoodCardModel(String title, String description, String calories, int image) {
+    public FoodCardModel(String title, String description, String calories, String image_url) {
         this.title = title;
         this.description = description;
         this.calories = calories;
-        this.image = image;
+        this.image_url = image_url;
     }
 
     public String getTitle() {
@@ -37,11 +37,11 @@ public class FoodCardModel {
         this.calories = calories;
     }
 
-    public int getImage() {
-        return image;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 }
