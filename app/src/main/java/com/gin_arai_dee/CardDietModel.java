@@ -8,7 +8,7 @@ public class CardDietModel {
 
     public CardDietModel(String time){
         this.time = time;
-        foodItemsLists = new ArrayList<>();
+        this.foodItemsLists = new ArrayList<>();
     }
 
     public void setTime(String time) {
@@ -19,8 +19,8 @@ public class CardDietModel {
         return time;
     }
 
-    public void setFoodItemsLists(ArrayList<FoodItem> foodItemsLists) {
-        this.foodItemsLists = foodItemsLists;
+    public void setFoodItemsLists(ArrayList<FoodItem> items) {
+        this.foodItemsLists = items;
     }
 
     public ArrayList<FoodItem> getFoodItemsLists() {

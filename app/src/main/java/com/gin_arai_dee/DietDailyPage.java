@@ -31,8 +31,12 @@ public class DietDailyPage extends AppCompatActivity {
         totalKcal = findViewById(R.id.total_kcal);
         recyclerView = findViewById(R.id.item_list);
 
+        foodItemLists.add(new CardDietModel("10:50"));
+        foodItemLists.add(new CardDietModel("13:50"));
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this,foodItemLists);
+        recyclerView.setAdapter(cardAdapter);
 
         add_item_button = findViewById(R.id.add_item_button);
         add_item_button.setOnClickListener(e -> {
