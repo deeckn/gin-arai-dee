@@ -37,6 +37,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
     // Info
     TextView numPeople;
     TextView total;
+    int newTotal = 0;
 
     // Tab Widget Layout
     ScrollView scrollView;
@@ -60,6 +61,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
     TextView personPayment;
     Person person;
     ArrayList<Person> people = new ArrayList<>();
+    ArrayList<TextView> peoplePay = new ArrayList<>();
     String nameInput;
     // Font
     Typeface rubik_bold;
@@ -153,6 +155,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
                     personPayment.setTypeface(getResources().getFont(R.font.rubik));
                     personPayment.setTextSize(20);
                     personPayment.setTextColor(getResources().getColor(R.color.ghost_white));
+                    peoplePay.add(personPayment);
 
                     name_add_bar.getText().clear();
                     nameList.addView(personName);
@@ -189,5 +192,13 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         foodList.addView(foodName);
         foodList.addView(foodPrice);
         foodList.addView(foodPerPerson);
+    }
+
+    @Override
+    public void sendResult(int result) {
+        newTotal += result;
+//        System.out.println("get result: " + result);
+//        System.out.println("new total " + newTotal);
+        total.setText(String.valueOf(newTotal));
     }
 }

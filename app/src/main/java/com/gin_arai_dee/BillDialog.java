@@ -269,6 +269,7 @@ public class BillDialog extends DialogFragment {
                     food = new ListItem(name, result, perPerson);
 //                System.out.println(food.getName() + " " +food.getPrice() + " " + food.getPerPerson());
                     onDoneListener.sendFood(food);
+                    onDoneListener.sendResult(result);
                     dismiss();
                 }
             }
@@ -301,11 +302,12 @@ public class BillDialog extends DialogFragment {
         input = "";
     }
 
-    public ListItem getFood() { return food; }
+    public onDoneListener onDoneListener;
     public interface onDoneListener {
         void sendFood(ListItem food);
+        void sendResult(int result);
     }
-    public onDoneListener onDoneListener;
+
 
     @Override
     public void onAttach(@NonNull Context context) {
