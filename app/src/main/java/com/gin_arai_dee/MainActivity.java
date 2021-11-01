@@ -1,61 +1,23 @@
 package com.gin_arai_dee;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.firebase.ui.auth.util.ExtraConstants;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.ActionCodeSettings;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-
-    public static FirebaseUser user;
-
-    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-            new FirebaseAuthUIActivityResultContract(),
-            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
-                @Override
-                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
-                    onSignInResult(result);
-                }
-            }
-    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_page);
 
-
         Button button = findViewById(R.id.loginButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-
-                //createSignIn();
-                openFoodHub();
-            }
-        });
-//        openHomePage();
-//        openFoodPage();
-//        openBillSplitterPage();
-//        openDietPage();
+        button.setOnClickListener(v -> openFoodHub());
+        // openHomePage();
+        // openFoodPage();
+        // openBillSplitterPage();
+        // openDietPage();
     }
 
     // Opens the home page
@@ -79,6 +41,19 @@ public class MainActivity extends AppCompatActivity {
     private void openFoodHub() {
         startActivity(new Intent(this, FoodHub.class));
     }
+
+    /*
+    public static FirebaseUser user;
+
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+            new FirebaseAuthUIActivityResultContract(),
+            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
+                @Override
+                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
+                    onSignInResult(result);
+                }
+            }
+    );
 
     public void createSignIn(){
         List<AuthUI.IdpConfig> providers = Arrays.asList(
@@ -109,13 +84,15 @@ public class MainActivity extends AppCompatActivity {
             // ...
         }
     }
+    */
 
+    /*
     public void emailLinker(){
         ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
                 .setAndroidPackageName(
-                        /* yourPackageName= */ "com.gin_arai_dee",
-                        /* installIfNotAvailable= */ true,
-                        /* minimumVersion= */ null)
+                        yourPackageName= "com.gin_arai_dee",
+                        installIfNotAvailable= true,
+                        minimumVersion= null)
                 .setHandleCodeInApp(true) // This must be set to true
                 .setUrl("https://google.com") // This URL needs to be whitelisted
                 .build();
@@ -174,4 +151,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+    */
 }
