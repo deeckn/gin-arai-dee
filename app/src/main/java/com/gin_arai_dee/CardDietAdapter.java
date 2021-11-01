@@ -15,6 +15,11 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietHolder> {
     Context context;
     ArrayList<CardDietModel> models;
 
+    public CardDietAdapter(Context context, ArrayList<CardDietModel> models) {
+        this.context = context;
+        this.models = models;
+    }
+
     @NonNull
     @Override
     public CardDietHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
