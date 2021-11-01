@@ -34,6 +34,7 @@ public class DietDailyPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this,foodItemLists);
 
+        add_item_button = findViewById(R.id.add_item_button);
         add_item_button.setOnClickListener(e -> {
             openDialog();
         });
