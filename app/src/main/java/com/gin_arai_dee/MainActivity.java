@@ -25,6 +25,18 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static FirebaseUser user;
+
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+            new FirebaseAuthUIActivityResultContract(),
+            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
+                @Override
+                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
+                    onSignInResult(result);
+                }
+            }
+    );
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +46,16 @@ public class MainActivity extends AppCompatActivity {
         Button button = findViewById(R.id.loginButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Open Page on Button Click
+                // Code here executes on main thread after user presses button
+
+                //createSignIn();
+                openFoodHub();
             }
         });
-        openHomePage();
+//        openHomePage();
+//        openFoodPage();
+//        openBillSplitterPage();
+//        openDietPage();
     }
 
     // Opens the home page
@@ -58,27 +76,10 @@ public class MainActivity extends AppCompatActivity {
     private void openDietPage() {
         startActivity(new Intent(this, DietPage.class));
     }
-
-    // Open the Food Hub
     private void openFoodHub() {
         startActivity(new Intent(this, FoodHub.class));
     }
 
-    /*
-    public static FirebaseUser user;
-
-    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-            new FirebaseAuthUIActivityResultContract(),
-            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
-                @Override
-                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
-                    onSignInResult(result);
-                }
-            }
-    );
-    */
-
-    /*
     public void createSignIn(){
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
@@ -108,15 +109,13 @@ public class MainActivity extends AppCompatActivity {
             // ...
         }
     }
-    */
 
-    /*
     public void emailLinker(){
         ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
                 .setAndroidPackageName(
-                         yourPackageName=  "com.gin_arai_dee",
-                         installIfNotAvailable=  true,
-                         minimumVersion=  null)
+                        /* yourPackageName= */ "com.gin_arai_dee",
+                        /* installIfNotAvailable= */ true,
+                        /* minimumVersion= */ null)
                 .setHandleCodeInApp(true) // This must be set to true
                 .setUrl("https://google.com") // This URL needs to be whitelisted
                 .build();
@@ -175,5 +174,4 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-    */
 }
