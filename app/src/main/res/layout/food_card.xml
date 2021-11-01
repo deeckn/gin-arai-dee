@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="3dp"
-    app:cardElevation="3dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -15,8 +15,9 @@
         android:background="@color/charcoal">
 
         <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
             android:id="@+id/cardImage"
             android:src="@mipmap/ic_launcher"
             />
@@ -29,8 +30,8 @@
             android:textSize="22sp"
             android:textColor="@color/ghost_white"
             android:textStyle="bold"
-            android:layout_toEndOf="@id/cardImage"
-            android:layout_marginStart="10dp"
+            android:layout_below="@id/cardImage"
+            android:layout_marginTop="10dp"
             />
 
         <TextView
@@ -40,9 +41,7 @@
             android:text="Calories"
             android:textSize="18sp"
             android:textColor="@color/ghost_white"
-            android:layout_toEndOf="@id/cardImage"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_below="@id/cardTitle"
             />
 
         <TextView
@@ -52,9 +51,7 @@
             android:text="Description"
             android:textSize="18sp"
             android:textColor="@color/ghost_white"
-            android:layout_toEndOf="@id/cardImage"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="60dp"
+            android:layout_below="@+id/cardCalorie"
             />
 
     </RelativeLayout>
