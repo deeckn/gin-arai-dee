@@ -1,6 +1,7 @@
 package com.gin_arai_dee;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ public class DietDailyPage extends AppCompatActivity {
 
     TextView selectedDay;
     TextView totalKcal;
+    Button add_item_button;
     RecyclerView recyclerView;
     CardDietAdapter cardAdapter;
     ArrayList<CardDietModel> foodItemLists;
@@ -31,5 +33,13 @@ public class DietDailyPage extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this,foodItemLists);
+
+        add_item_button.setOnClickListener(e -> {
+            openDialog();
+        });
+    }
+
+    private void openDialog(){
+
     }
 }
