@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
-    app:cardElevation="10dp"
+    app:cardElevation="0dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -20,39 +20,39 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/cardImage"
             android:src="@mipmap/ic_launcher"
-            />
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/food" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/cardTitle"
-            android:text="Title"
+            android:text="@string/title"
             android:textSize="22sp"
             android:textColor="@color/ghost_white"
             android:textStyle="bold"
             android:layout_below="@id/cardImage"
-            android:layout_marginTop="10dp"
-            />
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:id="@+id/cardCalorie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calories"
-            android:textSize="18sp"
-            android:textColor="@color/ghost_white"
             android:layout_below="@id/cardTitle"
-            />
+            android:paddingTop="5dp"
+            android:text="@string/calories"
+            android:textColor="@color/ghost_white"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/cardDescription"
-            android:text="Description"
+            android:text="@string/description"
             android:textSize="18sp"
             android:textColor="@color/ghost_white"
             android:layout_below="@+id/cardCalorie"
-            />
+            android:paddingTop="10dp" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
