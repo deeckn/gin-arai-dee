@@ -49,13 +49,12 @@ public class FoodHub extends AppCompatActivity {
 
         foodButton.setOnClickListener(view -> openFoodPage());
         dietaryButton.setOnClickListener(view -> openDietPage());
+        randomButton.setOnClickListener(view -> openRandomFoodPage());
 
         recipeButton.setOnClickListener(view -> Toast.makeText(
                 FoodHub.this, "Disable", Toast.LENGTH_SHORT).show()
         );
-        randomButton.setOnClickListener(view -> Toast.makeText(
-                FoodHub.this, "Disable", Toast.LENGTH_SHORT).show()
-        );
+
 
     }
 
@@ -80,6 +79,11 @@ public class FoodHub extends AppCompatActivity {
     // Opens the food page
     private void openFoodPage() {
         startActivity(new Intent(this, FoodPage.class));
+    }
+
+    // Opens the random food page
+    private void openRandomFoodPage() {
+        startActivity(new Intent(this, RandomFood.class));
     }
 
     // Opens the bill splitter page
