@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fuzzy_wuzzy"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/diet_time_button"
-        android:layout_gravity="center"
-        android:layout_margin="25dp"
-        android:text="Time"
-        android:textColor="@color/ghost_white"
-        android:textSize="25sp" />
-
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:columnCount="2">
+        android:columnCount="2"
+        android:rowCount="2">
+
+
+    <Button
+        android:id="@+id/diet_save_button"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_gravity="start"
+        android:background="@drawable/diet_time_button"
+        android:text="Save"
+        android:textColor="@color/ghost_white"
+        android:textSize="20sp" />
+
+
+
+    <Button
+        android:id="@+id/time_selected"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_gravity="end"
+        android:background="@drawable/diet_time_button"
+        android:text="Time"
+        android:textColor="@color/ghost_white"
+        android:textSize="20sp" />
+
         <EditText
             android:id="@+id/dialog_search_bar"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_columnSpan="2"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/search_bar"
             android:fontFamily="@font/montserrat_bold"
@@ -34,33 +50,14 @@
             android:inputType="text"
             android:paddingStart="20dp"
             android:textColor="@color/ghost_white"
-            android:textSize="20sp" />
-
-        <ImageButton
-            android:id="@+id/dialog_search_button"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="end"
-            android:background="@drawable/search_button"
-            android:contentDescription="@string/search"
-            android:src="@drawable/ic_search" />
-
+            android:textSize="20sp"
+            tools:ignore="RtlSymmetry" />
     </GridLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="7dp"
-        android:layout_margin="15dp"
-        android:background="@drawable/dietary_line" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginEnd="15dp"/>
 
 </LinearLayout>
