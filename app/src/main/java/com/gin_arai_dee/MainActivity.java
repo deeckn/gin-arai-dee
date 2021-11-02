@@ -12,34 +12,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_page);
 
-//        Button button = findViewById(R.id.loginButton);
-//        button.setOnClickListener(v -> openFoodHub());
-        openHomePage();
-        // openFoodPage();
-        // openBillSplitterPage();
-        // openDietPage();
+        Button loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(v -> openHomePage());
     }
 
     // Opens the home page
     private void openHomePage() {
         startActivity(new Intent(this, HomePage.class));
-    }
-
-    // Opens the food page
-    private void openFoodPage() {
-        startActivity(new Intent(this, FoodPage.class));
-    }
-
-    // Opens the bill splitter page
-    private void openBillSplitterPage() { 
-      startActivity(new Intent(this, BillSplitterPage.class));
-    }
-
-    private void openDietPage() {
-        startActivity(new Intent(this, DietPage.class));
-    }
-    private void openFoodHub() {
-        startActivity(new Intent(this, FoodHub.class));
     }
 
     /*

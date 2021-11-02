@@ -46,7 +46,7 @@ public class HomePage extends AppCompatActivity {
         });
 
         // Open your pages here
-        openFoodHub();
+        // openFoodPage();
     }
 
     // Opens the home page
