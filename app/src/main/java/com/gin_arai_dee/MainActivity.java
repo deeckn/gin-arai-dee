@@ -12,9 +12,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_page);
 
-        Button button = findViewById(R.id.loginButton);
-        button.setOnClickListener(v -> openFoodHub());
-        // openHomePage();
+//        Button button = findViewById(R.id.loginButton);
+//        button.setOnClickListener(v -> openFoodHub());
+        openHomePage();
         // openFoodPage();
         // openBillSplitterPage();
         // openDietPage();

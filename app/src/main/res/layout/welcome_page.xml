@@ -61,7 +61,7 @@
         android:layout_height="50dp"
         android:background="@drawable/round_button_yellow"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/sabor"
+        android:text="@string/login_text"
         android:textColor="@color/wine"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
