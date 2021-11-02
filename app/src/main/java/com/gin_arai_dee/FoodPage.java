@@ -188,6 +188,7 @@ public class FoodPage extends AppCompatActivity {
         searchButton.setOnClickListener(v -> {
             searchFood(searchBar.getText().toString());
             updateFoodCards();
+            filterFoodItems();
         });
     }
 
@@ -398,6 +399,7 @@ public class FoodPage extends AppCompatActivity {
 
     /***
      * Database Management Section
+     * Loading data from database
      */
     private void loadData() {
         allFoodItems = db.getAllFoodItems();
@@ -409,6 +411,8 @@ public class FoodPage extends AppCompatActivity {
     /***
      * Food Filtering Process
      */
+
+    // Group food items into different nationalities and categories
     private void groupFoodItems() {
         for (FoodItem food : allFoodItems) {
             String dishType = food.getDish_type();
@@ -455,6 +459,7 @@ public class FoodPage extends AppCompatActivity {
         }
     }
 
+    // Filter food by nationality and category
     private void filterFoodItems() {
         Set<FoodItem> tempList = new HashSet<>();
         displayFoodItems.clear();
@@ -490,8 +495,26 @@ public class FoodPage extends AppCompatActivity {
         displayFoodItems.addAll(tempList);
     }
 
+    // Food Search
+    public void searchFood(String keyword) {
+        if (keyword.equals("")) {
+            filterFoodItems();
+            updateFoodCards();
+            return;
+        }
+
+        ArrayList<FoodItem> temp = new ArrayList<>();
+        for (FoodItem food : displayFoodItems) {
+            if (food.getFood_item().toLowerCase().contains(keyword.toLowerCase())) {
+                temp.add(food);
+            }
+        }
+        displayFoodItems.clear();
+        displayFoodItems.addAll(temp);
+    }
+
     /***
-     * Food cards list
+     * Food cards recycler view
      */
     private ArrayList<FoodCardModel> getCardList() {
         ArrayList<FoodCardModel> models = new ArrayList<>();
@@ -500,7 +523,7 @@ public class FoodPage extends AppCompatActivity {
                     new FoodCardModel(
                     f.getFood_item(),
                     f.getDescription(),
-                    "kCal: " + f.getKcal(),
+                    "kcal: " + f.getKcal(),
                     f.getImage_url())
             );
         }
@@ -510,19 +533,5 @@ public class FoodPage extends AppCompatActivity {
     private void updateFoodCards() {
         cardAdapter = new CardAdapter(this, getCardList());
         recyclerView.setAdapter(cardAdapter);
-    }
-
-    /***
-     * Food Search
-     */
-    public void searchFood(String keyword) {
-        ArrayList<FoodItem> temp = new ArrayList<>();
-        for (FoodItem food : displayFoodItems) {
-            if (food.getFood_item().toLowerCase().contains(keyword.toLowerCase())) {
-                temp.add(food);
-            }
-        }
-        displayFoodItems.clear();
-        displayFoodItems.addAll(temp);
     }
 }
