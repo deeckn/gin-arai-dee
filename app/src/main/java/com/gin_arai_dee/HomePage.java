@@ -3,6 +3,10 @@ package com.gin_arai_dee;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +23,7 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        initializeDatabase();
+        //initializeDatabase();
 
         // Navigation Settings
         bottomNavigationView = findViewById(R.id.dock_navigation);
@@ -49,6 +53,25 @@ public class HomePage extends AppCompatActivity {
 
         // Open your pages here
         // openFoodPage();
+        ImageButton highlightsButton = findViewById(R.id.foodHighlightsButton), recipesButton = findViewById(R.id.recipesButton), todaySMealButton = findViewById(R.id.todaySMealButton);
+        highlightsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomePage.this, "Coming Soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        recipesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show();
+            }
+        });
+        todaySMealButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     // Opens the home page
