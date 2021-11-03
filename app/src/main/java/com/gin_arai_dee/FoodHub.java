@@ -30,6 +30,7 @@ public class FoodHub extends AppCompatActivity {
             int currentItem = item.getItemId();
             if (currentItem == R.id.home_page) {
                 openHomePage();
+                finish();
                 overridePendingTransition(0, 0);
                 return true;
             }
@@ -38,6 +39,7 @@ public class FoodHub extends AppCompatActivity {
             }
             else if (currentItem == R.id.billing_page) {
                 openBillSplitterPage();
+                finish();
                 overridePendingTransition(0, 0);
                 return true;
             }
@@ -54,7 +56,6 @@ public class FoodHub extends AppCompatActivity {
         recipeButton.setOnClickListener(view -> Toast.makeText(
                 FoodHub.this, "Disable", Toast.LENGTH_SHORT).show()
         );
-
 
     }
 

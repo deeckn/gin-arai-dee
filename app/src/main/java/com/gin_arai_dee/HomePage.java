@@ -31,11 +31,13 @@ public class HomePage extends AppCompatActivity {
             }
             else if (currentItem == R.id.food_hub) {
                 startActivity(new Intent(getApplicationContext(), FoodHub.class));
+                finish();
                 overridePendingTransition(0, 0);
                 return true;
             }
             else if (currentItem == R.id.billing_page) {
                 startActivity(new Intent(getApplicationContext(), BillSplitterPage.class));
+                finish();
                 overridePendingTransition(0, 0);
                 return true;
             }
@@ -54,9 +56,14 @@ public class HomePage extends AppCompatActivity {
         startActivity(new Intent(this, HomePage.class));
     }
 
-    // Opens the food page
+    // Opens the browse food page
     private void openFoodPage() {
         startActivity(new Intent(this, FoodPage.class));
+    }
+
+    // Opens the random food page
+    private void openRandomFoodPage() {
+        startActivity(new Intent(this, RandomFood.class));
     }
 
     // Opens the bill splitter page
