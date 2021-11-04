@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ghost_white"
     tools:context=".HomePage">
-
 
 <!--    <ScrollView-->
 <!--        android:layout_width="409dp"-->
@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,7 +36,7 @@
                     android:layout_column="0"
                     android:layout_columnSpan="1"
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginStart="35dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/app_name_capital"
                     android:textColor="@color/wine"
@@ -48,7 +49,6 @@
 
 
             <GridLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:rowCount="7"
@@ -56,7 +56,7 @@
 
                 <TextView
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,9 +74,9 @@
                     android:layout_column="0">
 
                     <ImageButton
+                        android:id="@+id/foodHighlightsButton"
                         android:layout_width="350dp"
                         android:layout_height="130dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="centerCrop"
                         android:layout_marginStart="40dp"
@@ -94,7 +94,7 @@
                     android:layout_row="3"
                     android:layout_column="0"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/recipes"
                     android:fontFamily="@font/rubik"
                     android:isScrollContainer="true"
@@ -108,9 +108,9 @@
                     android:layout_column="0">
 
                     <ImageButton
+                        android:id="@+id/recipesButton"
                         android:layout_width="350dp"
                         android:layout_height="130dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="40dp"
                         android:layout_marginEnd="40dp"
@@ -119,10 +119,7 @@
                         android:backgroundTint="@color/middle_red_purple"
                         android:contentDescription="@string/food"
                         android:cropToPadding="true"
-                        app:srcCompat="@drawable/recipe_food_hub"
-                        >
-
-                    </ImageButton>
+                        app:srcCompat="@drawable/recipe_food_hub"/>
                 </FrameLayout>
                 <TextView
                     android:layout_width="wrap_content"
@@ -130,7 +127,7 @@
                     android:layout_row="5"
                     android:layout_column="0"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/today_s_meal"
                     android:fontFamily="@font/rubik"
                     android:isScrollContainer="true"
@@ -141,10 +138,11 @@
                     android:layout_height="wrap_content"
                     android:layout_row="6"
                     android:layout_column="0">
+
                     <ImageButton
+                        android:id="@+id/todaysMealButton"
                         android:layout_width="350dp"
                         android:layout_height="130dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="40dp"
                         android:layout_marginEnd="40dp"
@@ -152,12 +150,11 @@
                         android:adjustViewBounds="false"
                         android:backgroundTint="@color/middle_red_purple"
                         android:cropToPadding="true"
+                        android:contentDescription="@string/today_s_meal"
                         app:srcCompat="@drawable/today_s_meal"/>
 
                 </FrameLayout>
             </GridLayout>
-
-
         </LinearLayout>
 
 
