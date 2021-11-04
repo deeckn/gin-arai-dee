@@ -262,7 +262,7 @@ public class BillDialog extends DialogFragment {
                         if (checked.get(i).isChecked()) {
 //                            System.out.println("checked: " + checked.get(i).getText());
                             for (Person p: people) {
-                                if (checked.get(i).getText() == p.getName()) p.setPayment(perPerson);
+                                if (checked.get(i).getText() == p.getName()) p.updatePayment(perPerson);
                             }
                         }
                     }
