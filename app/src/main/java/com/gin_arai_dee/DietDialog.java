@@ -1,11 +1,13 @@
 package com.gin_arai_dee;
 
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -19,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class DietDialog extends DialogFragment {
     private static final String TAG = "DietDialog";
@@ -34,7 +37,7 @@ public class DietDialog extends DialogFragment {
 
     private int hour,minute;
     private String time_selected;
-    private ArrayList<FoodItem> selectedItem;
+    private ArrayList<FoodItem> foodItems;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_diet_page, container, false);
@@ -44,6 +47,12 @@ public class DietDialog extends DialogFragment {
         timeButton = view.findViewById(R.id.time_selected_button);
         searchInput = view.findViewById(R.id.dialog_search_bar);
         itemList = view.findViewById(R.id.dialog_item_list);
+
+        foodItems = (ArrayList<FoodItem>) db.getAllFoodItems();
+
+        DialogFoodAdapter  adapter = new DialogFoodAdapter(getContext(),R.layout.dialog_foodview,foodItems);
+        itemList.setAdapter(adapter);
+
 
         saveButton.setOnClickListener(e ->{
             Log.d(TAG,"onClick: saveButton dialog");
@@ -71,6 +80,7 @@ public class DietDialog extends DialogFragment {
             timePickerDialog.updateTime(hour,minute);
             timePickerDialog.show();
         });
+
         return view;
     }
 
