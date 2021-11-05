@@ -1,6 +1,7 @@
 package com.gin_arai_dee;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -40,11 +41,9 @@ public class DietDailyPage extends AppCompatActivity {
 
         add_item_button = findViewById(R.id.add_item_button);
         add_item_button.setOnClickListener(e -> {
-            openDialog();
+            DietDialog dialog = new DietDialog();
+            dialog.show(getSupportFragmentManager(),"MyDialog");
         });
     }
 
-    private void openDialog(){
-
-    }
 }
