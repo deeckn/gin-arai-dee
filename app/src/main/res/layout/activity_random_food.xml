@@ -1,58 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ghost_white"
-    tools:context=".FoodPage">
+    tools:context=".RandomFood">
 
-    <GridLayout
-        android:id="@+id/main_grid_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:rowCount="3">
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_columnSpan="2"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/search_bar"
-            android:fontFamily="@font/montserrat_bold"
-            android:hint="@string/search"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:paddingStart="20dp"
-            android:textColor="@color/ghost_white"
-            android:textSize="20sp"
-            tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TextContrastCheck" />
+        <ImageView
+            android:id="@+id/imageDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="25dp"
+            android:src="@drawable/food_food_menu"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/food" />
 
-        <ImageButton
-            android:id="@+id/search_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="15dp"
-            android:layout_columnSpan="1"
-            android:background="@drawable/search_button"
-            android:contentDescription="@string/search"
-            android:src="@drawable/ic_search" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:background="@color/wine">
+
+                <TextView
+                    android:id="@+id/cardTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cardCalorie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardTitle"
+                    android:paddingTop="5dp"
+                    android:text="@string/calories"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/cardDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardCalorie"
+                    android:paddingTop="10dp"
+                    android:text="@string/description"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <GridLayout
+            android:id="@+id/randomizeButton"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/dropdown_box_yellow">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingTop="8dp"
+                android:fontFamily="@font/rubik_bold"
+                android:textAlignment="center"
+                android:text="@string/randomize"
+                android:textColor="@color/ghost_white"
+                android:textSize="20sp" />
+        </GridLayout>
 
         <GridLayout
             android:id="@+id/category_selector_box"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:layout_columnSpan="3"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
             android:animateLayoutChanges="true"
             android:background="@drawable/dropdown_box"
             android:columnCount="2"
@@ -85,16 +133,12 @@
                 tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck" />
         </GridLayout>
 
-        <!-- Nationality Selector Dropdown -->
         <GridLayout
             android:id="@+id/nationality_selector_box"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:layout_columnSpan="3"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_margin="20dp"
             android:animateLayoutChanges="true"
             android:background="@drawable/dropdown_box"
             android:columnCount="2"
@@ -125,22 +169,7 @@
                 android:contentDescription="@string/choose_nationality"
                 android:src="@drawable/ic_dropdown_triangle"
                 tools:ignore="DuplicateSpeakableTextCheck,RtlSymmetry,TouchTargetSizeCheck" />
-
         </GridLayout>
-    </GridLayout>
 
-    <LinearLayout
-        android:layout_below="@+id/main_grid_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layoutAnimation="@anim/layout_animation"/>
     </LinearLayout>
-</RelativeLayout>
+</ScrollView>

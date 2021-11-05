@@ -1,16 +1,26 @@
-ID;FOOD_ITEM;DESCRIPTION;DISH_TYPE;NATIONALITY;KCAL;IMAGE_NAME
-1;Carbonara;Pasta made with eggs, hard cheese, cured pork, and black pepper;main_dish;italian;468;carbonara.jpg
-2;Grissini;Breadsticks;appetizers;italian;899;grissini.jpg
-3;Som Tum;Green Papaya Salad;appetizers;thai;914;somtum.jpg
-4;Mandu;Korean Dumplings ;appetizers;korean;882;mandu.jpg
-5;Lasagna;An Italian dish made of stacked layers of thin flat pasta alternating with fillings such as ragù and other vegetables, cheese, and seasonings and spices such as garlic, oregano and basil;main_dish;italian;619;lasagna.jpg
-6;Bruschetta;Grilled bread rubbed with garlic and topped with olive oil and salt;appetizers;italian;939;bruschetta.jpg
-7;Panna Cotta;Italian dessert of sweetened cream thickened with gelatin and molded. The cream may be aromatized with coffee, vanilla, or other flavorings.;desserts;italian;820;pannacotta.jpg
-8;Shakerato;An Italian drink prepared using espresso and ice cubes;beverages;italian;682;shakerato.jpg
-9;Gelato;Italian icecream;snacks;italian;828;gelato.jpg
-10;Choo Chee;A thick red Thai curry that can be made with any kind of seafood;main_dish;thai;808;choochee.jpg
-11;Chilli Garlic Tofu Bites;Fried tofu with chilli and garlic;appetizers;thai;715;chilligarlic.jpg
-12;Lod Chong;Pandan noodles with coconut milk;desserts;thai;595;logchong.jpg
-13;Thai Iced Tea;Made with Thai black tea and condensed milk;beverages;thai;850;thaiicedtea.jpg
-14;Fried Taro;Fried taro;snacks;thai;601;friedtaro.jpg
-15;Mapu Tofu;Tofu in a spicy oil sauce with minced pork or beef;main_dish;chinese;903;maputofu.jpg
+ID;FOOD_ITEM;DESCRIPTION;DISH_TYPE;NATIONALITY;KCAL;IMAGE_URL
+1;Pizza;A dish of Italian origin consisting of a flat, round base of dough baked with a topping of tomato sauce and cheese, typically with added meat or vegetables.;main_dish;italian;300;https://images.unsplash.com/photo-1571066811602-716837d681de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=536&q=80
+2;Bruschetta;Grilled bread rubbed with garlic and topped with olive oil and salt.;appetizer;italian;197;https://images.unsplash.com/photo-1572695157360-1153aaad020b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80
+3;Panna Cotta;Italian dessert of sweetened cream thickened with gelatin and molded. The cream may be aromatized with coffee, vanilla, or other flavorings.;dessert;italian;350;https://images.unsplash.com/photo-1488477181946-6428a0291777?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80
+4;Limoncello;Italian liqueur made with lemon zest.;beverage;italian;75;https://images.unsplash.com/photo-1561907583-564843de311c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80
+5;Gelato;Italian icecream.;snack;italian;207;https://images.unsplash.com/photo-1580915411954-282cb1b0d780?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80
+6;Tom Yum Kung;Hot and sour Thai soup.;main_dish;thai;167;https://images.unsplash.com/photo-1628430043175-0e8820df47c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1171&q=80
+7;Chicken Satay;Seasoned, skewered and grilled chicken, served with peanut sauce.;appetizer;thai;191;https://images.pexels.com/photos/9056984/pexels-photo-9056984.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
+8;Lod Chong;Pandan noodles with coconut milk.;dessert;thai;220;https://gb.lnwfile.com/_/gb/_raw/2y/1e/fs.jpg
+9;Thai Iced Tea;Made with Thai black tea and condensed milk.;beverage;thai;134;https://images.unsplash.com/photo-1505985234602-75cfa9ad9de5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80
+10;Fried Taro Sticks;Crispy fried taro sticks.;snack;thai;177;https://image.freepik.com/free-photo/fried-taro-chips-taro-snacks_62856-3047.jpg
+11;Mapo Tofu;Tofu in a spicy oil sauce with miced pork or beef.;main_dish;chinese;196;https://thewoksoflife.com/wp-content/uploads/2019/06/mapo-tofu-10.jpg
+12;Spring rolls;A large variety of filled, rolled appetizers or dim sum;appetizer;chinese;154;https://images.unsplash.com/photo-1582454235987-1e597bafcf58?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1974&q=80
+13;Snow Taro;Deep fried taro coated with sugar.;dessert;chinese;278;https://f.ptcdn.info/313/027/000/1420884228-01-o.jpg
+12;Soybean Milk;Milk made from soybeans;beverage;chinese;54;https://images.pexels.com/photos/4518608/pexels-photo-4518608.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
+15;Shaobing;Baked, unleavened, layered flatbread.;snack;chinese;180;https://recipesxp.com/wp-content/uploads/2021/01/Shaobing_com.png
+16;Ramen;Japanese noodle soup.;main_dish;japanese;436;https://images.unsplash.com/photo-1623341214825-9f4f963727da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80
+17;Korokke;Japanese croquette;appetizer;japanese;189;https://www.japanesecooking101.com/wp-content/uploads/2013/02/IMG_9391.jpg
+18;Dango;Japanese dumpling made from rice flour mixed with uruchi rice flour and glutinous rice flour.;dessert;japanese;161;https://images.unsplash.com/photo-1601317266542-4f4abae2cca4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80
+19;Ramune;Japanese carbonated soft drink.;beverage;japanese;166;https://images.unsplash.com/photo-1604259596747-2377448d916d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=737&q=80
+20;Taiyaki;Japanese fish-shaped cake. The most common filling is red bean paste that is made from sweetened azuki beans.;snack;japanese;208;https://images.unsplash.com/photo-1602030029545-52959ef2927c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80
+21;Jajangmyeon;Noodles in black bean sauce.;main_dish;korean;797;https://images.unsplash.com/photo-1626803774007-f92c2c32cbe7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=737&q=80
+22;Kimbap;Korean dish made from cooked rice and ingredients such as vegetables, fish and meats that are rolled in dried sheets of seaweed and served in bite-sized slices.;appetizer;korean;307;https://images.unsplash.com/photo-1532347231146-80afc9e3df2b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=685&q=80
+23;Hotteok;Sweet pancake.;dessert;korean;230;https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/hotteok/AFN_hotteok_step5.jpg.transform/recipestep-img/img.jpg
+24;Makgeolli;Korean alcoholic beverage.;beverage;korean;69;https://images.squarespace-cdn.com/content/v1/59c3feb149fc2b152179e47e/1594067332024-NIDVA1SD4O5MURQFF0TK/03+gooksoondang_makgeolli.jpeg
+25;Mandu;Korean dumplings.;snack;korean;320;https://upload.wikimedia.org/wikipedia/commons/7/7a/Jjinmandu_%28steamed_dumplings%29.jpg

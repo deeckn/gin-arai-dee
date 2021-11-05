@@ -2,41 +2,38 @@ package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Set;
 
-public class FoodPage extends AppCompatActivity {
-    // Database
+public class RandomFood extends AppCompatActivity {
+
+    // Data Access Object
     DatabaseHelper db;
 
-    // Food Data
-    List<FoodItem> allFoodItems;
-    ArrayList<FoodItem> displayFoodItems;
-    HashMap<String, List<FoodItem>> categoryFoodGroup;
-    HashMap<String, List<FoodItem>> nationalityFoodGroup;
-    List<String> categoryFilter;
-    List<String> nationalityFilter;
-
-    // Main Grid Layout
-    GridLayout parentGridLayout;
+    // UI Elements
+    ImageView imageDisplay;
+    TextView cardTitle;
+    TextView cardCalorie;
+    TextView cardDescription;
+    GridLayout randomizeButton;
 
     // Category Selector Box
     boolean categoryBoxState = true;
@@ -76,13 +73,13 @@ public class FoodPage extends AppCompatActivity {
     CheckBox chinese_checkbox;
     CheckBox korean_checkbox;
 
-    // Food Cards
-    RecyclerView recyclerView;
-    CardAdapter cardAdapter;
-
-    // Search Elements
-    EditText searchBar;
-    ImageButton searchButton;
+    // Food Items
+    List<FoodItem> allFoodItems;
+    List<FoodItem> displayFoodItems;
+    HashMap<String, List<FoodItem>> categoryFoodGroup;
+    HashMap<String, List<FoodItem>> nationalityFoodGroup;
+    List<String> categoryFilter;
+    List<String> nationalityFilter;
 
     // String Constants
     public static final String MAIN_DISH    = "main_dish";
@@ -99,10 +96,13 @@ public class FoodPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_page);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        setContentView(R.layout.activity_random_food);
         initializeInstances();
-        loadData();
+        loadFoodItems();
+        setDisplayFood(allFoodItems.get(0));
+
+        // Randomize Button Listener
+        randomizeButton.setOnClickListener(v -> setDisplayFood(randomizeFoodItem()));
 
         // Category Dropdown Settings
         chooseCategoryTitle.setOnClickListener(this::toggleCategoryBox);
@@ -117,35 +117,30 @@ public class FoodPage extends AppCompatActivity {
             if (b) categoryFilter.add(MAIN_DISH);
             else categoryFilter.remove(MAIN_DISH);
             filterFoodItems();
-            updateFoodCards();
         });
 
         appetizer_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) categoryFilter.add(APPETIZERS);
             else categoryFilter.remove(APPETIZERS);
             filterFoodItems();
-            updateFoodCards();
         }));
 
         snacks_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) categoryFilter.add(SNACKS);
             else categoryFilter.remove(SNACKS);
             filterFoodItems();
-            updateFoodCards();
         }));
 
         desserts_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) categoryFilter.add(DESSERTS);
             else categoryFilter.remove(DESSERTS);
             filterFoodItems();
-            updateFoodCards();
         }));
 
         beverages_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) categoryFilter.add(BEVERAGES);
             else categoryFilter.remove(BEVERAGES);
             filterFoodItems();
-            updateFoodCards();
         }));
 
         // Nationality Checkbox Settings
@@ -153,48 +148,43 @@ public class FoodPage extends AppCompatActivity {
             if (b) nationalityFilter.add(THAI);
             else nationalityFilter.remove(THAI);
             filterFoodItems();
-            updateFoodCards();
         }));
 
         italian_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) nationalityFilter.add(ITALIAN);
             else nationalityFilter.remove(ITALIAN);
             filterFoodItems();
-            updateFoodCards();
         }));
 
         japanese_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) nationalityFilter.add(JAPANESE);
             else nationalityFilter.remove(JAPANESE);
             filterFoodItems();
-            updateFoodCards();
         }));
 
         chinese_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) nationalityFilter.add(CHINESE);
             else nationalityFilter.remove(CHINESE);
             filterFoodItems();
-            updateFoodCards();
         }));
 
         korean_checkbox.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (b) nationalityFilter.add(KOREAN);
             else nationalityFilter.remove(KOREAN);
             filterFoodItems();
-            updateFoodCards();
         }));
-
-        // Search button onClick listener
-        searchButton.setOnClickListener(v -> {
-            searchFood(searchBar.getText().toString());
-            updateFoodCards();
-            filterFoodItems();
-        });
     }
 
     private void initializeInstances() {
-        // Database
         db = new DatabaseHelper(this);
+
+        imageDisplay            = findViewById(R.id.imageDisplay);
+        cardTitle               = findViewById(R.id.cardTitle);
+        cardCalorie             = findViewById(R.id.cardCalorie);
+        cardDescription         = findViewById(R.id.cardDescription);
+        randomizeButton         = findViewById(R.id.randomizeButton);
+        categorySelectorBox     = findViewById(R.id.category_selector_box);
+        nationalitySelectorBox  = findViewById(R.id.nationality_selector_box);
 
         // Food Data
         displayFoodItems = new ArrayList<>();
@@ -215,8 +205,7 @@ public class FoodPage extends AppCompatActivity {
         categoryFilter = new ArrayList<>();
         nationalityFilter = new ArrayList<>();
 
-        // Initializing page elements and objects
-        parentGridLayout            = findViewById(R.id.main_grid_layout);
+        // Category and Nationality Dropdowns
         chooseCategoryTitle         = findViewById(R.id.choose_category_title);
         categorySelectorBox         = findViewById(R.id.category_selector_box);
         categoryDropdownArrow       = findViewById(R.id.category_arrow);
@@ -253,26 +242,17 @@ public class FoodPage extends AppCompatActivity {
         italian_checkbox    = new CheckBox(this);
         chinese_checkbox    = new CheckBox(this);
         korean_checkbox     = new CheckBox(this);
-
-        // RecyclerView
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        cardAdapter = new CardAdapter(this, displayFoodItems);
-        recyclerView.setAdapter(cardAdapter);
-
-        // Search Elements
-        searchBar = findViewById(R.id.search_bar);
-        searchButton = findViewById(R.id.search_button);
-    }
-
-    private int getValueInDp(int value) {
-        float scale = getResources().getDisplayMetrics().density;
-        return (int) (value * scale + 0.5f);
     }
 
     /***
      * UI Page Functionality
      */
+
+    // Converts integer value to dp units
+    private int getValueInDp(int value) {
+        float scale = getResources().getDisplayMetrics().density;
+        return (int) (value * scale + 0.5f);
+    }
 
     // Expand and minimize category selector box
     public void toggleCategoryBox(View view) {
@@ -397,21 +377,19 @@ public class FoodPage extends AppCompatActivity {
         nationalityBoxState = !nationalityBoxState;
     }
 
-    /***
-     * Database Management Section
-     * Loading data from database
-     */
-
-    private void loadData() {
+    private void loadFoodItems() {
         allFoodItems = db.getAllFoodItems();
         groupFoodItems();
         filterFoodItems();
-        updateFoodCards();
     }
 
-    /***
-     * Food Filtering Process
-     */
+    private void setDisplayFood(FoodItem foodItem) {
+        cardTitle.setText(foodItem.getFood_item());
+        String calorie = foodItem.getKcal() + " kcal";
+        cardCalorie.setText(calorie);
+        cardDescription.setText(foodItem.getDescription());
+        Picasso.get().load(foodItem.getImage_url()).into(imageDisplay);
+    }
 
     // Group food items into different nationalities and categories
     private void groupFoodItems() {
@@ -496,29 +474,10 @@ public class FoodPage extends AppCompatActivity {
         displayFoodItems.addAll(tempList);
     }
 
-    // Food Search
-    public void searchFood(String keyword) {
-        if (keyword.equals("")) {
-            filterFoodItems();
-            updateFoodCards();
-            return;
-        }
-
-        ArrayList<FoodItem> temp = new ArrayList<>();
-        for (FoodItem food : displayFoodItems) {
-            if (food.getFood_item().toLowerCase().contains(keyword.toLowerCase())) {
-                temp.add(food);
-            }
-        }
-        displayFoodItems.clear();
-        displayFoodItems.addAll(temp);
-    }
-
-    /***
-     * Food cards recycler view
-     */
-    private void updateFoodCards() {
-        cardAdapter = new CardAdapter(this, displayFoodItems);
-        recyclerView.setAdapter(cardAdapter);
+    private FoodItem randomizeFoodItem() {
+        Random random = new Random();
+        int size = displayFoodItems.size();
+        int index = random.nextInt(size);
+        return displayFoodItems.get(index);
     }
 }

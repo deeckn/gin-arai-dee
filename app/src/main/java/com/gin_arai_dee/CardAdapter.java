@@ -4,18 +4,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
 
     Context context;
-    ArrayList<FoodCardModel> models;
+    ArrayList<FoodItem> models;
 
-    public CardAdapter(Context context, ArrayList<FoodCardModel> models) {
+    public CardAdapter(Context context, ArrayList<FoodItem> models) {
         this.context = context;
         this.models = models;
     }
@@ -29,9 +30,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CardHolder holder, int position) {
-        holder.title.setText(models.get(position).getTitle());
+        holder.title.setText(models.get(position).getFood_item());
         holder.description.setText(models.get(position).getDescription());
-        holder.imageView.setImageResource(models.get(position).getImage());
+        String kcal = models.get(position).getKcal() + " kcal";
+        holder.calorie.setText(kcal);
+        Picasso.get().load(models.get(position).getImage_url()).into(holder.imageView);
     }
 
     @Override

@@ -8,37 +8,164 @@
     tools:context=".HomePage">
 
 
-    <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <ScrollView-->
+<!--        android:layout_width="409dp"-->
+<!--        android:layout_height="729dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="180dp">
-
-            <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
+            android:orientation="vertical">
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="175dp"
-                android:layout_marginTop="81dp"
-                android:layout_marginEnd="176dp"
-                android:layout_marginBottom="80dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/app_name_capital"
-                android:textColor="@color/wine"
-                android:textSize="48sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                android:columnCount="2"
+                android:rowCount="2">
+
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_rowSpan="1"
+                    android:layout_column="0"
+                    android:layout_columnSpan="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/app_name_capital"
+                    android:textColor="@color/wine"
+                    android:textSize="48sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </GridLayout>
+
+
+            <GridLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="7"
+                android:columnCount="2">
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:fontFamily="@font/rubik"
+                    android:isScrollContainer="true"
+                    android:text="@string/food_highlights"
+                    android:textColor="@color/wine"
+                    android:textSize="20sp" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="2"
+                    android:layout_column="0">
+
+                    <ImageButton
+                        android:id="@+id/foodHighlightsButton"
+                        android:layout_width="350dp"
+                        android:layout_height="130dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="40dp"
+                        android:adjustViewBounds="false"
+                        android:backgroundTint="@color/middle_red_purple"
+                        android:contentDescription="@string/food"
+                        android:cropToPadding="true"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/food_highlights" />
+
+                </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/recipes"
+                    android:fontFamily="@font/rubik"
+                    android:isScrollContainer="true"
+                    android:textColor="@color/wine"
+                    android:textSize="20sp" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="4"
+                    android:layout_column="0">
+
+                    <ImageButton
+                        android:id="@+id/recipesButton"
+                        android:layout_width="350dp"
+                        android:layout_height="130dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="40dp"
+                        android:adjustViewBounds="false"
+                        android:backgroundTint="@color/middle_red_purple"
+                        android:contentDescription="@string/food"
+                        android:cropToPadding="true"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/recipe_food_hub">
+
+                    </ImageButton>
+                </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="5"
+                    android:layout_column="0"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/today_s_meal"
+                    android:fontFamily="@font/rubik"
+                    android:isScrollContainer="true"
+                    android:textColor="@color/wine"
+                    android:textSize="20sp" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="6"
+                    android:layout_column="0">
+
+                    <ImageButton
+                        android:id="@+id/todaysMealButton"
+                        android:layout_width="350dp"
+                        android:layout_height="130dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="40dp"
+                        android:adjustViewBounds="false"
+                        android:backgroundTint="@color/middle_red_purple"
+                        android:cropToPadding="true"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/food"
+                        app:srcCompat="@drawable/today_s_meal" />
+
+                </FrameLayout>
+            </GridLayout>
+
+
+        </LinearLayout>
+
+
+<!--    </ScrollView>-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/dock_navigation"

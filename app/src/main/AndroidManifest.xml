@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GinAraiDee">
         <activity
+            android:name=".RandomFood"
+            android:exported="false" />
+        <activity
             android:name=".FoodHub"
             android:exported="true" />
         <activity
@@ -20,6 +23,9 @@
             android:exported="true" />
         <activity
             android:name=".DietPage"
+            android:exported="true" />
+        <activity
+            android:name=".DietDailyPage"
             android:exported="true" />
         <activity
             android:name=".HomePage"

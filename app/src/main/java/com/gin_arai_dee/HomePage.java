@@ -1,66 +1,94 @@
 package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 public class HomePage extends AppCompatActivity {
 
-    DatabaseHelper db = DatabaseHelper.getInstance(this);
+    DatabaseHelper db;
     BottomNavigationView bottomNavigationView;
+
+    ImageButton highlightsButton;
+    ImageButton recipesButton;
+    ImageButton todaySMealButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        loadData();
+        initializeDatabase();
 
         // Navigation Settings
         bottomNavigationView = findViewById(R.id.dock_navigation);
         bottomNavigationView.setSelectedItemId(R.id.home_page);
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int currentItem = item.getItemId();
             if (currentItem == R.id.home_page) {
                 return true;
             }
             else if (currentItem == R.id.food_hub) {
-                startActivity(new Intent(getApplicationContext(), FoodHub.class));
+                openFoodHub();
+                finish();
                 overridePendingTransition(0, 0);
                 return true;
             }
             else if (currentItem == R.id.billing_page) {
-                startActivity(new Intent(getApplicationContext(), BillSplitterPage.class));
+                openBillSplitterPage();
+                finish();
                 overridePendingTransition(0, 0);
                 return true;
             }
             else {
+                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT);
                 System.out.println("Not implemented");
                 return false;
             }
         });
 
-        openFoodPage();
+        highlightsButton = findViewById(R.id.foodHighlightsButton);
+        recipesButton = findViewById(R.id.recipesButton);
+        todaySMealButton = findViewById(R.id.todaysMealButton);
+
+        highlightsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomePage.this, "Coming Soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        recipesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show();
+            }
+        });
+        todaySMealButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    // Opens the home page
-    private void openHomePage() {
-        startActivity(new Intent(this, HomePage.class));
-    }
-
-    // Opens the food page
+    // Opens the browse food page
     private void openFoodPage() {
         startActivity(new Intent(this, FoodPage.class));
+    }
+
+    // Opens the random food page
+    private void openRandomFoodPage() {
+        startActivity(new Intent(this, RandomFood.class));
     }
 
     // Opens the bill splitter page
@@ -68,43 +96,22 @@ public class HomePage extends AppCompatActivity {
         startActivity(new Intent(this, BillSplitterPage.class));
     }
 
-    // Load Data from SQLite to Device
-    private void loadData() {
-        File database = getApplicationContext().getDatabasePath(DatabaseHelper.DB_NAME);
-        if (!database.exists()) {
-            db.getReadableDatabase();
-            if (copyDatabase(this))
-                Log.d("FoodPage", "Database Copied Successfully");
-            else
-                Log.d("FoodPage", "Database Not Copied");
-        }
-    }
-
-    // Copies the Application Database to User Device
-    private boolean copyDatabase(Context context) {
-        try {
-            InputStream inputStream = context.getAssets().open(DatabaseHelper.DB_NAME);
-            String outFileName = DatabaseHelper.DB_LOCATION + DatabaseHelper.DB_NAME;
-            OutputStream outputStream = new FileOutputStream(outFileName);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = inputStream.read(buffer)) > 0)
-                outputStream.write(buffer, 0, length);
-            outputStream.flush();
-            outputStream.close();
-            Log.w("FoodPage", "DB Copied");
-            return true;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    // Open the Food Hub
+    private void openFoodHub() {
+        startActivity(new Intent(this, FoodHub.class));
     }
 
     /***
      * Development Utility for SQLite
-     * Use for uploading new data into SQLite using CSV file
+     * Adding data when the user opens app for the first time
      */
+
+    private void initializeDatabase() {
+        db = new DatabaseHelper(this);
+        db.clearDatabase();
+        importFromCSV();
+    }
+
     private void importFromCSV() {
         InputStream inputStream = getResources().openRawResource(R.raw.food_list);
         BufferedReader reader = new BufferedReader(
