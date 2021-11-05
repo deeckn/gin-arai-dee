@@ -84,10 +84,11 @@
     <string name="check">Check!</string>
     <string name="food_highlights">Food Highlights</string>
     <string name="today_s_meal">Today\'s Meal</string>
+
+    <!-- Random Food Page -->
     <string name="title">Title</string>
     <string name="calories">Calories</string>
     <string name="description">Description</string>
     <string name="randomize">Randomize</string>
-
 
 </resources>

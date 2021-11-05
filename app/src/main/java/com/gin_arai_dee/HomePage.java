@@ -19,11 +19,15 @@ public class HomePage extends AppCompatActivity {
     DatabaseHelper db;
     BottomNavigationView bottomNavigationView;
 
+    ImageButton highlightsButton;
+    ImageButton recipesButton;
+    ImageButton todaySMealButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        //initializeDatabase();
+        initializeDatabase();
 
         // Navigation Settings
         bottomNavigationView = findViewById(R.id.dock_navigation);
@@ -34,13 +38,13 @@ public class HomePage extends AppCompatActivity {
                 return true;
             }
             else if (currentItem == R.id.food_hub) {
-                startActivity(new Intent(getApplicationContext(), FoodHub.class));
+                openFoodHub();
                 finish();
                 overridePendingTransition(0, 0);
                 return true;
             }
             else if (currentItem == R.id.billing_page) {
-                startActivity(new Intent(getApplicationContext(), BillSplitterPage.class));
+                openBillSplitterPage();
                 finish();
                 overridePendingTransition(0, 0);
                 return true;
@@ -51,9 +55,10 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        // Open your pages here
-        // openFoodPage();
-        ImageButton highlightsButton = findViewById(R.id.foodHighlightsButton), recipesButton = findViewById(R.id.recipesButton), todaySMealButton = findViewById(R.id.todaySMealButton);
+        highlightsButton = findViewById(R.id.foodHighlightsButton);
+        recipesButton = findViewById(R.id.recipesButton);
+        todaySMealButton = findViewById(R.id.todaysMealButton);
+
         highlightsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,11 +77,6 @@ public class HomePage extends AppCompatActivity {
                 Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    // Opens the home page
-    private void openHomePage() {
-        startActivity(new Intent(this, HomePage.class));
     }
 
     // Opens the browse food page
