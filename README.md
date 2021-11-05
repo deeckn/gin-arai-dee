@@ -22,7 +22,7 @@ Splitting up the bill when dining out with friends, colleagues, and acquaintance
 The application is developed using the Android Java SDK and Android Studio.
 
 ## Group
-63011119 Chakrin Deesit
-63011278 Prima Sirinapapant
-63011290 Ratchwalee Wongritdechakit 
+63011119 Chakrin Deesit\
+63011278 Prima Sirinapapant\
+63011290 Ratchwalee Wongritdechakit \
 63011335 Tawan Lekngam
