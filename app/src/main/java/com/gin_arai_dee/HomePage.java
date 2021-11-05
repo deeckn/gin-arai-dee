@@ -27,11 +27,12 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        //initializeDatabase();
+        initializeDatabase();
 
         // Navigation Settings
         bottomNavigationView = findViewById(R.id.dock_navigation);
         bottomNavigationView.setSelectedItemId(R.id.home_page);
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int currentItem = item.getItemId();
             if (currentItem == R.id.home_page) {
@@ -50,6 +51,7 @@ public class HomePage extends AppCompatActivity {
                 return true;
             }
             else {
+                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT);
                 System.out.println("Not implemented");
                 return false;
             }
