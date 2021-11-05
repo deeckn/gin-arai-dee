@@ -1,13 +1,21 @@
 package com.gin_arai_dee;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 
-public class User {
+public class User extends AppCompatActivity {
     private int id, age;
     private float weight, height;
     private String username, firstName, lastName, gender, email, password, recipes, favorites;
     private ArrayList<Recipe> userRecipes;
     private ArrayList<FoodItem> favoriteFoods;
+    BottomNavigationView bottomNavigationView;
 
     public User() {
         this.id = 9999;
@@ -42,6 +50,43 @@ public class User {
         loadData();
     }
 
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user_page);
+        bottomNavigationView = findViewById(R.id.dock_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.user_page);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int currentItem = item.getItemId();
+            if (currentItem == R.id.user_page) {
+                return true;
+            }
+            else if (currentItem == R.id.food_hub) {
+                openFoodHub();
+                finish();
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            else if (currentItem == R.id.billing_page) {
+                openBillSplitterPage();
+                finish();
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            else if(currentItem == R.id.home_page){
+                openFoodPage();
+                finish();
+                overridePendingTransition(0,0);
+                return true;
+            }
+            else {
+                //Toast.makeText(User.this,"Coming Soon!",Toast.LENGTH_SHORT);
+                System.out.println("Not implemented");
+                return false;
+            }
+        });
+    }
     private void loadData() {
         loadRecipes();
         loadFavorites();
@@ -150,4 +195,14 @@ public class User {
     public void setFavorites(String favorites) {
         this.favorites = favorites;
     }
+    private void openFoodPage() {
+        startActivity(new Intent(this, FoodPage.class));
+    }
+    private void openBillSplitterPage() {
+        startActivity(new Intent(this, BillSplitterPage.class));
+    }
+    private void openFoodHub() {
+        startActivity(new Intent(this, FoodHub.class));
+    }
+
 }
