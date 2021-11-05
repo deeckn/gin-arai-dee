@@ -112,166 +112,114 @@ public class BillDialog extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
         one = view.findViewById(R.id.one_button);
-        one.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("1"); }
-        });
+        one.setOnClickListener(view1 -> updateNumber("1"));
 
         two = view.findViewById(R.id.two_button);
-        two.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("2"); }
-        });
+        two.setOnClickListener(view12 -> updateNumber("2"));
 
         three = view.findViewById(R.id.three_button);
-        three.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("3"); }
-        });
+        three.setOnClickListener(view13 -> updateNumber("3"));
 
         four = view.findViewById(R.id.four_button);
-        four.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("4"); }
-        });
+        four.setOnClickListener(view14 -> updateNumber("4"));
 
         five = view.findViewById(R.id.five_button);
-        five.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("5"); }
-        });
+        five.setOnClickListener(view15 -> updateNumber("5"));
 
         six = view.findViewById(R.id.six_button);
-        six.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("6"); }
-        });
+        six.setOnClickListener(view16 -> updateNumber("6"));
 
         seven = view.findViewById(R.id.seven_button);
-        seven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("7"); }
-        });
+        seven.setOnClickListener(view17 -> updateNumber("7"));
 
         eight = view.findViewById(R.id.eight_button);
-        eight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("8"); }
-        });
+        eight.setOnClickListener(view18 -> updateNumber("8"));
 
         nine = view.findViewById(R.id.nine_button);
-        nine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("9"); }
-        });
+        nine.setOnClickListener(view19 -> updateNumber("9"));
 
         zero = view.findViewById(R.id.zero_button);
-        zero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { updateNumber("0"); }
-        });
+        zero.setOnClickListener(view110 -> updateNumber("0"));
 
         del = view.findViewById(R.id.delete_button);
-        del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String tmp;
-                tmp = input.substring(0, input.length()-1);
-                input = "";
-                updateNumber(tmp);
-            }
+        del.setOnClickListener(view111 -> {
+            if (foodPrice.getText().toString().equals("")) return;
+            String tmp;
+            tmp = input.substring(0, input.length()-1);
+            input = "";
+            updateNumber(tmp);
         });
 
         clear = view.findViewById(R.id.clear_button);
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                foodPrice.setText("");
-                input = "";
-                result = 0;
-            }
+        clear.setOnClickListener(view112 -> {
+            if (foodPrice.getText().toString().equals("")) return;
+            foodPrice.setText("");
+            input = "";
+            result = 0;
         });
 
         plus = view.findViewById(R.id.plus_button);
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { mathOp("+"); }
-        });
+        plus.setOnClickListener(view113 -> mathOp("+"));
 
         minus = view.findViewById(R.id.minus_button);
-        minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { mathOp("-"); }
-        });
+        minus.setOnClickListener(view114 -> mathOp("-"));
 
         multiply = view.findViewById(R.id.multiply_button);
-        multiply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { mathOp("×"); }
-        });
+        multiply.setOnClickListener(view115 -> mathOp("×"));
 
         divide = view.findViewById(R.id.divide_button);
-        divide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { mathOp("÷"); }
-        });
+        divide.setOnClickListener(view116 -> mathOp("÷"));
 
         equal = view.findViewById(R.id.equal_button);
-        equal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isPlus || isMinus || isMultiply || isDivide) {
-                    if (isPlus) {
-                        result += Integer.parseInt(input);
-                        isPlus = false;
-                    }
-                    if (isMinus) {
-                        result -= Integer.parseInt(input);
-                        isMinus = false;
-                    }
-                    if (isMultiply) {
-                        result *= Integer.parseInt(input);
-                        isMultiply = false;
-                    }
-                    if (isDivide) {
-                        result /= Integer.parseInt(input);
-                        isDivide = false;
-                    }
+        equal.setOnClickListener(view117 -> {
+            if (isPlus || isMinus || isMultiply || isDivide) {
+                if (isPlus) {
+                    result += Integer.parseInt(input);
+                    isPlus = false;
                 }
-                else { result = Integer.parseInt(input); }
-                foodPrice.setText(String.valueOf(result));
-                input = String.valueOf(result);
+                if (isMinus) {
+                    result -= Integer.parseInt(input);
+                    isMinus = false;
+                }
+                if (isMultiply) {
+                    result *= Integer.parseInt(input);
+                    isMultiply = false;
+                }
+                if (isDivide) {
+                    result /= Integer.parseInt(input);
+                    isDivide = false;
+                }
             }
+            else { result = Integer.parseInt(input); }
+            foodPrice.setText(String.valueOf(result));
+            input = String.valueOf(result);
         });
 
         done = view.findViewById(R.id.done_button);
-        done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!equal.isPressed()) result = Integer.parseInt(input);
-                for (int i = 0; i < checked.size(); i++) {
-                    if (checked.get(i).isChecked()) numPerson++;
+        done.setOnClickListener(view118 -> {
+            if (!equal.isPressed()) result = Integer.parseInt(input);
+            for (int i = 0; i < checked.size(); i++) {
+                if (checked.get(i).isChecked()) numPerson++;
 //                    System.out.println("num" + numPerson);
 //                    System.out.println("result " + result);
-                }
+            }
 
-                if (numPerson > 0 && result > 0) {
-                    perPerson = result/numPerson;
+            if (numPerson > 0 && result > 0) {
+                perPerson = result/numPerson;
 //                    System.out.println("per person " + perPerson);
-                    for (int i = 0; i < checked.size(); i++) {
-                        if (checked.get(i).isChecked()) {
+                for (int i = 0; i < checked.size(); i++) {
+                    if (checked.get(i).isChecked()) {
 //                            System.out.println("checked: " + checked.get(i).getText());
-                            for (Person p: people) {
-                                if (checked.get(i).getText() == p.getName()) p.updatePayment(perPerson);
-                            }
+                        for (Person p: people) {
+                            if (checked.get(i).getText() == p.getName()) p.updatePayment(perPerson);
                         }
                     }
-                    food = new ListItem(name, result, perPerson);
-//                System.out.println(food.getName() + " " +food.getPrice() + " " + food.getPerPerson());
-                    onDoneListener.sendFood(food);
-                    onDoneListener.sendResult(result);
-                    dismiss();
                 }
+                food = new ListItem(name, result, perPerson);
+//                System.out.println(food.getName() + " " +food.getPrice() + " " + food.getPerPerson());
+                onDoneListener.sendFood(food);
+                onDoneListener.sendResult(result);
+                dismiss();
             }
         });
 //        initial();
