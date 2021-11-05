@@ -6,58 +6,69 @@
     android:background="@color/fuzzy_wuzzy"
     android:orientation="vertical">
 
-    <GridLayout
+    <EditText
+        android:id="@+id/dialog_search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
         android:layout_margin="15dp"
-        android:columnCount="2"
-        android:rowCount="2">
-
-
-    <Button
-        android:id="@+id/diet_save_button"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_gravity="start"
-        android:background="@drawable/diet_time_button"
-        android:text="Save"
+        android:background="@drawable/search_bar"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:hint="@string/search"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxWidth="150dp"
+        android:minWidth="150dp"
+        android:paddingStart="20dp"
         android:textColor="@color/ghost_white"
-        android:textSize="20sp" />
+        android:textAlignment="center"
+        android:textSize="20sp"
+        tools:ignore="RtlSymmetry" />
 
-
-
-    <Button
-        android:id="@+id/time_selected"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_gravity="end"
-        android:background="@drawable/diet_time_button"
-        android:text="Time"
-        android:textColor="@color/ghost_white"
-        android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/dialog_search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_columnSpan="2"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/search_bar"
-            android:fontFamily="@font/montserrat_bold"
-            android:hint="@string/search"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:paddingStart="20dp"
-            android:textColor="@color/ghost_white"
-            android:textSize="20sp"
-            tools:ignore="RtlSymmetry" />
-    </GridLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"/>
+        android:layout_margin="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/dialog_item_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/time_selected_button"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/diet_time_button"
+                    android:text="Time"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/diet_save_button"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/diet_time_button"
+                    android:text="Save"
+                    android:textColor="@color/ghost_white"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
