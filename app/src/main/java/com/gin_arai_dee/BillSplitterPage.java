@@ -112,34 +112,29 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
 
         // Add food item and show dialog
         addList = findViewById(R.id.add_list_button);
-        addList.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                listInput = list_add_bar.getText().toString();
+        addList.setOnClickListener(v -> {
+            listInput = list_add_bar.getText().toString();
 //                ListNameEvent listNameEvent = new ListNameEvent(list_input);
 //                EventBus.getDefault().post(listNameEvent);
-                if (TextUtils.isEmpty(listInput)) System.out.println("empty");
-                else {
+            if (TextUtils.isEmpty(listInput)) System.out.println("empty");
+            else {
 //                    System.out.println(list_input);
 //                    list = new FoodItem(list_input, );
-                    showFoodDialog();
+                showFoodDialog();
 //                    BillDialog.newInstance("")
 //                    food_dialog.show
 //                    food_name.setText(list_add_bar.getText());
-                }
             }
         });
 
-        clearList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (int i = 0; i < listTextView.size(); i++) { foodList.removeViewAt(0); }
-                listTextView.clear();
-                total.setText("0");
-                for (Person p: people) { p.setPayment(0); }
-                newTotal = 0;
-                for (int i = 1; i < peopleTextView.size(); i+=2) {
-                    peopleTextView.get(i).setText(String.valueOf(newTotal));
-                }
+        clearList.setOnClickListener(view -> {
+            for (int i = 0; i < listTextView.size(); i++) { foodList.removeViewAt(0); }
+            listTextView.clear();
+            total.setText("0");
+            for (Person p: people) { p.setPayment(0); }
+            newTotal = 0;
+            for (int i = 1; i < peopleTextView.size(); i+=2) {
+                peopleTextView.get(i).setText(String.valueOf(newTotal));
             }
         });
 
@@ -152,47 +147,42 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         clearName = findViewById(R.id.clear_name_button);
 
         // Add name to Payer's tab and add to people's list
-        addName.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                nameInput = name_add_bar.getText().toString();
-                if (TextUtils.isEmpty(nameInput)) System.out.println("empty");
-                else {
+        addName.setOnClickListener(v -> {
+            nameInput = name_add_bar.getText().toString();
+            if (TextUtils.isEmpty(nameInput)) System.out.println("empty");
+            else {
 //                    System.out.println(name_input);
-                    person = new Person(nameInput);
-                    people.add(person);
+                person = new Person(nameInput);
+                people.add(person);
 
-                    personName = new TextView(getApplicationContext());
-                    personName.setText(name_add_bar.getText());
-                    personName.setTypeface(getResources().getFont(R.font.rubik));
-                    personName.setTextSize(20);
-                    personName.setTextColor(getResources().getColor(R.color.ghost_white));
-                    personName.setMinWidth(getResources().getDisplayMetrics().widthPixels/2+170);
-                    peopleTextView.add(personName);
+                personName = new TextView(getApplicationContext());
+                personName.setText(name_add_bar.getText());
+                personName.setTypeface(getResources().getFont(R.font.rubik));
+                personName.setTextSize(20);
+                personName.setTextColor(getResources().getColor(R.color.ghost_white));
+                personName.setMinWidth(getResources().getDisplayMetrics().widthPixels/2+170);
+                peopleTextView.add(personName);
 
-                    personPayment = new TextView(getApplicationContext());
-                    personPayment.setText(String.valueOf(person.getPayment()));
-                    personPayment.setTypeface(getResources().getFont(R.font.rubik));
-                    personPayment.setTextSize(20);
-                    personPayment.setTextColor(getResources().getColor(R.color.ghost_white));
-                    peopleTextView.add(personPayment);
+                personPayment = new TextView(getApplicationContext());
+                personPayment.setText(String.valueOf(person.getPayment()));
+                personPayment.setTypeface(getResources().getFont(R.font.rubik));
+                personPayment.setTextSize(20);
+                personPayment.setTextColor(getResources().getColor(R.color.ghost_white));
+                peopleTextView.add(personPayment);
 
-                    name_add_bar.getText().clear();
-                    nameList.addView(personName);
-                    nameList.addView(personPayment);
-                    person.setTextView(personName.getId(), personPayment.getId());
-                    numPeople.setText(String.valueOf(people.size()));
-                }
+                name_add_bar.getText().clear();
+                nameList.addView(personName);
+                nameList.addView(personPayment);
+                person.setTextView(personName.getId(), personPayment.getId());
+                numPeople.setText(String.valueOf(people.size()));
             }
         });
 
-        clearName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (int i = 0; i < peopleTextView.size(); i++) { nameList.removeViewAt(0); }
-                peopleTextView.clear();
-                people.clear();
-                numPeople.setText(String.valueOf(people.size()));
-            }
+        clearName.setOnClickListener(view -> {
+            for (int i = 0; i < peopleTextView.size(); i++) { nameList.removeViewAt(0); }
+            peopleTextView.clear();
+            people.clear();
+            numPeople.setText(String.valueOf(people.size()));
         });
     }
 
@@ -224,6 +214,16 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         foodList.addView(foodName);
         foodList.addView(foodPrice);
         foodList.addView(foodPerPerson);
+
+        for (Person p: people) {
+            System.out.println(p.getName() + " " + p.getPayment());
+        }
+
+        int i = 1;
+        for (Person p: people) {
+            peopleTextView.get(i).setText(String.valueOf(p.getPayment()));
+            i += 2;
+        }
     }
 
     @Override
