@@ -6,6 +6,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,13 +20,14 @@ import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.Objects;
-
 public class BillSplitterPage extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
     private class FoodItem {
         private String name;
         private int price;
@@ -104,7 +106,33 @@ public class BillSplitterPage extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         scrollView = findViewById(R.id.bill_scroll_area);
         list_add_bar = findViewById(R.id.list_add_bar);
+        // Navigation Settings
+        bottomNavigationView = findViewById(R.id.dock_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.billing_page);
 
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int currentItem = item.getItemId();
+            if (currentItem == R.id.billing_page) {
+                return true;
+            }
+            else if (currentItem == R.id.food_hub) {
+                startActivity(new Intent(this, FoodHub.class));
+                finish();
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            else if (currentItem == R.id.home_page) {
+                startActivity(new Intent(this, HomePage.class));
+                finish();
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            else {
+                Toast.makeText(BillSplitterPage.this,"Coming Soon!",Toast.LENGTH_SHORT);
+                System.out.println("Not implemented");
+                return false;
+            }
+        });
         // Set TabWidget name
         tabHost = findViewById(R.id.tabhost);
         tabHost.setup();

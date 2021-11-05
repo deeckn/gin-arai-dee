@@ -44,6 +44,7 @@ public class FoodHub extends AppCompatActivity {
                 return true;
             }
             else {
+                Toast.makeText(FoodHub.this,"Coming Soon!",Toast.LENGTH_SHORT);
                 System.out.println("Not implemented");
                 return false;
             }
@@ -54,7 +55,7 @@ public class FoodHub extends AppCompatActivity {
         randomButton.setOnClickListener(view -> openRandomFoodPage());
 
         recipeButton.setOnClickListener(view -> Toast.makeText(
-                FoodHub.this, "Disable", Toast.LENGTH_SHORT).show()
+                FoodHub.this, "Coming Soon!", Toast.LENGTH_SHORT).show()
         );
 
     }
