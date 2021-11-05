@@ -27,7 +27,7 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        initializeDatabase();
+        //initializeDatabase();
 
         // Navigation Settings
         bottomNavigationView = findViewById(R.id.dock_navigation);

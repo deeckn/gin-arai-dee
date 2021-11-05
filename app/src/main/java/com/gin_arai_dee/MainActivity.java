@@ -3,6 +3,7 @@ package com.gin_arai_dee;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(v -> openHomePage());
+
     }
 
     // Opens the home page

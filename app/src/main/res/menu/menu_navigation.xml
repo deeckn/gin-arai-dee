@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home_page"
-        android:title="@string/home_page"
-        android:icon="@drawable/ic_home"/>
+        android:title="Home Page"
+        android:icon="@drawable/ic_home_page"/>
 
     <item
         android:id="@+id/food_hub"
-        android:title="@string/food"
-        android:icon="@drawable/ic_food"/>
+        android:title="Food"
+        android:icon="@drawable/ic_food_hub"/>
 
     <item
         android:id="@+id/billing_page"
-        android:title="@string/bill_splitter"
-        android:icon="@drawable/ic_recipe"/>
+        android:title="Bill Splitter"
+        android:icon="@drawable/ic_bill"/>
 
     <item
-        android:id="@+id/dietary_page"
-        android:title="@string/dietary_planner"
-        android:icon="@drawable/ic_diet"/>
+        android:id="@+id/user_page"
+        android:title="User"
+        android:icon="@drawable/ic_user"/>
 </menu>
