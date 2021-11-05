@@ -24,13 +24,14 @@ public class DialogFoodAdapter extends ArrayAdapter<FoodItem> {
         this.resource = resource;
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ResourceAsColor", "ViewHolder"})
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
         String name = getItem(position).getFood_item();
         int kCal = getItem(position).getKcal();
+        boolean selected = getItem(position).isSelected();
 
         LayoutInflater inflater = LayoutInflater.from(context);
         convertView = inflater.inflate(resource,parent,false);
@@ -40,8 +41,13 @@ public class DialogFoodAdapter extends ArrayAdapter<FoodItem> {
 
         food_name.setText(name);
         food_kcal.setText(kCal + "");
+        if(selected){
+            food_name.setTextColor(R.color.maximum_yellow_red);
+        }
 
         return convertView;
     }
+
+
 
 }
