@@ -72,11 +72,16 @@
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/home_page.xml" value="0.15260416666666668" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/layout.xml" value="0.11458333333333333" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/welcome_page.xml" value="0.264" />
+        <entry key="..\:/gin-arai-dee/app/src/main/res/drawable/ic_home.xml" value="0.3388888888888889" />
+        <entry key="..\:/gin-arai-dee/app/src/main/res/drawable/ic_home_solid.xml" value="0.3388888888888889" />
+        <entry key="..\:/gin-arai-dee/app/src/main/res/drawable/ic_recipe.xml" value="0.3388888888888889" />
         <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_bill_splitter_page.xml" value="0.36666666666666664" />
+        <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_diet_page_main.xml" value="0.36666666666666664" />
         <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_food_page.xml" value="0.25" />
         <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_home_page.xml" value="0.36666666666666664" />
         <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_random_food.xml" value="0.3" />
         <entry key="..\:/gin-arai-dee/app/src/main/res/layout/food_card.xml" value="0.22239583333333332" />
+        <entry key="..\:/gin-arai-dee/app/src/main/res/menu/menu_navigation.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable-v24/round_button_yellow.xml" value="0.4046875" />
         <entry key="app/src/main/res/drawable/add_bar.xml" value="0.340625" />
         <entry key="app/src/main/res/drawable/bill_name_box.xml" value="0.4046875" />
