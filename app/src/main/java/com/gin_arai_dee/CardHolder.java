@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CardHolder extends RecyclerView.ViewHolder {
-
     ImageView imageView;
     TextView title;
     TextView calorie;

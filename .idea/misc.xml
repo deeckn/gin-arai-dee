@@ -25,17 +25,7 @@
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable-v24/round_button_yellow.xml" value="0.2703125" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/add_bar.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/bill_name_box.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/ic_diet.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/ic_food.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/ic_home.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/ic_search.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/number_button.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/operator_button.xml" value="0.2703125" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/search_bar.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/select_all_false.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/select_all_toggle.xml" value="0.2703125" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/select_all_true.xml" value="0.2703125" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/selector.xml" value="0.2703125" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/tab_widget_window.xml" value="0.2703125" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_diet_add_page.xml" value="0.2046875" />
@@ -45,7 +35,6 @@
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_home_page.xml" value="0.264" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_main.xml" value="0.12318840579710146" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_random_food.xml" value="0.264" />
-        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_user_page.xml" value="0.264" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/welcome_page.xml" value="0.176" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/menu/menu_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />

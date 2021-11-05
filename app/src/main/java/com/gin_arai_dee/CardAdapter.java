@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
 
     Context context;
-    ArrayList<FoodCardModel> models;
+    ArrayList<FoodItem> models;
 
-    public CardAdapter(Context context, ArrayList<FoodCardModel> models) {
+    public CardAdapter(Context context, ArrayList<FoodItem> models) {
         this.context = context;
         this.models = models;
     }
@@ -30,9 +30,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CardHolder holder, int position) {
-        holder.title.setText(models.get(position).getTitle());
+        holder.title.setText(models.get(position).getFood_item());
         holder.description.setText(models.get(position).getDescription());
-        holder.calorie.setText(models.get(position).getCalories());
+        String kcal = models.get(position).getKcal() + " kcal";
+        holder.calorie.setText(kcal);
         Picasso.get().load(models.get(position).getImage_url()).into(holder.imageView);
     }
 

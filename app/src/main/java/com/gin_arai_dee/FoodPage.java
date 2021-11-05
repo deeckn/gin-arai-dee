@@ -29,7 +29,7 @@ public class FoodPage extends AppCompatActivity {
 
     // Food Data
     List<FoodItem> allFoodItems;
-    List<FoodItem> displayFoodItems;
+    ArrayList<FoodItem> displayFoodItems;
     HashMap<String, List<FoodItem>> categoryFoodGroup;
     HashMap<String, List<FoodItem>> nationalityFoodGroup;
     List<String> categoryFilter;
@@ -257,7 +257,7 @@ public class FoodPage extends AppCompatActivity {
         // RecyclerView
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        cardAdapter = new CardAdapter(this, getCardList());
+        cardAdapter = new CardAdapter(this, displayFoodItems);
         recyclerView.setAdapter(cardAdapter);
 
         // Search Elements
@@ -401,6 +401,7 @@ public class FoodPage extends AppCompatActivity {
      * Database Management Section
      * Loading data from database
      */
+
     private void loadData() {
         allFoodItems = db.getAllFoodItems();
         groupFoodItems();
@@ -516,22 +517,8 @@ public class FoodPage extends AppCompatActivity {
     /***
      * Food cards recycler view
      */
-    private ArrayList<FoodCardModel> getCardList() {
-        ArrayList<FoodCardModel> models = new ArrayList<>();
-        for (FoodItem f : displayFoodItems) {
-            models.add(
-                    new FoodCardModel(
-                    f.getFood_item(),
-                    f.getDescription(),
-                    "kcal: " + f.getKcal(),
-                    f.getImage_url())
-            );
-        }
-        return models;
-    }
-
     private void updateFoodCards() {
-        cardAdapter = new CardAdapter(this, getCardList());
+        cardAdapter = new CardAdapter(this, displayFoodItems);
         recyclerView.setAdapter(cardAdapter);
     }
 }
