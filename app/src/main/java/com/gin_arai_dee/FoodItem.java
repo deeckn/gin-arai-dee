@@ -8,6 +8,7 @@ public class FoodItem {
     private String nationality;
     private int kcal;
     private String image_url;
+    private boolean selected;
 
     public FoodItem(int id, String food_item,
                     String description, String dish_type,
@@ -20,6 +21,7 @@ public class FoodItem {
         this.nationality = nationality;
         this.kcal = kcal;
         this.image_url = image_url;
+        this.selected = false;
     }
 
     public int getId() {
@@ -76,5 +78,13 @@ public class FoodItem {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }
