@@ -168,16 +168,14 @@
                                     android:textSize="20sp" />
 
                             </GridLayout>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20sp"
-                                android:fontFamily="@font/rubik"
-                                android:text="@string/app_name"
-                                android:textColor="@color/ghost_white"
-                                android:textSize="20sp">
 
-                            </TextView>
+                            <GridLayout
+                                android:id="@+id/food_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:layout_marginStart="20sp">
+                            </GridLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
