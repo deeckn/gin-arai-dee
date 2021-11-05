@@ -4,13 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CardDietAdapter extends RecyclerView.Adapter<CardDietHolder> {
+public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDietHolder> {
 
     Context context;
     ArrayList<CardDietModel> models;
@@ -35,5 +37,17 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietHolder> {
     @Override
     public int getItemCount() {
         return models.size();
+    }
+
+    public static class CardDietHolder extends RecyclerView.ViewHolder {
+
+        TextView dietTime;
+        ListView listView;
+
+        public CardDietHolder(@NonNull View itemView) {
+            super(itemView);
+            dietTime = itemView.findViewById(R.id.card_time);
+            listView = itemView.findViewById(R.id.card_itemList);
+        }
     }
 }
