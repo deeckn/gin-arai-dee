@@ -15,53 +15,7 @@ import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.app.Dialog;
-import android.content.Intent;
-import org.greenrobot.eventbus.EventBus;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
-import java.util.Objects;
-public class BillSplitterPage extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
-    private class FoodItem {
-        private String name;
-        private int price;
-
-        public FoodItem(String name, int price) {
-            this.name = name;
-            this.price = price;
-        }
-
-        public String getName() { return name; }
-        public void setName(String name) { this.name = name; }
-
-        public int getPrice() { return price; }
-        public void setPrice(int price) { this.price = price; }
-    }
-
-    private class Person {
-        private String name;
-        private int payment;
-        private TextView name_textView;
-        private TextView payment_textView;
-
-        public Person(String name) {
-            this.name = name;
-            this.payment = 0;
-        }
-
-        public String getName() { return name; }
-        public void setName(String name) { this.name = name; }
-
-        public int getPayment() { return payment; }
-        public void setPayment(int payment) { this.payment = payment; }
-
-        public void setTextView(int nameId, int paymentId) {
-            name_textView = findViewById(nameId);
-            payment_textView = findViewById(paymentId);
-        }
-    }
 
 public class BillSplitterPage extends AppCompatActivity implements BillDialog.onDoneListener{
     private void showFoodDialog() {
@@ -120,34 +74,6 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         scrollView = findViewById(R.id.bill_scroll_area);
         list_add_bar = findViewById(R.id.list_add_bar);
         total = findViewById(R.id.total);
-
-        // Navigation Settings
-        bottomNavigationView = findViewById(R.id.dock_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.billing_page);
-
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int currentItem = item.getItemId();
-            if (currentItem == R.id.billing_page) {
-                return true;
-            }
-            else if (currentItem == R.id.food_hub) {
-                startActivity(new Intent(this, FoodHub.class));
-                finish();
-                overridePendingTransition(0, 0);
-                return true;
-            }
-            else if (currentItem == R.id.home_page) {
-                startActivity(new Intent(this, HomePage.class));
-                finish();
-                overridePendingTransition(0, 0);
-                return true;
-            }
-            else {
-                Toast.makeText(BillSplitterPage.this,"Coming Soon!",Toast.LENGTH_SHORT);
-                System.out.println("Not implemented");
-                return false;
-            }
-        });
 
         // Set TabWidget name
         tabHost = findViewById(R.id.tabhost);
