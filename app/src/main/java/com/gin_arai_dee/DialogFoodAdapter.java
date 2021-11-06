@@ -40,7 +40,7 @@ public class DialogFoodAdapter extends ArrayAdapter<FoodItem> {
         TextView food_kcal  = convertView.findViewById(R.id.dialog_kCal);
 
         food_name.setText(name);
-        food_kcal.setText(kCal + "");
+        food_kcal.setText(kCal + " kcal");
         if(selected){
             food_name.setTextColor(R.color.maximum_yellow_red);
         }
