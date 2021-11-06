@@ -1,6 +1,7 @@
 package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 import android.graphics.Typeface;
@@ -17,20 +18,7 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class BillSplitterPage extends AppCompatActivity implements BillDialog.onDoneListener{
-    private void showFoodDialog() {
-        FragmentManager fm = getSupportFragmentManager();
-        BillDialog billDialog = BillDialog.newInstance("Bill Dialog");
-//        Objects.requireNonNull(billDialog.getDialog()).getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        billDialog.show(fm, "Bill Dialog");
-//        dialog = (BillDialog)
-//        dialog.getFood();
-        list_add_bar.getText().clear();
-    }
-
-    public String getFoodName() { return listInput; }
-    public ArrayList<Person> getPeople() { return people; }
-//    private BillDialog dialog;
+public class BillSplitterPage extends AppCompatActivity implements BillDialog.onDoneListener {
 
     // Info
     TextView numPeople;
@@ -41,17 +29,18 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
     ScrollView scrollView;
     TabHost tabHost;
     TabHost.TabSpec spec;
+
     // Food Item
     EditText list_add_bar;
     Button addList;
     Button clearList;
     String listInput;
-    ArrayList<TextView> listTextView = new ArrayList<>();
+    ArrayList<TextView> listTextView;
     GridLayout foodList;
     TextView foodName;
     TextView foodPrice;
     TextView foodPerPerson;
-//    DialogFragment food_dialog;
+
     // Payer
     GridLayout nameList;
     Button addName;
@@ -60,9 +49,10 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
     TextView personName;
     TextView personPayment;
     Person person;
-    ArrayList<Person> people = new ArrayList<>();
-    ArrayList<TextView> peopleTextView = new ArrayList<>();
+    ArrayList<Person> people;
+    ArrayList<TextView> peopleTextView;
     String nameInput;
+
     // Font
     Typeface rubik_bold;
 
@@ -71,27 +61,25 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill_splitter_page);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        scrollView = findViewById(R.id.bill_scroll_area);
-        list_add_bar = findViewById(R.id.list_add_bar);
-        total = findViewById(R.id.total);
+        initializeInstances();
 
-        // Set TabWidget name
-        tabHost = findViewById(R.id.tabhost);
+        // List Tab
         tabHost.setup();
         spec = tabHost.newTabSpec("List Tab");
         spec.setContent(R.id.list_tab);
         spec.setIndicator("☰ List");
         tabHost.addTab(spec);
+
+        // Payer Tab
         spec = tabHost.newTabSpec("Payer Tab");
         spec.setContent(R.id.payer_tab);
         spec.setIndicator("웃 Payer");
         tabHost.addTab(spec);
 
-        // Set TabWidget text style
+        // Set TabWidget Text Style
         final TabWidget tw = tabHost.findViewById(android.R.id.tabs);
         rubik_bold = ResourcesCompat.getFont(this, R.font.rubik_bold);
-        for (int i = 0; i < tw.getChildCount(); ++i)
-        {
+        for (int i = 0; i < tw.getChildCount(); ++i) {
             final View tabView = tw.getChildTabViewAt(i);
             final TextView tv = tabView.findViewById(android.R.id.title);
             tv.setTextSize(20);
@@ -99,50 +87,39 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
             tv.setTypeface(rubik_bold);
         }
 
+        foodList.setColumnCount(3);
 //        food_dialog = new DialogFragment(R.layout.activity_bill_food_dialog);
 //        food_dialog.setContentView(R.layout.activity_bill_food_dialog);
 //        food_dialog.getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 //        food_dialog.setCancelable(false);
 
-        foodList = findViewById(R.id.food_list);
-        clearList = findViewById(R.id.clear_list_button);
-        foodList.setColumnCount(3);
-
         // Add food item and show dialog
-        addList = findViewById(R.id.add_list_button);
         addList.setOnClickListener(v -> {
             listInput = list_add_bar.getText().toString();
-//                ListNameEvent listNameEvent = new ListNameEvent(list_input);
-//                EventBus.getDefault().post(listNameEvent);
             if (TextUtils.isEmpty(listInput)) System.out.println("empty");
-            else {
+            else showFoodDialog();
+        });
+
+//                    ListNameEvent listNameEvent = new ListNameEvent(list_input);
+//                    EventBus.getDefault().post(listNameEvent);
 //                    System.out.println(list_input);
 //                    list = new FoodItem(list_input, );
-                showFoodDialog();
 //                    BillDialog.newInstance("")
 //                    food_dialog.show
 //                    food_name.setText(list_add_bar.getText());
-            }
-        });
 
         clearList.setOnClickListener(view -> {
-            for (int i = 0; i < listTextView.size(); i++) { foodList.removeViewAt(0); }
+            for (int i = 0; i < listTextView.size(); i++) foodList.removeViewAt(0);
             listTextView.clear();
             total.setText("0");
-            for (Person p: people) { p.setPayment(0); }
+            for (Person p: people) p.setPayment(0);
             newTotal = 0;
             for (int i = 1; i < peopleTextView.size(); i+=2) {
                 peopleTextView.get(i).setText(String.valueOf(newTotal));
             }
         });
 
-        // Payer tab's view
-        addName = findViewById(R.id.add_name_button);
-        name_add_bar = findViewById(R.id.name_add_bar);
-        nameList = findViewById(R.id.name_list);
-        numPeople = findViewById(R.id.num_people);
         nameList.setColumnCount(2);
-        clearName = findViewById(R.id.clear_name_button);
 
         // Add name to Payer's tab and add to people's list
         addName.setOnClickListener(v -> {
@@ -157,7 +134,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
                 personName.setText(name_add_bar.getText());
                 personName.setTypeface(getResources().getFont(R.font.rubik));
                 personName.setTextSize(20);
-                personName.setTextColor(getResources().getColor(R.color.ghost_white));
+                personName.setTextColor(ContextCompat.getColor(this, R.color.ghost_white));
                 personName.setMinWidth(getResources().getDisplayMetrics().widthPixels/2+170);
                 peopleTextView.add(personName);
 
@@ -165,7 +142,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
                 personPayment.setText(String.valueOf(person.getPayment()));
                 personPayment.setTypeface(getResources().getFont(R.font.rubik));
                 personPayment.setTextSize(20);
-                personPayment.setTextColor(getResources().getColor(R.color.ghost_white));
+                personPayment.setTextColor(ContextCompat.getColor(this, R.color.ghost_white));
                 peopleTextView.add(personPayment);
 
                 name_add_bar.getText().clear();
@@ -184,13 +161,36 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         });
     }
 
+    private void initializeInstances() {
+        listTextView   = new ArrayList<>();
+        people         = new ArrayList<>();
+        peopleTextView = new ArrayList<>();
+
+        scrollView   = findViewById(R.id.bill_scroll_area);
+        list_add_bar = findViewById(R.id.list_add_bar);
+        total        = findViewById(R.id.total);
+
+        tabHost     = findViewById(R.id.tabhost);
+        foodList    = findViewById(R.id.food_list);
+        clearList   = findViewById(R.id.clear_list_button);
+
+        addList = findViewById(R.id.add_list_button);
+
+        // Payer tab's view
+        addName      = findViewById(R.id.add_name_button);
+        name_add_bar = findViewById(R.id.name_add_bar);
+        nameList     = findViewById(R.id.name_list);
+        numPeople    = findViewById(R.id.num_people);
+        clearName    = findViewById(R.id.clear_name_button);
+    }
+
     @Override
     public void sendFood(ListItem food) {
         foodName = new TextView(getApplicationContext());
         foodName.setText(food.getName());
         foodName.setTypeface(getResources().getFont(R.font.rubik));
         foodName.setTextSize(20);
-        foodName.setTextColor(getResources().getColor(R.color.ghost_white));
+        foodName.setTextColor(ContextCompat.getColor(this, R.color.ghost_white));
         foodName.setMinWidth(getResources().getDisplayMetrics().widthPixels/3+50);
         listTextView.add(foodName);
 
@@ -198,7 +198,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         foodPrice.setText(String.valueOf(food.getPrice()));
         foodPrice.setTypeface(getResources().getFont(R.font.rubik));
         foodPrice.setTextSize(20);
-        foodPrice.setTextColor(getResources().getColor(R.color.ghost_white));
+        foodPrice.setTextColor(ContextCompat.getColor(this, R.color.ghost_white));
         foodPrice.setMinWidth(getResources().getDisplayMetrics().widthPixels/3);
         listTextView.add(foodPrice);
 
@@ -206,16 +206,12 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         foodPerPerson.setText(String.valueOf(food.getPerPerson()));
         foodPerPerson.setTypeface(getResources().getFont(R.font.rubik));
         foodPerPerson.setTextSize(20);
-        foodPerPerson.setTextColor(getResources().getColor(R.color.ghost_white));
+        foodPerPerson.setTextColor(ContextCompat.getColor(this, R.color.ghost_white));
         listTextView.add(foodPerPerson);
 
         foodList.addView(foodName);
         foodList.addView(foodPrice);
         foodList.addView(foodPerPerson);
-
-        for (Person p: people) {
-            System.out.println(p.getName() + " " + p.getPayment());
-        }
 
         int i = 1;
         for (Person p: people) {
@@ -224,11 +220,28 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         }
     }
 
+    private void showFoodDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        BillDialog billDialog = BillDialog.newInstance("Bill Dialog");
+        billDialog.show(fm, "Bill Dialog");
+        list_add_bar.getText().clear();
+
+//        Objects.requireNonNull(billDialog.getDialog()).getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        dialog = (BillDialog)
+//        dialog.getFood();
+    }
+
+    public String getFoodName() {
+        return listInput;
+    }
+
+    public ArrayList<Person> getPeople() {
+        return people;
+    }
+
     @Override
     public void sendResult(int result) {
         newTotal += result;
-//        System.out.println("get result: " + result);
-//        System.out.println("new total " + newTotal);
         total.setText(String.valueOf(newTotal));
     }
 }
