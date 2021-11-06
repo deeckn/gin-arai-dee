@@ -8,17 +8,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -36,7 +33,8 @@ public class BillDialog extends DialogFragment {
     private boolean isPlus, isMinus, isDivide, isMultiply;
     private String input = "", name;
     private int result = 0, numPerson = 0, perPerson = 0;
-    private ArrayList<CheckBox> checked = new ArrayList<CheckBox>();
+    private final ArrayList<CheckBox> checked = new ArrayList<>();
+
     public static BillDialog newInstance(String title) {
         BillDialog frag = new BillDialog();
         Bundle args = new Bundle();
@@ -58,6 +56,7 @@ public class BillDialog extends DialogFragment {
         final View view = inflater.inflate(
                 R.layout.activity_bill_food_dialog, container, false
         );
+
         Objects.requireNonNull(getDialog()).requestWindowFeature(Window.FEATURE_NO_TITLE);
         bill = (BillSplitterPage) getActivity();
 
@@ -74,31 +73,28 @@ public class BillDialog extends DialogFragment {
             checked.add(personBox);
             personBox.setText(p.getName());
             personBox.setTypeface(getResources().getFont(R.font.rubik));
-            personBox.setTextColor(getResources().getColor(R.color.ghost_white));
+            personBox.setTextColor(ContextCompat.getColor(requireContext(), R.color.ghost_white));
             personBox.setTextSize(20);
             personList.addView(personBox);
         }
 
         selectAll = view.findViewById(R.id.select_all);
-        selectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                for (int i = 0; i < checked.size(); i++) {
-                    if(selectAll.isChecked()) {
-                        selectAll.setTextColor(getResources().getColor(R.color.ghost_white));
-                        checked.get(i).setChecked(true);
-                    }
-                    else {
-                        selectAll.setTextColor(getResources().getColor(R.color.charcoal));
-                        checked.get(i).setChecked(false);
-                    }
+        selectAll.setOnCheckedChangeListener((compoundButton, b) -> {
+            for (int i = 0; i < checked.size(); i++) {
+                if(selectAll.isChecked()) {
+                    selectAll.setTextColor(ContextCompat.getColor(requireContext(), R.color.ghost_white));
+                    checked.get(i).setChecked(true);
+                }
+                else {
+                    selectAll.setTextColor(ContextCompat.getColor(requireContext(), R.color.charcoal));
+                    checked.get(i).setChecked(false);
                 }
             }
         });
+        return view;
 
 //        EventBus.getDefault().register(this);
 //        System.out.println("set text");
-        return view;
     }
 
 //    @Subscribe
@@ -108,7 +104,7 @@ public class BillDialog extends DialogFragment {
 //    }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         one = view.findViewById(R.id.one_button);
@@ -200,9 +196,10 @@ public class BillDialog extends DialogFragment {
             if (!equal.isPressed()) result = Integer.parseInt(input);
             for (int i = 0; i < checked.size(); i++) {
                 if (checked.get(i).isChecked()) numPerson++;
+            }
+
 //                    System.out.println("num" + numPerson);
 //                    System.out.println("result " + result);
-            }
 
             if (numPerson > 0 && result > 0) {
                 perPerson = result/numPerson;
@@ -232,25 +229,19 @@ public class BillDialog extends DialogFragment {
 
     private void mathOp(String op) {
         switch (op) {
-            case "+":
-                isPlus = true;
-                break;
-            case "-":
-                isMinus = true;
-                break;
-            case "×":
-                isMultiply = true;
-                break;
-            case "÷":
-                isDivide = true;
-                break;
+            case "+": isPlus = true; break;
+            case "-": isMinus = true; break;
+            case "×": isMultiply = true; break;
+            case "÷": isDivide = true; break;
         }
+
         foodPrice.setText("");
         result = Integer.parseInt(input);
         input = "";
     }
 
     public onDoneListener onDoneListener;
+
     public interface onDoneListener {
         void sendFood(ListItem food);
         void sendResult(int result);
@@ -262,7 +253,7 @@ public class BillDialog extends DialogFragment {
         super.onAttach(context);
         try {
             onDoneListener = (onDoneListener)getActivity();
-        }catch (ClassCastException e) {
+        } catch (ClassCastException e) {
             System.out.println("Class cast failed");
         }
     }

@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -189,6 +191,19 @@ public class FoodPage extends AppCompatActivity {
             searchFood(searchBar.getText().toString());
             updateFoodCards();
             filterFoodItems();
+        });
+
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                searchFood(s.toString());
+                updateFoodCards();
+            }
         });
     }
 
@@ -494,6 +509,8 @@ public class FoodPage extends AppCompatActivity {
         }
 
         displayFoodItems.addAll(tempList);
+
+        if (!searchBar.getText().toString().equals("")) searchFood(searchBar.getText().toString());
     }
 
     // Food Search
