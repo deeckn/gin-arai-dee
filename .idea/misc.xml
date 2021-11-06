@@ -105,8 +105,24 @@
         <entry key="app/src/main/res/layout/activity_diet_page.xml" value="0.22291666666666668" />
         <entry key="app/src/main/res/layout/activity_food_page.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.2947916666666667" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable-v24/round_button_yellow.xml" value="0.2703125" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/add_bar.xml" value="0.2703125" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/search_bar.xml" value="0.2703125" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/selector.xml" value="0.2703125" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/drawable/tab_widget_window.xml" value="0.2703125" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_diet_add_page.xml" value="0.2046875" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_diet_page_main.xml" value="0.2318840579710145" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_food_hub.xml" value="0.1" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_food_page.xml" value="0.1" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_home_page.xml" value="0.264" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_main.xml" value="0.12318840579710146" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_random_food.xml" value="0.264" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/activity_user_page.xml" value="0.1" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/layout/welcome_page.xml" value="0.176" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/menu/menu_navigation.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.325" />
       </map>
     </option>
   </component>
@@ -115,12 +131,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.152" />
-      </ProjectState>
-    </option>
   </component>
 </project>
