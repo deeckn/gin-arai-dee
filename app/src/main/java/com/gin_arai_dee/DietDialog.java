@@ -1,6 +1,7 @@
 package com.gin_arai_dee;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TimePicker;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import java.text.ParseException;
@@ -23,6 +25,12 @@ import java.util.Collections;
 import java.util.Date;
 
 public class DietDialog extends DialogFragment {
+
+    public interface OnInputListener{
+        void sentInput(String time,ArrayList<FoodItem> lists);
+    }
+
+
     private static final String TAG = "DietDialog";
     private DatabaseHelper db;
 
@@ -39,6 +47,8 @@ public class DietDialog extends DialogFragment {
     private ArrayList<FoodItem> foodItems;
     private ArrayList<FoodItem> selectedItems;
     private ArrayList<FoodItem> displayItem;
+
+    public OnInputListener inputListener;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -84,6 +94,8 @@ public class DietDialog extends DialogFragment {
 
         saveButton.setOnClickListener(e -> {
             Log.d(TAG, "onClick: saveButton dialog");
+
+
             getDialog().dismiss();
         });
 
@@ -128,5 +140,15 @@ public class DietDialog extends DialogFragment {
     private void updateList(ArrayList<FoodItem> lists){
         adapter = new DialogFoodAdapter(getContext(), R.layout.dialog_foodview, lists);
         itemList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try{
+            inputListener = (OnInputListener) getActivity();
+        }catch (ClassCastException e){
+            Log.e(TAG,"onAttach: ClassCastException: " + e.getMessage());
+        }
     }
 }
