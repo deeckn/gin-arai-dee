@@ -41,4 +41,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
     public int getItemCount() {
         return models.size();
     }
+
+    public void changeDataSet(ArrayList<FoodItem> newModels) {
+        models = newModels;
+    }
 }

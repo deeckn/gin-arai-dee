@@ -5,6 +5,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
@@ -534,8 +535,9 @@ public class FoodPage extends AppCompatActivity {
     /***
      * Food cards recycler view
      */
+    @SuppressLint("NotifyDataSetChanged")
     private void updateFoodCards() {
-        cardAdapter = new CardAdapter(this, displayFoodItems);
-        recyclerView.setAdapter(cardAdapter);
+        cardAdapter.changeDataSet(displayFoodItems);
+        cardAdapter.notifyDataSetChanged();
     }
 }
