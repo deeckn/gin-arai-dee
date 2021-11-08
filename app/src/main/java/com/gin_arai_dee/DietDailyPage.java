@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class DietDailyPage extends AppCompatActivity {
+public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInputListener {
 
     TextView selectedDay;
     TextView totalKcal;
@@ -32,8 +32,6 @@ public class DietDailyPage extends AppCompatActivity {
         totalKcal = findViewById(R.id.total_kcal);
         recyclerView = findViewById(R.id.item_list);
 
-        foodItemLists.add(new CardDietModel("10:50"));
-        foodItemLists.add(new CardDietModel("13:50"));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this,foodItemLists);
@@ -46,4 +44,14 @@ public class DietDailyPage extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void sentInput(String time, ArrayList<FoodItem> lists) {
+        Log.d("DailyDeit","SendInput");
+        CardDietModel dietModel = new CardDietModel(time);
+        //dietModel.setFoodItemsLists(lists);
+        foodItemLists.add(dietModel);
+        cardAdapter = new CardDietAdapter(this,foodItemLists);
+        recyclerView.setAdapter(cardAdapter);
+
+    }
 }

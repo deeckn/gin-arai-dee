@@ -10,7 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDietHolder> {
 
@@ -31,7 +34,13 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDi
 
     @Override
     public void onBindViewHolder(@NonNull CardDietHolder holder, int position) {
-        holder.dietTime.setText(models.get(position).getTime());
+        SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
+        try {
+            Date date = f24Hour.parse(models.get(position).getTime());
+            holder.dietTime.setText(f24Hour.format(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

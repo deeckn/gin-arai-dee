@@ -23,11 +23,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Objects;
 
 public class DietDialog extends DialogFragment {
 
-    public interface OnInputListener{
-        void sentInput(String time,ArrayList<FoodItem> lists);
+    public interface OnInputListener {
+        void sentInput(String time, ArrayList<FoodItem> lists);
     }
 
 
@@ -61,6 +62,7 @@ public class DietDialog extends DialogFragment {
         itemList = view.findViewById(R.id.dialog_item_list);
 
         foodItems = (ArrayList<FoodItem>) db.getAllFoodItems();
+        selectedItems = new ArrayList<>();
         displayItem = foodItems;
 
         adapter = new DialogFoodAdapter(getContext(), R.layout.dialog_foodview, foodItems);
@@ -70,6 +72,13 @@ public class DietDialog extends DialogFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 displayItem.get(position).setSelected(!displayItem.get(position).isSelected());
+                if (displayItem.get(position).isSelected() && selectedItems.contains(displayItem.get(position))) {
+                    selectedItems.add(displayItem.get(position));
+                }
+                if (!displayItem.get(position).isSelected()) {
+                    selectedItems.remove(displayItem.get(position));
+                }
+
                 filter(searchInput.getEditableText().toString());
             }
         });
@@ -95,8 +104,12 @@ public class DietDialog extends DialogFragment {
         saveButton.setOnClickListener(e -> {
             Log.d(TAG, "onClick: saveButton dialog");
 
+//                CardDietModel cardModel = new CardDietModel(time_selected);
+//                cardModel.setFoodItemsLists(selectedItems);
+//                ((DietDailyPage) requireActivity()).foodItemLists.add(cardModel);
+            inputListener.sentInput(time_selected, selectedItems);
 
-            getDialog().dismiss();
+            Objects.requireNonNull(getDialog()).dismiss();
         });
 
         timeButton.setOnClickListener(e -> {
@@ -134,10 +147,9 @@ public class DietDialog extends DialogFragment {
         }
         displayItem = filterList;
         updateList(filterList);
-
     }
 
-    private void updateList(ArrayList<FoodItem> lists){
+    private void updateList(ArrayList<FoodItem> lists) {
         adapter = new DialogFoodAdapter(getContext(), R.layout.dialog_foodview, lists);
         itemList.setAdapter(adapter);
     }
@@ -145,10 +157,10 @@ public class DietDialog extends DialogFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try{
+        try {
             inputListener = (OnInputListener) getActivity();
-        }catch (ClassCastException e){
-            Log.e(TAG,"onAttach: ClassCastException: " + e.getMessage());
+        } catch (ClassCastException e) {
+            Log.e(TAG, "onAttach: ClassCastException: " + e.getMessage());
         }
     }
 }
