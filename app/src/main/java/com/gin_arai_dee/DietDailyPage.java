@@ -19,6 +19,7 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
     TextView selectedDay;
     TextView totalKcal;
     Button add_item_button;
+
     RecyclerView recyclerView;
     CardDietAdapter cardAdapter;
     ArrayList<CardDietModel> foodItemLists;
@@ -30,14 +31,12 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         Intent intent = getIntent();
         String selected_Day = intent.getStringExtra(DietPage.EXTRA_TEXT);
 
-        foodItemLists = new ArrayList<>();
-
         selectedDay = findViewById(R.id.selectedDay);
         selectedDay.setText(selected_Day);
-
         totalKcal = findViewById(R.id.total_kcal);
         recyclerView = findViewById(R.id.item_list);
 
+        foodItemLists = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this, foodItemLists);
         recyclerView.setAdapter(cardAdapter);
@@ -52,7 +51,6 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void sentInput(String time, ArrayList<FoodItem> lists) {
-        Log.d("DailyDiet", "SendInput");
         CardDietModel dietModel = new CardDietModel(time);
         dietModel.setFoodItemsLists(lists);
         foodItemLists.add(dietModel);
