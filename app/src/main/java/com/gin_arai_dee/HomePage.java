@@ -2,7 +2,6 @@ package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -73,16 +72,6 @@ public class HomePage extends AppCompatActivity {
                 Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show());
         todaySMealButton.setOnClickListener(view ->
                 Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show());
-    }
-
-    // Opens the browse food page
-    private void openFoodPage() {
-        startActivity(new Intent(this, FoodPage.class));
-    }
-
-    // Opens the random food page
-    private void openRandomFoodPage() {
-        startActivity(new Intent(this, RandomFood.class));
     }
 
     // Opens the bill splitter page
