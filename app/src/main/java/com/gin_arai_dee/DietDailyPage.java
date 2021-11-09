@@ -1,5 +1,6 @@
 package com.gin_arai_dee;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,7 +38,6 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         totalKcal = findViewById(R.id.total_kcal);
         recyclerView = findViewById(R.id.item_list);
 
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this, foodItemLists);
         recyclerView.setAdapter(cardAdapter);
@@ -49,14 +49,13 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         });
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void sentInput(String time, ArrayList<FoodItem> lists) {
-        Log.d("DailyDeit", "SendInput");
+        Log.d("DailyDiet", "SendInput");
         CardDietModel dietModel = new CardDietModel(time);
-        //dietModel.setFoodItemsLists(lists);
+        dietModel.setFoodItemsLists(lists);
         foodItemLists.add(dietModel);
-        cardAdapter = new CardDietAdapter(this, foodItemLists);
-        recyclerView.setAdapter(cardAdapter);
-
+        cardAdapter.notifyDataSetChanged();
     }
 }
