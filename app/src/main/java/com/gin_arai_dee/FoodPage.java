@@ -1,7 +1,9 @@
 package com.gin_arai_dee;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -276,6 +278,9 @@ public class FoodPage extends AppCompatActivity {
         cardAdapter = new CardAdapter(this, displayFoodItems);
         recyclerView.setAdapter(cardAdapter);
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         // Search Elements
         searchBar = findViewById(R.id.search_bar);
         searchButton = findViewById(R.id.search_button);
@@ -540,4 +545,30 @@ public class FoodPage extends AppCompatActivity {
         cardAdapter.changeDataSet(displayFoodItems);
         cardAdapter.notifyDataSetChanged();
     }
+
+    ItemTouchHelper.SimpleCallback swipeCallback = new ItemTouchHelper.SimpleCallback(0,
+            ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView,
+                              @NonNull RecyclerView.ViewHolder viewHolder,
+                              @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int id = displayFoodItems.get(viewHolder.getAdapterPosition()).getId();
+            System.out.println(id);
+            if (direction == ItemTouchHelper.LEFT) {
+                db.updateFavoriteStatus(id, 1);
+                System.out.println("Swipe Left");
+            }
+            else {
+                db.updateFavoriteStatus(id, 0);
+                System.out.println("Swipe Right");
+            }
+            cardAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
+        }
+    };
 }
