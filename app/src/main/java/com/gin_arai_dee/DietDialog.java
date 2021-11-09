@@ -96,7 +96,6 @@ public class DietDialog extends DialogFragment {
 
         // save data and send input to parent activity
         saveButton.setOnClickListener(e -> {
-            Log.d(TAG, "onClick: saveButton dialog");
             if (time_selected != null) {
                 inputListener.sentInput(time_selected, selectedItems);
             }
