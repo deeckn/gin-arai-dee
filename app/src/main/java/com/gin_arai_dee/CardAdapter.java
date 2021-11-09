@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +37,23 @@ public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
         String kcal = models.get(position).getKcal() + " kcal";
         holder.calorie.setText(kcal);
         Picasso.get().load(models.get(position).getImage_url()).into(holder.imageView);
+
+        if (models.get(position).getIsFavorite() == 1) {
+            holder.favoriteSwitch.setChecked(true);
+        }
+
+        holder.favoriteSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            DatabaseHelper db = new DatabaseHelper(buttonView.getContext());
+            int id = models.get(position).getId();
+            if (isChecked) {
+                db.updateFavoriteStatus(id, 1);
+                models.get(position).setIsFavorite(1);
+            }
+            else {
+                db.updateFavoriteStatus(id, 0);
+                models.get(position).setIsFavorite(0);
+            }
+        });
     }
 
     @Override

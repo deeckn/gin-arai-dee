@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,35 +25,51 @@
             android:contentDescription="@string/food" />
 
         <TextView
+            android:id="@+id/cardTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cardTitle"
-            android:text="@string/title"
-            android:textSize="22sp"
-            android:textColor="@color/ghost_white"
-            android:textStyle="bold"
             android:layout_below="@id/cardImage"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik"
+            android:text="@string/title"
+            android:textColor="@color/ghost_white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/cardCalorie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/cardTitle"
+            android:fontFamily="@font/rubik"
             android:paddingTop="5dp"
             android:text="@string/calories"
             android:textColor="@color/ghost_white"
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/cardDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cardDescription"
-            android:text="@string/description"
-            android:textSize="18sp"
-            android:textColor="@color/ghost_white"
             android:layout_below="@+id/cardCalorie"
-            android:paddingTop="10dp" />
+            android:fontFamily="@font/rubik"
+            android:paddingTop="10dp"
+            android:text="@string/description"
+            android:textColor="@color/ghost_white"
+            android:textSize="18sp" />
+
+        <Switch
+            android:id="@+id/addFavoriteSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardDescription"
+            android:layout_marginTop="-1dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="@string/add_to_favorites"
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            tools:ignore="UseSwitchCompatOrMaterialXml"
+            android:paddingTop="20dp" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

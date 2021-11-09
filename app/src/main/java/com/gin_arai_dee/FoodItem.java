@@ -9,11 +9,12 @@ public class FoodItem {
     private int kcal;
     private String image_url;
     private boolean selected;
+    private int isFavorite;
 
     public FoodItem(int id, String food_item,
                     String description, String dish_type,
                     String nationality, int kcal,
-                    String image_url) {
+                    String image_url, int isFavorite) {
         this.id = id;
         this.food_item = food_item;
         this.description = description;
@@ -22,6 +23,7 @@ public class FoodItem {
         this.kcal = kcal;
         this.image_url = image_url;
         this.selected = false;
+        this.isFavorite = isFavorite;
     }
 
     public int getId() {
@@ -86,5 +88,13 @@ public class FoodItem {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public int getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(int isFavorite) {
+        this.isFavorite = isFavorite;
     }
 }

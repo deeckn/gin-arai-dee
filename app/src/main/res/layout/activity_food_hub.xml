@@ -61,23 +61,16 @@
             android:columnCount="2">
 
             <!-- Browse Food Card -->
-
-            <!-- Browse Recipes Card -->
-
             <FrameLayout
                 android:layout_width="178dp"
                 android:layout_height="match_parent"
                 android:layout_row="0"
-                android:layout_column="0"
-
-                >
+                android:layout_column="0">
 
                 <ImageButton
                     android:id="@+id/FoodButton"
                     android:layout_width="140dp"
                     android:layout_height="140dp"
-                    android:layout_row="0"
-                    android:layout_column="0"
                     android:layout_marginStart="40dp"
                     android:layout_marginBottom="30dp"
                     android:layout_marginEnd="10dp"
@@ -95,14 +88,14 @@
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
                     android:fontFamily="@font/rubik"
-                    android:text="Food"
+                    android:text="@string/food"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:shadowColor="@color/text_shadow"
-                    android:visibility="visible"></TextView>
+                    android:visibility="visible"/>
             </FrameLayout>
 
-
+            <!-- Dietary Page -->
             <FrameLayout
                 android:layout_width="214dp"
                 android:layout_height="180dp"
@@ -113,8 +106,6 @@
                     android:id="@+id/DietaryButton"
                     android:layout_width="140dp"
                     android:layout_height="140dp"
-                    android:layout_row="0"
-                    android:layout_column="1"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="40dp"
                     android:adjustViewBounds="false"
@@ -124,11 +115,10 @@
                     android:background="@drawable/round_button_wine"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/dietary_home_page" />
+
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="40dp"
-                    android:layout_row="0"
-                    android:layout_column="2"
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
                     android:fontFamily="@font/rubik"
@@ -139,9 +129,8 @@
 
             </FrameLayout>
 
+            <!-- Browse Recipes Card -->
             <FrameLayout android:layout_height="170dp">
-
-
                 <ImageButton
                     android:id="@+id/RecipeButton"
                     android:layout_width="140dp"
@@ -176,22 +165,19 @@
                 android:layout_width="214dp"
                 android:layout_height="200dp"
                 android:layout_row="3"
-                android:layout_column="4"
-                >
+                android:layout_column="4">
 
                 <ImageButton
                     android:id="@+id/RandomButton"
                     android:layout_width="140dp"
                     android:layout_height="140dp"
-                    android:layout_row="1"
-                    android:layout_column="4"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="40dp"
                     android:adjustViewBounds="false"
                     android:background="@drawable/round_button_wine"
                     android:backgroundTint="@color/middle_red_purple"
                     android:clickable="false"
-                    android:contentDescription="random"
+                    android:contentDescription="@string/randomize"
                     android:cropToPadding="true"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/random_food_menu" />
@@ -205,11 +191,8 @@
                     android:text="Random"
                     android:textColor="@color/black"
                     android:textSize="24sp"
-                    android:visibility="visible"></TextView>
+                    android:visibility="visible"/>
             </FrameLayout>
-
-
-
 
         </GridLayout>
 

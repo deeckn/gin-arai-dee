@@ -51,7 +51,6 @@ public class HomePage extends AppCompatActivity {
                 return true;
             }
             else {
-                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT);
                 System.out.println("Not implemented");
                 return false;
             }
@@ -125,7 +124,7 @@ public class HomePage extends AppCompatActivity {
                 String[] tokens = line.split(";");
                 FoodItem food = new FoodItem(
                         Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3],
-                        tokens[4], Integer.parseInt(tokens[5]), tokens[6]
+                        tokens[4], Integer.parseInt(tokens[5]), tokens[6], Integer.parseInt(tokens[7])
                 );
                 db.addFoodItem(food);
             }
