@@ -1,16 +1,13 @@
 package com.gin_arai_dee;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
@@ -26,34 +23,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
     @NonNull
     @Override
     public CardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_card, null);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_card, null);
         return new CardHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CardHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CardHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.title.setText(models.get(position).getFood_item());
         holder.description.setText(models.get(position).getDescription());
         String kcal = models.get(position).getKcal() + " kcal";
         holder.calorie.setText(kcal);
         Picasso.get().load(models.get(position).getImage_url()).into(holder.imageView);
-
-        if (models.get(position).getIsFavorite() == 1) {
-            holder.favoriteSwitch.setChecked(true);
-        }
-
-        holder.favoriteSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            DatabaseHelper db = new DatabaseHelper(buttonView.getContext());
-            int id = models.get(position).getId();
-            if (isChecked) {
-                db.updateFavoriteStatus(id, 1);
-                models.get(position).setIsFavorite(1);
-            }
-            else {
-                db.updateFavoriteStatus(id, 0);
-                models.get(position).setIsFavorite(0);
-            }
-        });
     }
 
     @Override
