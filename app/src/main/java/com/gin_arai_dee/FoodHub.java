@@ -43,8 +43,13 @@ public class FoodHub extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
             }
+            else if (currentItem == R.id.user_page) {
+                openFavoritesPage();
+                finish();
+                overridePendingTransition(0, 0);
+                return true;
+            }
             else {
-                Toast.makeText(FoodHub.this,"Coming Soon!",Toast.LENGTH_SHORT);
                 System.out.println("Not implemented");
                 return false;
             }
@@ -91,5 +96,10 @@ public class FoodHub extends AppCompatActivity {
     // Opens the bill splitter page
     private void openBillSplitterPage() {
         startActivity(new Intent(this, BillSplitterPage.class));
+    }
+
+    // Opens the user favorites page
+    private void openFavoritesPage() {
+        startActivity(new Intent(this, UserPage.class));
     }
 }

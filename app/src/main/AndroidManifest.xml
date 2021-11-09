@@ -31,6 +31,9 @@
             android:name=".HomePage"
             android:exported="true" />
         <activity
+            android:name=".UserPage"
+            android:exported="true"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
