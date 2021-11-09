@@ -1,13 +1,14 @@
 package com.gin_arai_dee;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.ParseException;
@@ -34,13 +35,20 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDi
 
     @Override
     public void onBindViewHolder(@NonNull CardDietHolder holder, int position) {
-        SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
+        // set time
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
         try {
             Date date = f24Hour.parse(models.get(position).getTime());
+            assert date != null;
             holder.dietTime.setText(f24Hour.format(date));
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        ArrayList<FoodItem> foodItems = models.get(position).getFoodItemsLists();
+        DetailAdapter detailAdapter = new DetailAdapter(foodItems);
+        holder.cardRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        holder.cardRecyclerView.setAdapter(detailAdapter);
+
     }
 
     @Override
@@ -51,12 +59,14 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDi
     public static class CardDietHolder extends RecyclerView.ViewHolder {
 
         TextView dietTime;
-        ListView listView;
+        RecyclerView cardRecyclerView;
 
         public CardDietHolder(@NonNull View itemView) {
             super(itemView);
             dietTime = itemView.findViewById(R.id.card_time);
-            listView = itemView.findViewById(R.id.card_itemList);
+            cardRecyclerView = itemView.findViewById(R.id.card_itemList);
+
         }
+
     }
 }
