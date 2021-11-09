@@ -17,7 +17,7 @@
             android:layout_height="75dp"
             android:gravity="center"
             android:textColor="@color/wine"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
