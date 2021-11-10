@@ -1,5 +1,6 @@
 package com.gin_arai_dee;
 
+// Food for BillSplitter page
 public class ListItem {
     private String name;
     private int price;
