@@ -23,13 +23,16 @@
             android:exported="true" />
         <activity
             android:name=".DietPage"
-            android:exported="true" />
+            android:parentActivityName=".FoodHub" />
         <activity
             android:name=".DietDailyPage"
-            android:exported="true" />
+            android:parentActivityName=".DietPage" />
         <activity
             android:name=".HomePage"
             android:exported="true" />
+        <activity
+            android:name=".UserPage"
+            android:exported="true"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

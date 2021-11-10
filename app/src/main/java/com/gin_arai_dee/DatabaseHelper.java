@@ -19,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NATIONALITY   = "NATIONALITY";
     public static final String COLUMN_KCAL          = "KCAL";
     public static final String COLUMN_IMAGE_URL     = "IMAGE_URL";
+    public static final String COLUMN_FAV_STATUS    = "FAV_STATUS";
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
@@ -34,7 +35,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_DISH_TYPE + " TEXT, " +
                 COLUMN_NATIONALITY + " TEXT, " +
                 COLUMN_KCAL + " INTEGER, " +
-                COLUMN_IMAGE_URL + " TEXT)";
+                COLUMN_IMAGE_URL + " TEXT, " +
+                COLUMN_FAV_STATUS + " INTEGER)";
         sqLiteDatabase.execSQL(createTableStatement);
     }
 
@@ -50,6 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_NATIONALITY, food.getNationality());
         cv.put(COLUMN_KCAL, food.getKcal());
         cv.put(COLUMN_IMAGE_URL, food.getImage_url());
+        cv.put(COLUMN_FAV_STATUS, food.getIsFavorite());
         db.insert(FOOD_ITEMS_TABLE, null, cv);
         db.close();
     }
@@ -70,8 +73,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String nationality = cursor.getString(4);
                     int kcal = cursor.getInt(5);
                     String image = cursor.getString(6);
+                    int isFavorite = cursor.getInt(7);
                     FoodItem foodItem =
-                            new FoodItem(id, name, description, dish_type, nationality, kcal, image);
+                            new FoodItem(id, name,
+                            description, dish_type,
+                            nationality, kcal,
+                            image, isFavorite);
                     allFoodItems.add(foodItem);
                 } while (cursor.moveToNext());
             }
@@ -81,8 +88,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         catch (Exception ex) {
             System.out.println("Database Error");
         }
-
         return allFoodItems;
+    }
+
+    public List<FoodItem> getAllFavorites() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<FoodItem> favorites = new ArrayList<>();
+        String query = "SELECT * FROM " + FOOD_ITEMS_TABLE + " WHERE " + COLUMN_FAV_STATUS + "=1";
+
+        try {
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(0);
+                    String name = cursor.getString(1);
+                    String description = cursor.getString(2);
+                    String dish_type = cursor.getString(3);
+                    String nationality = cursor.getString(4);
+                    int kcal = cursor.getInt(5);
+                    String image = cursor.getString(6);
+                    int isFavorite = cursor.getInt(7);
+                    FoodItem foodItem =
+                            new FoodItem(id, name,
+                                    description, dish_type,
+                                    nationality, kcal,
+                                    image, isFavorite);
+                    favorites.add(foodItem);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            db.close();
+        }
+        catch (Exception ex) {
+            System.out.println("Database Error");
+        }
+        return favorites;
+    }
+
+    public void updateFavoriteStatus(int id, int status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_FAV_STATUS, status);
+        db.update(FOOD_ITEMS_TABLE, cv, COLUMN_ID + "=?", new String[] {String.valueOf(id)});
     }
 
     public void clearDatabase() {

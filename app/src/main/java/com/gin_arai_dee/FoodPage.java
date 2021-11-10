@@ -1,12 +1,17 @@
 package com.gin_arai_dee;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -190,6 +195,19 @@ public class FoodPage extends AppCompatActivity {
             updateFoodCards();
             filterFoodItems();
         });
+
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                searchFood(s.toString());
+                updateFoodCards();
+            }
+        });
     }
 
     private void initializeInstances() {
@@ -259,6 +277,9 @@ public class FoodPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardAdapter(this, displayFoodItems);
         recyclerView.setAdapter(cardAdapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         // Search Elements
         searchBar = findViewById(R.id.search_bar);
@@ -494,6 +515,8 @@ public class FoodPage extends AppCompatActivity {
         }
 
         displayFoodItems.addAll(tempList);
+
+        if (!searchBar.getText().toString().equals("")) searchFood(searchBar.getText().toString());
     }
 
     // Food Search
@@ -517,8 +540,35 @@ public class FoodPage extends AppCompatActivity {
     /***
      * Food cards recycler view
      */
+    @SuppressLint("NotifyDataSetChanged")
     private void updateFoodCards() {
-        cardAdapter = new CardAdapter(this, displayFoodItems);
-        recyclerView.setAdapter(cardAdapter);
+        cardAdapter.changeDataSet(displayFoodItems);
+        cardAdapter.notifyDataSetChanged();
     }
+
+    ItemTouchHelper.SimpleCallback swipeCallback = new ItemTouchHelper.SimpleCallback(0,
+            ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView,
+                              @NonNull RecyclerView.ViewHolder viewHolder,
+                              @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int id = displayFoodItems.get(viewHolder.getAdapterPosition()).getId();
+            System.out.println(id);
+            if (direction == ItemTouchHelper.LEFT) {
+                db.updateFavoriteStatus(id, 1);
+                System.out.println("Swipe Left");
+            }
+            else {
+                db.updateFavoriteStatus(id, 0);
+                System.out.println("Swipe Right");
+            }
+            cardAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
+        }
+    };
 }

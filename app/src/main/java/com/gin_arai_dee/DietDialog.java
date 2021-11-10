@@ -23,30 +23,28 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Objects;
 
 public class DietDialog extends DialogFragment {
 
-    public interface OnInputListener{
-        void sentInput(String time,ArrayList<FoodItem> lists);
+    public interface OnInputListener {
+        void sentInput(String time, ArrayList<FoodItem> lists);
     }
-
 
     private static final String TAG = "DietDialog";
     private DatabaseHelper db;
-
-    //widgets
 
     private Button saveButton;
     private Button timeButton;
     private EditText searchInput;
     private ListView itemList;
 
-    DialogFoodAdapter adapter;
     private int hour, minute;
     private String time_selected;
     private ArrayList<FoodItem> foodItems;
     private ArrayList<FoodItem> selectedItems;
     private ArrayList<FoodItem> displayItem;
+    private DialogFoodAdapter adapter;
 
     public OnInputListener inputListener;
 
@@ -61,20 +59,25 @@ public class DietDialog extends DialogFragment {
         itemList = view.findViewById(R.id.dialog_item_list);
 
         foodItems = (ArrayList<FoodItem>) db.getAllFoodItems();
+        selectedItems = new ArrayList<>();
         displayItem = foodItems;
 
         adapter = new DialogFoodAdapter(getContext(), R.layout.dialog_foodview, foodItems);
         itemList.setAdapter(adapter);
 
-        itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                displayItem.get(position).setSelected(!displayItem.get(position).isSelected());
-                filter(searchInput.getEditableText().toString());
+        // item list add or remove item
+        itemList.setOnItemClickListener((adapterView, view1, position, id) -> {
+            displayItem.get(position).setSelected(!displayItem.get(position).isSelected());
+            if (displayItem.get(position).isSelected() && !selectedItems.contains(displayItem.get(position))) {
+                selectedItems.add(displayItem.get(position));
             }
+            if (!displayItem.get(position).isSelected()) {
+                selectedItems.remove(displayItem.get(position));
+            }
+            filter(searchInput.getEditableText().toString());
         });
 
-        // search input
+        // search input and filter text
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -91,23 +94,22 @@ public class DietDialog extends DialogFragment {
             }
         });
 
-
+        // save data and send input to parent activity
         saveButton.setOnClickListener(e -> {
-            Log.d(TAG, "onClick: saveButton dialog");
-
-
-            getDialog().dismiss();
+            if (time_selected != null) {
+                inputListener.sentInput(time_selected, selectedItems);
+            }
+            Objects.requireNonNull(getDialog()).dismiss();
         });
 
+        // time selected and format string
         timeButton.setOnClickListener(e -> {
-            Log.d(TAG, "onClick: timeButton dialog");
             TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker timePicker, int i, int i1) {
                     hour = i;
                     minute = i1;
                     time_selected = hour + ":" + minute;
-
                     SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
                     try {
                         Date date = f24Hour.parse(time_selected);
@@ -126,7 +128,6 @@ public class DietDialog extends DialogFragment {
 
     private void filter(String text) {
         ArrayList<FoodItem> filterList = new ArrayList<>();
-
         for (FoodItem item : foodItems) {
             if (item.getFood_item().toLowerCase().contains(text.toLowerCase()) || item.isSelected()) {
                 filterList.add(item);
@@ -134,10 +135,9 @@ public class DietDialog extends DialogFragment {
         }
         displayItem = filterList;
         updateList(filterList);
-
     }
 
-    private void updateList(ArrayList<FoodItem> lists){
+    private void updateList(ArrayList<FoodItem> lists) {
         adapter = new DialogFoodAdapter(getContext(), R.layout.dialog_foodview, lists);
         itemList.setAdapter(adapter);
     }
@@ -145,10 +145,10 @@ public class DietDialog extends DialogFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try{
+        try {
             inputListener = (OnInputListener) getActivity();
-        }catch (ClassCastException e){
-            Log.e(TAG,"onAttach: ClassCastException: " + e.getMessage());
+        } catch (ClassCastException e) {
+            Log.e(TAG, "onAttach: ClassCastException: " + e.getMessage());
         }
     }
 }

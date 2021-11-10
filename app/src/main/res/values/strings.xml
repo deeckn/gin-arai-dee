@@ -90,6 +90,8 @@
     <string name="calories">Calories</string>
     <string name="description">Description</string>
     <string name="randomize">Randomize</string>
-    <string name="user">User</string>
+    <string name="userPage">User</string>
+    <string name="favorites">Favorites</string>
+    <string name="all_of_your_favorites">All of your favorites!</string>
 
 </resources>

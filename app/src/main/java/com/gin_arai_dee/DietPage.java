@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DietPage extends AppCompatActivity {
 
+    public static final String EXTRA_TEXT = "com.gin_arai_dee.EXTRA_TEXT";
+
     Button button_monday;
     Button button_tuesday;
     Button button_wednesday;
@@ -30,32 +32,40 @@ public class DietPage extends AppCompatActivity {
         button_saturday = findViewById(R.id.saturday_edit);
         button_sunday = findViewById(R.id.sunday_edit);
 
-        button_monday.setOnClickListener(e ->{
-            startActivity(new Intent(this,DietDailyPage.class));
+        button_monday.setOnClickListener(e -> {
+            openDailyDetail("Monday");
         });
 
-        button_tuesday.setOnClickListener(e ->{
-            startActivity(new Intent(this,DietDailyPage.class));
+        button_tuesday.setOnClickListener(e -> {
+            openDailyDetail("Tuesday");
         });
 
-        button_wednesday.setOnClickListener(e ->{
-            startActivity(new Intent(this,DietDailyPage.class));
+        button_wednesday.setOnClickListener(e -> {
+            openDailyDetail("Wednesday");
         });
 
-        button_thursday.setOnClickListener(e ->{
-            startActivity(new Intent(this,DietDailyPage.class));
+        button_thursday.setOnClickListener(e -> {
+            openDailyDetail("Thursday");
         });
 
-        button_friday.setOnClickListener(e ->{
-            startActivity(new Intent(this,DietDailyPage.class));
+        button_friday.setOnClickListener(e -> {
+            openDailyDetail("Friday");
         });
 
-        button_saturday.setOnClickListener(e ->{
-            startActivity(new Intent(this,DietDailyPage.class));
+        button_saturday.setOnClickListener(e -> {
+            openDailyDetail("Saturday");
         });
 
-        button_sunday.setOnClickListener(e ->{
-            startActivity(new Intent(this,DietDailyPage.class));
+        button_sunday.setOnClickListener(e -> {
+            openDailyDetail("Sunday");
         });
     }
+
+    private void openDailyDetail(String day) {
+        Intent intent = new Intent(this, DietDailyPage.class);
+        intent.putExtra(EXTRA_TEXT, day);
+        startActivity(intent);
+    }
+
+
 }

@@ -10,7 +10,7 @@
     android:id="@+id/food_dialog">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="375dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

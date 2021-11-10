@@ -6,6 +6,7 @@ public class CardDietModel {
     private String time;
     private ArrayList<FoodItem> foodItemsLists;
 
+
     public CardDietModel(String time){
         this.time = time;
         this.foodItemsLists = new ArrayList<>();

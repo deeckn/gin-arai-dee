@@ -3,12 +3,12 @@ package com.gin_arai_dee;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -50,8 +50,13 @@ public class HomePage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
             }
+            else if (currentItem == R.id.user_page) {
+                openFavoritesPage();
+                finish();
+                overridePendingTransition(0, 0);
+                return true;
+            }
             else {
-                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT);
                 System.out.println("Not implemented");
                 return false;
             }
@@ -61,34 +66,12 @@ public class HomePage extends AppCompatActivity {
         recipesButton = findViewById(R.id.recipesButton);
         todaySMealButton = findViewById(R.id.todaysMealButton);
 
-        highlightsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(HomePage.this, "Coming Soon!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        recipesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show();
-            }
-        });
-        todaySMealButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    // Opens the browse food page
-    private void openFoodPage() {
-        startActivity(new Intent(this, FoodPage.class));
-    }
-
-    // Opens the random food page
-    private void openRandomFoodPage() {
-        startActivity(new Intent(this, RandomFood.class));
+        highlightsButton.setOnClickListener(view ->
+                Toast.makeText(HomePage.this, "Coming Soon!", Toast.LENGTH_SHORT).show());
+        recipesButton.setOnClickListener(view ->
+                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show());
+        todaySMealButton.setOnClickListener(view ->
+                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show());
     }
 
     // Opens the bill splitter page
@@ -101,6 +84,11 @@ public class HomePage extends AppCompatActivity {
         startActivity(new Intent(this, FoodHub.class));
     }
 
+    // Open the favorites page
+    private void openFavoritesPage() {
+        startActivity(new Intent(this, UserPage.class));
+    }
+
     /***
      * Development Utility for SQLite
      * Adding data when the user opens app for the first time
@@ -108,8 +96,11 @@ public class HomePage extends AppCompatActivity {
 
     private void initializeDatabase() {
         db = new DatabaseHelper(this);
-        db.clearDatabase();
-        importFromCSV();
+        File dbFile = getDatabasePath(DatabaseHelper.DB_NAME);
+        if (!dbFile.exists()) {
+            db.clearDatabase();
+            importFromCSV();
+        }
     }
 
     private void importFromCSV() {
@@ -125,7 +116,7 @@ public class HomePage extends AppCompatActivity {
                 String[] tokens = line.split(";");
                 FoodItem food = new FoodItem(
                         Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3],
-                        tokens[4], Integer.parseInt(tokens[5]), tokens[6]
+                        tokens[4], Integer.parseInt(tokens[5]), tokens[6], Integer.parseInt(tokens[7])
                 );
                 db.addFoodItem(food);
             }
