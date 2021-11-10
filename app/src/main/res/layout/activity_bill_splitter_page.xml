@@ -341,20 +341,6 @@
                     </FrameLayout>
                 </LinearLayout>
             </TabHost>
-
-            <Button
-                android:id="@+id/create_bill_button"
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
-                android:layout_marginStart="10sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginEnd="10sp"
-                android:layout_marginBottom="10sp"
-                android:background="@drawable/create_bill_button"
-                android:fontFamily="@font/rubik_bold"
-                android:text="@string/create_bill"
-                android:textAllCaps="false"
-                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
 
