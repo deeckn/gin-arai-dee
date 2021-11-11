@@ -48,12 +48,23 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         });
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
     @Override
     public void sentInput(String time, ArrayList<FoodItem> lists) {
         CardDietModel dietModel = new CardDietModel(time);
         dietModel.setFoodItemsLists(lists);
         foodItemLists.add(dietModel);
+
+        int itemKCal = Integer.parseInt((String) totalKcal.getText());
+        for(FoodItem item:lists){
+            itemKCal += item.getKcal();
+        }
+
+        totalKcal.setText(itemKCal + "");
+
         cardAdapter.notifyDataSetChanged();
+
+
+
     }
 }
