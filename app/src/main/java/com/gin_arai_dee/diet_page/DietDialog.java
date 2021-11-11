@@ -64,7 +64,7 @@ public class DietDialog extends DialogFragment {
         selectedItems = new ArrayList<>();
         displayItem = foodItems;
 
-        adapter = new DialogFoodAdapter(getContext(), R.layout.dialog_foodview, foodItems);
+        adapter = new DialogFoodAdapter(getContext(), R.layout.dialog_foodview, displayItem);
         itemList.setAdapter(adapter);
 
         // item list add or remove item
