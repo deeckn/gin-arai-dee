@@ -3,11 +3,14 @@ package com.gin_arai_dee.diet_page;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,10 +41,15 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         totalKcal = findViewById(R.id.total_kcal);
         recyclerView = findViewById(R.id.item_list);
 
+
+
         foodItemLists = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this, foodItemLists);
         recyclerView.setAdapter(cardAdapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeCallBack);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         add_item_button = findViewById(R.id.add_item_button);
         add_item_button.setOnClickListener(e -> {
@@ -49,6 +57,26 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
             dialog.show(getSupportFragmentManager(), "MyDialog");
         });
     }
+
+    ItemTouchHelper.SimpleCallback swipeCallBack = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+            return false;
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            if(direction == ItemTouchHelper.RIGHT){
+                // Swiped Right to Edit
+
+            }else{
+                // Swiped Left to Delete
+                foodItemLists.remove(viewHolder.getBindingAdapterPosition());
+            }
+            cardAdapter.notifyDataSetChanged();
+        }
+    };
 
     @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
     @Override
@@ -63,10 +91,7 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
             itemKCal += item.getKcal();
         }
         totalKcal.setText(itemKCal + "");
-
         cardAdapter.notifyDataSetChanged();
-
-
-
     }
+
 }
