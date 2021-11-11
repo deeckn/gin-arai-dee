@@ -93,5 +93,6 @@
     <string name="userPage">User</string>
     <string name="favorites">Favorites</string>
     <string name="all_of_your_favorites">All of your favorites!</string>
+    <string name="start">Start</string>
 
 </resources>

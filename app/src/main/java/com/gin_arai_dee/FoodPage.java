@@ -2,12 +2,14 @@ package com.gin_arai_dee;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,6 +22,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +30,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class FoodPage extends AppCompatActivity {
     // Database
@@ -558,17 +563,31 @@ public class FoodPage extends AppCompatActivity {
         @SuppressLint("NotifyDataSetChanged")
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            int id = displayFoodItems.get(viewHolder.getAdapterPosition()).getId();
-            System.out.println(id);
+            int id = displayFoodItems.get(viewHolder.getBindingAdapterPosition()).getId();
             if (direction == ItemTouchHelper.LEFT) {
-                db.updateFavoriteStatus(id, 1);
-                System.out.println("Swipe Left");
+                db.updateFavoriteStatus(id, 0);
+                Toast.makeText(FoodPage.this, "Removed from favorites", Toast.LENGTH_SHORT).show();
             }
             else {
-                db.updateFavoriteStatus(id, 0);
-                System.out.println("Swipe Right");
+                db.updateFavoriteStatus(id, 1);
+                Toast.makeText(FoodPage.this, "Added to favorites", Toast.LENGTH_SHORT).show();
             }
-            cardAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
+            cardAdapter.notifyItemChanged(viewHolder.getBindingAdapterPosition());
+        }
+
+        @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
+                                @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY,
+                                int actionState, boolean isCurrentlyActive) {
+            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeRightBackgroundColor(ContextCompat.getColor(FoodPage.this, R.color.maximum_yellow_red))
+                    .addSwipeRightActionIcon(R.drawable.ic_baseline_favorite_24)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(FoodPage.this, R.color.wine))
+                    .addSwipeLeftActionIcon(R.drawable.ic_baseline_delete_24)
+                    .create()
+                    .decorate();
+
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
     };
 }
