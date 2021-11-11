@@ -1,8 +1,11 @@
 package com.gin_arai_dee;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
+
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +18,9 @@ import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 
 public class BillSplitterPage extends AppCompatActivity implements BillDialog.onDoneListener{
@@ -56,11 +62,46 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
     Person person;
     ArrayList<Person> people = new ArrayList<>();
 
+    // Bottom Navigation View
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill_splitter_page);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        // Bottom Navigation Settings
+        bottomNavigationView = findViewById(R.id.dock_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.billing_page);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int currentItem = item.getItemId();
+            if (currentItem == R.id.home_page) {
+                openHomePage();
+                finish();
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            else if (currentItem == R.id.food_hub) {
+                openFoodHub();
+                finish();
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            else if (currentItem == R.id.billing_page) {
+                return true;
+            }
+            else if (currentItem == R.id.user_page){
+                openFavoritesPage();
+                finish();
+                overridePendingTransition(0,0);
+                return true;
+            }
+            else {
+                System.out.println("Not implemented");
+                return false;
+            }
+        });
 
         // Initialize bill page elements
         scrollView = findViewById(R.id.bill_scroll_area);
@@ -71,12 +112,12 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         tabHost = findViewById(R.id.tabhost);
         tabHost.setup();
 
-        spec    = tabHost.newTabSpec("List Tab");
+        spec = tabHost.newTabSpec("List Tab");
         spec.setContent(R.id.list_tab);
         spec.setIndicator("☰ List");
         tabHost.addTab(spec);
 
-        spec    = tabHost.newTabSpec("Payer Tab");
+        spec = tabHost.newTabSpec("Payer Tab");
         spec.setContent(R.id.payer_tab);
         spec.setIndicator("웃 Payer");
         tabHost.addTab(spec);
@@ -138,7 +179,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
                 personName.setText(name_add_bar.getText());
                 personName.setTypeface(getResources().getFont(R.font.rubik));
                 personName.setTextSize(20);
-                personName.setTextColor(getResources().getColor(R.color.ghost_white));
+                personName.setTextColor(ContextCompat.getColor(BillSplitterPage.this, R.color.ghost_white));
                 personName.setMinWidth(getResources().getDisplayMetrics().widthPixels/2+170);
                 peopleTextView.add(personName);
 
@@ -146,7 +187,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
                 personPayment.setText(String.valueOf(person.getPayment()));
                 personPayment.setTypeface(getResources().getFont(R.font.rubik));
                 personPayment.setTextSize(20);
-                personPayment.setTextColor(getResources().getColor(R.color.ghost_white));
+                personPayment.setTextColor(ContextCompat.getColor(BillSplitterPage.this, R.color.ghost_white));
                 peopleTextView.add(personPayment);
 
                 name_add_bar.getText().clear();
@@ -163,6 +204,21 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
             people.clear();
             numPeople.setText(String.valueOf(people.size()));
         });
+    }
+
+    // Opens the bill splitter page
+    private void openHomePage() {
+        startActivity(new Intent(this, HomePage.class));
+    }
+
+    // Open the Food Hub
+    private void openFoodHub() {
+        startActivity(new Intent(this, FoodHub.class));
+    }
+
+    // Open the favorites page
+    private void openFavoritesPage() {
+        startActivity(new Intent(this, UserPage.class));
     }
 
     // Open food dialog
@@ -183,7 +239,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         foodName.setText(food.getName());
         foodName.setTypeface(getResources().getFont(R.font.rubik));
         foodName.setTextSize(20);
-        foodName.setTextColor(getResources().getColor(R.color.ghost_white));
+        foodName.setTextColor(ContextCompat.getColor(BillSplitterPage.this, R.color.ghost_white));
         foodName.setMinWidth(getResources().getDisplayMetrics().widthPixels/3+50);
         listTextView.add(foodName);
 
@@ -191,7 +247,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         foodPrice.setText(String.valueOf(food.getPrice()));
         foodPrice.setTypeface(getResources().getFont(R.font.rubik));
         foodPrice.setTextSize(20);
-        foodPrice.setTextColor(getResources().getColor(R.color.ghost_white));
+        foodPrice.setTextColor(ContextCompat.getColor(BillSplitterPage.this, R.color.ghost_white));
         foodPrice.setMinWidth(getResources().getDisplayMetrics().widthPixels/3);
         listTextView.add(foodPrice);
 
@@ -199,7 +255,7 @@ public class BillSplitterPage extends AppCompatActivity implements BillDialog.on
         foodPerPerson.setText(String.valueOf(food.getPerPerson()));
         foodPerPerson.setTypeface(getResources().getFont(R.font.rubik));
         foodPerPerson.setTextSize(20);
-        foodPerPerson.setTextColor(getResources().getColor(R.color.ghost_white));
+        foodPerPerson.setTextColor(ContextCompat.getColor(BillSplitterPage.this, R.color.ghost_white));
         listTextView.add(foodPerPerson);
 
         foodList.addView(foodName);
