@@ -42,7 +42,6 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         recyclerView = findViewById(R.id.item_list);
 
 
-
         foodItemLists = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this, foodItemLists);
@@ -58,7 +57,7 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         });
     }
 
-    ItemTouchHelper.SimpleCallback swipeCallBack = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+    ItemTouchHelper.SimpleCallback swipeCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
             return false;
@@ -67,18 +66,31 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         @SuppressLint("NotifyDataSetChanged")
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            if(direction == ItemTouchHelper.RIGHT){
+            if (direction == ItemTouchHelper.RIGHT) {
                 // Swiped Right to Edit
-
-            }else{
+            } else {
                 // Swiped Left to Delete
+                updateTotalKcal(foodItemLists.get(viewHolder.getBindingAdapterPosition()).getFoodItemsLists(), 1);
                 foodItemLists.remove(viewHolder.getBindingAdapterPosition());
             }
             cardAdapter.notifyDataSetChanged();
         }
     };
 
-    @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
+    @SuppressLint("SetTextI18n")
+    private void updateTotalKcal(ArrayList<FoodItem> lists, int mode) {
+        int itemKCal = Integer.parseInt((String) totalKcal.getText());
+        for (FoodItem item : lists) {
+            if (mode == 0) {
+                itemKCal += item.getKcal();
+            } else {
+                itemKCal -= item.getKcal();
+            }
+        }
+        totalKcal.setText(itemKCal + "");
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void sentInput(String time, ArrayList<FoodItem> lists) {
         CardDietModel dietModel = new CardDietModel(time);
@@ -86,11 +98,7 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         foodItemLists.add(dietModel);
 
         // update total kcal.
-        int itemKCal = Integer.parseInt((String) totalKcal.getText());
-        for(FoodItem item:lists){
-            itemKCal += item.getKcal();
-        }
-        totalKcal.setText(itemKCal + "");
+        updateTotalKcal(lists, 0);
         cardAdapter.notifyDataSetChanged();
     }
 
