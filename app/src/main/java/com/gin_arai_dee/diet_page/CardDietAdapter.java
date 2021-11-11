@@ -32,7 +32,7 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDi
     @NonNull
     @Override
     public CardDietHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_diet, null);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_diet, null);
         return new CardDietHolder(view);
     }
 
@@ -70,6 +70,5 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDi
             cardRecyclerView = itemView.findViewById(R.id.card_itemList);
 
         }
-
     }
 }
