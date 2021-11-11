@@ -57,11 +57,11 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         dietModel.setFoodItemsLists(lists);
         foodItemLists.add(dietModel);
 
+        // update total kcal.
         int itemKCal = Integer.parseInt((String) totalKcal.getText());
         for(FoodItem item:lists){
             itemKCal += item.getKcal();
         }
-
         totalKcal.setText(itemKCal + "");
 
         cardAdapter.notifyDataSetChanged();
