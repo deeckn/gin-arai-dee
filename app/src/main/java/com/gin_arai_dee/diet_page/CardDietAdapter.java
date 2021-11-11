@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.diet_page;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.gin_arai_dee.R;
+import com.gin_arai_dee.general.FoodItem;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

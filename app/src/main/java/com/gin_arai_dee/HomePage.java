@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.gin_arai_dee.bill_splitter.BillSplitterPage;
+import com.gin_arai_dee.food_page.FoodHub;
+import com.gin_arai_dee.food_page.UserPage;
+import com.gin_arai_dee.general.DatabaseHelper;
+import com.gin_arai_dee.general.FoodItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.BufferedReader;
 import java.io.File;

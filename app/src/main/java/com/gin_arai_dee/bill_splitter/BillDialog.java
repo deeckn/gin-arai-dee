@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.bill_splitter;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,6 +15,9 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+
+import com.gin_arai_dee.R;
+
 import java.util.ArrayList;
 import java.util.Objects;
 

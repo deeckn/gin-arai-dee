@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ghost_white"
-    tools:context=".FoodPage">
+    tools:context=".food_page.FoodPage">
 
     <GridLayout
         android:id="@+id/main_grid_layout"

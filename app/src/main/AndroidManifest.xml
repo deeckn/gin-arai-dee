@@ -10,28 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GinAraiDee">
         <activity
-            android:name=".RandomFood"
+            android:name=".food_page.RandomFood"
             android:exported="false" />
         <activity
-            android:name=".FoodHub"
+            android:name=".food_page.FoodHub"
             android:exported="true" />
         <activity
-            android:name=".BillSplitterPage"
+            android:name=".bill_splitter.BillSplitterPage"
             android:exported="true" />
         <activity
-            android:name=".FoodPage"
+            android:name=".food_page.FoodPage"
             android:exported="true" />
         <activity
-            android:name=".DietPage"
-            android:parentActivityName=".FoodHub" />
+            android:name=".diet_page.DietPage"
+            android:parentActivityName=".food_page.FoodHub" />
         <activity
-            android:name=".DietDailyPage"
-            android:parentActivityName=".DietPage" />
+            android:name=".diet_page.DietDailyPage"
+            android:parentActivityName=".diet_page.DietPage" />
         <activity
             android:name=".HomePage"
             android:exported="true" />
         <activity
-            android:name=".UserPage"
+            android:name=".food_page.UserPage"
             android:exported="true"/>
         <activity
             android:name=".MainActivity"

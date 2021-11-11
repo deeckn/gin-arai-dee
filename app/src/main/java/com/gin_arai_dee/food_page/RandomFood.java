@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.food_page;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -13,6 +13,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gin_arai_dee.R;
+import com.gin_arai_dee.general.DatabaseHelper;
+import com.gin_arai_dee.general.FoodItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

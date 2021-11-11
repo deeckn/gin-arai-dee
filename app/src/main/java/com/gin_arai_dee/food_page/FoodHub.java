@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.food_page;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.gin_arai_dee.bill_splitter.BillSplitterPage;
+import com.gin_arai_dee.HomePage;
+import com.gin_arai_dee.R;
+import com.gin_arai_dee.diet_page.DietPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class FoodHub extends AppCompatActivity {

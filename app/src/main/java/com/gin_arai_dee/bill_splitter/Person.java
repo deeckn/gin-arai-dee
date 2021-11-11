@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.bill_splitter;
 
 // Person in BillSplitter page
 public class Person {

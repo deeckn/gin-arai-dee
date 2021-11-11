@@ -1,4 +1,6 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.diet_page;
+
+import com.gin_arai_dee.general.FoodItem;
 
 import java.util.ArrayList;
 

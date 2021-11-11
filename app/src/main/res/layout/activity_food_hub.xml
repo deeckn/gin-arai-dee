@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ghost_white"
-    tools:context=".FoodHub"
+    tools:context=".food_page.FoodHub"
     android:id="@+id/food_hub">
 
     <LinearLayout

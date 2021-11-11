@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.diet_page;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.gin_arai_dee.R;
 
 public class DietPage extends AppCompatActivity {
 

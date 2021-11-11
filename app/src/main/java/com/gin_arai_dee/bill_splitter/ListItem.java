@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.bill_splitter;
 
 // Food for BillSplitter page
 public class ListItem {

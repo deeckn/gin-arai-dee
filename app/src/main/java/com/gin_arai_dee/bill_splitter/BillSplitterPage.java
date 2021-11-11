@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.bill_splitter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -19,6 +19,10 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import com.gin_arai_dee.HomePage;
+import com.gin_arai_dee.R;
+import com.gin_arai_dee.food_page.FoodHub;
+import com.gin_arai_dee.food_page.UserPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;

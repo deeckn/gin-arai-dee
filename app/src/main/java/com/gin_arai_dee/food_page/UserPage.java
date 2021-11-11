@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.food_page;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,6 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.gin_arai_dee.bill_splitter.BillSplitterPage;
+import com.gin_arai_dee.HomePage;
+import com.gin_arai_dee.R;
+import com.gin_arai_dee.general.DatabaseHelper;
+import com.gin_arai_dee.general.FoodItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 

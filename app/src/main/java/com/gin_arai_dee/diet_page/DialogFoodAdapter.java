@@ -1,8 +1,7 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.diet_page;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.gin_arai_dee.R;
+import com.gin_arai_dee.general.FoodItem;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ghost_white"
-    tools:context=".UserPage"
+    tools:context=".food_page.UserPage"
     android:id="@+id/user_page">
 
     <LinearLayout

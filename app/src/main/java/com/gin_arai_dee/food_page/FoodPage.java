@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.food_page;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +23,10 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.gin_arai_dee.R;
+import com.gin_arai_dee.general.DatabaseHelper;
+import com.gin_arai_dee.general.FoodItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;

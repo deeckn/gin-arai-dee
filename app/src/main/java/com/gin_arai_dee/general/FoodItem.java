@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.general;
 
 public class FoodItem {
     private int id;

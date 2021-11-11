@@ -1,4 +1,4 @@
-package com.gin_arai_dee;
+package com.gin_arai_dee.food_page;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.gin_arai_dee.R;
+import com.gin_arai_dee.general.FoodItem;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
