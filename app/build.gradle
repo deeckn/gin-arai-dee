@@ -46,4 +46,5 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.3'
 }
