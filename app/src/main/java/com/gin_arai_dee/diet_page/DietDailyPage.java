@@ -17,6 +17,7 @@ import com.gin_arai_dee.R;
 import com.gin_arai_dee.general.FoodItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInputListener {
 
@@ -90,8 +91,9 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
     public void sentInput(String time, ArrayList<FoodItem> lists) {
         CardDietModel dietModel = new CardDietModel(time);
         dietModel.setFoodItemsLists(lists);
+        dietModel.getHourMinute();
         foodItemLists.add(dietModel);
-
+        Collections.sort(foodItemLists);
         // update total kcal.
         updateTotalKcal(lists, 0);
         cardAdapter.notifyDataSetChanged();
