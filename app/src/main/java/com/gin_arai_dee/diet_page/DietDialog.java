@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -29,17 +30,14 @@ import java.util.Objects;
 
 public class DietDialog extends DialogFragment {
 
+    private static final String TAG = "DietDialog";
+
     public interface OnInputListener {
         void sentInput(String time, ArrayList<FoodItem> lists);
 
     }
 
-
-    private static final String TAG = "DietDialog";
-    private int MODE = 0;
-
     private Button timeButton;
-    private EditText searchInput;
     private ListView itemList;
     private int hour, minute;
     private String time_selected;
@@ -47,9 +45,7 @@ public class DietDialog extends DialogFragment {
     private ArrayList<FoodItem> selectedItems;
     private ArrayList<FoodItem> displayItem;
     private DialogFoodAdapter adapter;
-
     public OnInputListener inputListener;
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_diet_page, container, false);
@@ -57,7 +53,7 @@ public class DietDialog extends DialogFragment {
         DatabaseHelper db = new DatabaseHelper(getContext());
         Button saveButton = view.findViewById(R.id.diet_save_button);
         timeButton = view.findViewById(R.id.time_selected_button);
-        searchInput = view.findViewById(R.id.dialog_search_bar);
+        EditText searchInput = view.findViewById(R.id.dialog_search_bar);
         itemList = view.findViewById(R.id.dialog_item_list);
 
         foodItems = (ArrayList<FoodItem>) db.getAllFoodItems();
@@ -76,7 +72,7 @@ public class DietDialog extends DialogFragment {
             if (!displayItem.get(position).isSelected()) {
                 selectedItems.remove(displayItem.get(position));
             }
-            filter(searchInput.getEditableText().toString());
+            adapter.notifyDataSetChanged();
         });
 
         // search input and filter text
@@ -98,11 +94,10 @@ public class DietDialog extends DialogFragment {
 
         // save data and send input to parent activity
         saveButton.setOnClickListener(e -> {
-            if (time_selected != null) {
-                if (MODE == 0) {
-                    inputListener.sentInput(time_selected, selectedItems);
-                }
-
+            if (time_selected != null && selectedItems.size() != 0) {
+                inputListener.sentInput(time_selected, selectedItems);
+            } else{
+                Toast.makeText(getContext(),"Please Selected Item and Time",Toast.LENGTH_SHORT).show();
             }
             Objects.requireNonNull(getDialog()).dismiss();
         });
@@ -137,7 +132,7 @@ public class DietDialog extends DialogFragment {
             }
         }
         displayItem = filterList;
-        updateList(filterList);
+        updateList(displayItem);
     }
 
     private void updateList(ArrayList<FoodItem> lists) {
