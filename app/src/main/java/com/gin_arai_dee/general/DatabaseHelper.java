@@ -21,13 +21,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_IMAGE_URL     = "IMAGE_URL";
     public static final String COLUMN_FAV_STATUS    = "FAV_STATUS";
 
+    public static final String FOOD_DIET_TABLE      = "FOOD_DIET_TABLE";
+    public static final String COLUMN_DATE          = "COLUMN_DATE";
+    public static final String COLUMN_TIME          = "COLUMN_TIME";
+
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTableStatement =
+        String createFoodTableStatement =
                 "CREATE TABLE " + FOOD_ITEMS_TABLE + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_FOOD_ITEM + " TEXT, " +
@@ -37,7 +41,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_KCAL + " INTEGER, " +
                 COLUMN_IMAGE_URL + " TEXT, " +
                 COLUMN_FAV_STATUS + " INTEGER)";
-        sqLiteDatabase.execSQL(createTableStatement);
+        sqLiteDatabase.execSQL(createFoodTableStatement);
+
+        String createDietTable =
+                "CREATE TABLE " + FOOD_DIET_TABLE + " (" +
+                 COLUMN_DATE + " TEXT PRIMARY KEY, " +
+                 COLUMN_TIME + " TEXT, " +
+                 COLUMN_ID + " INTEGER)";
+
+        sqLiteDatabase.execSQL(createDietTable);
     }
 
     @Override
@@ -135,5 +147,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void clearDatabase() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(FOOD_ITEMS_TABLE, null, null);
+    }
+
+    public List<FoodItem> getAtDate(String date) {
+        return new ArrayList<>();
     }
 }
