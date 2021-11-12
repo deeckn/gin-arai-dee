@@ -1,5 +1,6 @@
 package com.gin_arai_dee.diet_page;
 
+import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -12,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -29,42 +30,37 @@ import java.util.Objects;
 
 public class DietDialog extends DialogFragment {
 
+    private static final String TAG = "DietDialog";
+
     public interface OnInputListener {
         void sentInput(String time, ArrayList<FoodItem> lists);
+
     }
 
-    private static final String TAG = "DietDialog";
-    private DatabaseHelper db;
-
-    private Button saveButton;
     private Button timeButton;
-    private EditText searchInput;
     private ListView itemList;
-
     private int hour, minute;
     private String time_selected;
     private ArrayList<FoodItem> foodItems;
     private ArrayList<FoodItem> selectedItems;
     private ArrayList<FoodItem> displayItem;
     private DialogFoodAdapter adapter;
-
     public OnInputListener inputListener;
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_diet_page, container, false);
 
-        db = new DatabaseHelper(getContext());
-        saveButton = view.findViewById(R.id.diet_save_button);
+        DatabaseHelper db = new DatabaseHelper(getContext());
+        Button saveButton = view.findViewById(R.id.diet_save_button);
         timeButton = view.findViewById(R.id.time_selected_button);
-        searchInput = view.findViewById(R.id.dialog_search_bar);
+        EditText searchInput = view.findViewById(R.id.dialog_search_bar);
         itemList = view.findViewById(R.id.dialog_item_list);
 
         foodItems = (ArrayList<FoodItem>) db.getAllFoodItems();
         selectedItems = new ArrayList<>();
         displayItem = foodItems;
 
-        adapter = new DialogFoodAdapter(getContext(), R.layout.dialog_foodview, foodItems);
+        adapter = new DialogFoodAdapter(getContext(), R.layout.dialog_foodview, displayItem);
         itemList.setAdapter(adapter);
 
         // item list add or remove item
@@ -76,7 +72,7 @@ public class DietDialog extends DialogFragment {
             if (!displayItem.get(position).isSelected()) {
                 selectedItems.remove(displayItem.get(position));
             }
-            filter(searchInput.getEditableText().toString());
+            adapter.notifyDataSetChanged();
         });
 
         // search input and filter text
@@ -98,27 +94,27 @@ public class DietDialog extends DialogFragment {
 
         // save data and send input to parent activity
         saveButton.setOnClickListener(e -> {
-            if (time_selected != null) {
+            if (time_selected != null && selectedItems.size() != 0) {
                 inputListener.sentInput(time_selected, selectedItems);
+            } else{
+                Toast.makeText(getContext(),"Please Selected Item and Time",Toast.LENGTH_SHORT).show();
             }
             Objects.requireNonNull(getDialog()).dismiss();
         });
 
         // time selected and format string
         timeButton.setOnClickListener(e -> {
-            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                    hour = i;
-                    minute = i1;
-                    time_selected = hour + ":" + minute;
-                    SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
-                    try {
-                        Date date = f24Hour.parse(time_selected);
-                        timeButton.setText(f24Hour.format(date));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), (timePicker, hh, mm) -> {
+                hour = hh;
+                minute = mm;
+                time_selected = hour + ":" + minute;
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
+                try {
+                    Date date = f24Hour.parse(time_selected);
+                    assert date != null;
+                    timeButton.setText(f24Hour.format(date));
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
                 }
             }, 24, 0, true);
             timePickerDialog.updateTime(hour, minute);
@@ -136,7 +132,7 @@ public class DietDialog extends DialogFragment {
             }
         }
         displayItem = filterList;
-        updateList(filterList);
+        updateList(displayItem);
     }
 
     private void updateList(ArrayList<FoodItem> lists) {
