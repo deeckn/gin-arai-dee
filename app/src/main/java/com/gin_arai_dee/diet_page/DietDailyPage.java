@@ -3,7 +3,6 @@ package com.gin_arai_dee.diet_page;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -57,7 +56,7 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         });
     }
 
-    ItemTouchHelper.SimpleCallback swipeCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+    ItemTouchHelper.SimpleCallback swipeCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
             return false;
@@ -66,13 +65,9 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         @SuppressLint("NotifyDataSetChanged")
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            if (direction == ItemTouchHelper.RIGHT) {
-                // Swiped Right to Edit
-            } else {
-                // Swiped Left to Delete
-                updateTotalKcal(foodItemLists.get(viewHolder.getBindingAdapterPosition()).getFoodItemsLists(), 1);
-                foodItemLists.remove(viewHolder.getBindingAdapterPosition());
-            }
+            // Swiped Left to Delete
+            updateTotalKcal(foodItemLists.get(viewHolder.getBindingAdapterPosition()).getFoodItemsLists(), 1);
+            foodItemLists.remove(viewHolder.getBindingAdapterPosition());
             cardAdapter.notifyDataSetChanged();
         }
     };
