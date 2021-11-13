@@ -83,7 +83,7 @@
                     app:srcCompat="@drawable/food_food_menu" />
 
                 <TextView
-                    android:layout_width="65dp"
+                    android:layout_width="56dp"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
@@ -117,12 +117,12 @@
                     app:srcCompat="@drawable/dietary_home_page" />
 
                 <TextView
-                    android:layout_width="150dp"
+                    android:layout_width="145dp"
                     android:layout_height="40dp"
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
                     android:fontFamily="@font/rubik"
-                    android:text="Dietary"
+                    android:text="@string/dietary"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:visibility="visible"/>
@@ -135,8 +135,6 @@
                     android:id="@+id/RecipeButton"
                     android:layout_width="140dp"
                     android:layout_height="140dp"
-                    android:layout_row="0"
-                    android:layout_column="1"
                     android:layout_marginStart="40dp"
                     android:layout_marginEnd="40dp"
                     android:adjustViewBounds="false"
@@ -149,19 +147,20 @@
                     app:srcCompat="@drawable/recipes_food_menu" />
 
                 <TextView
-                    android:layout_width="135dp"
+                    android:layout_width="128dp"
                     android:layout_height="30dp"
 
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
                     android:fontFamily="@font/rubik"
-                    android:text="Recipes"
+                    android:text="@string/recipes"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:visibility="visible" />
             </FrameLayout>
 
-            <FrameLayout android:layout_height="166dp">
+            <FrameLayout android:layout_height="166dp"
+                tools:ignore="ExtraText">
                 android:layout_width="214dp"
                 android:layout_height="200dp"
                 android:layout_row="3"
@@ -183,19 +182,17 @@
                     app:srcCompat="@drawable/random_food_menu" />
 
                 <TextView
-                    android:layout_width="140dp"
+                    android:layout_width="134dp"
                     android:layout_height="25dp"
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
                     android:fontFamily="@font/rubik"
-                    android:text="Random"
+                    android:text="@string/random"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:visibility="visible"/>
             </FrameLayout>
-
         </GridLayout>
-
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
