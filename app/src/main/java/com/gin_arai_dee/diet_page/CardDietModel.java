@@ -33,6 +33,10 @@ public class CardDietModel implements Comparable<CardDietModel>{
         return foodItemsLists;
     }
 
+    public void updateList(FoodItem foodItem){
+        foodItemsLists.add(foodItem);
+    }
+
     public int[] getHourMinute(){
         String[] temp = getTime().split(":");
         int[] res = new int[temp.length];
