@@ -3,6 +3,7 @@ package com.gin_arai_dee.diet_page;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gin_arai_dee.R;
+import com.gin_arai_dee.general.DatabaseHelper;
 import com.gin_arai_dee.general.FoodItem;
 
 import java.util.ArrayList;
@@ -21,28 +23,29 @@ import java.util.Collections;
 
 public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInputListener {
 
-    TextView selectedDay;
-    TextView totalKcal;
-    Button add_item_button;
+    private DatabaseHelper db;
+
+    private TextView totalKcal;
+    private String date;
 
     RecyclerView recyclerView;
-    CardDietAdapter cardAdapter;
-    ArrayList<CardDietModel> foodItemLists;
+    private CardDietAdapter cardAdapter;
+    private ArrayList<CardDietModel> foodItemLists;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_page_daily);
+        db = new DatabaseHelper(getApplicationContext());
         Intent intent = getIntent();
-        String selected_Day = intent.getStringExtra(DietPage.EXTRA_TEXT);
+        date = intent.getStringExtra(DietPage.EXTRA_TEXT);
 
-        selectedDay = findViewById(R.id.selectedDay);
-        selectedDay.setText(selected_Day);
+        TextView selectedDay = findViewById(R.id.selectedDay);
+        selectedDay.setText(date);
         totalKcal = findViewById(R.id.total_kcal);
         recyclerView = findViewById(R.id.item_list);
 
-
-        foodItemLists = new ArrayList<>();
+        foodItemLists = loadItem(date);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this, foodItemLists);
         recyclerView.setAdapter(cardAdapter);
@@ -50,7 +53,7 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeCallBack);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
-        add_item_button = findViewById(R.id.add_item_button);
+        Button add_item_button = findViewById(R.id.add_item_button);
         add_item_button.setOnClickListener(e -> {
             DietDialog dialog = new DietDialog();
             dialog.show(getSupportFragmentManager(), "MyDialog");
@@ -65,10 +68,12 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
 
         @SuppressLint("NotifyDataSetChanged")
         @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+        public void onSwiped(@NonNull RecyclerView.ViewHolder holder, int direction) {
             // Swiped Left to Delete
-            updateTotalKcal(foodItemLists.get(viewHolder.getBindingAdapterPosition()).getFoodItemsLists(), 1);
-            foodItemLists.remove(viewHolder.getBindingAdapterPosition());
+            //db.deleteDietItem(date,foodItemLists.get(holder.getBindingAdapterPosition()).getTime());
+            updateTotalKcal(foodItemLists.get(holder.getBindingAdapterPosition()).getFoodItemsLists(), 1);
+            foodItemLists.remove(holder.getBindingAdapterPosition());
+
             cardAdapter.notifyDataSetChanged();
         }
     };
@@ -94,9 +99,34 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         dietModel.getHourMinute();
         foodItemLists.add(dietModel);
         Collections.sort(foodItemLists);
+        db.addDietItem(date, time, lists);
         // update total kcal.
         updateTotalKcal(lists, 0);
         cardAdapter.notifyDataSetChanged();
+    }
+
+    public ArrayList<CardDietModel> loadItem(String date) {
+        Log.d("Load Item",date);
+        ArrayList<CardDietModel> cardDietModels = new ArrayList<>();
+        ArrayList<DietBuffer> dietBuffers = (ArrayList<DietBuffer>) db.getAtDate(date);
+        if(dietBuffers.size() == 0) return new ArrayList<>();
+
+        ArrayList<String> timeBuffer = new ArrayList<>();
+        for (int i = 0; i < dietBuffers.size(); i++) {
+            if (!timeBuffer.contains(dietBuffers.get(i).getTime())) {
+                timeBuffer.add(dietBuffers.get(i).getTime());
+            }
+        }
+        for (int i = 0; i < timeBuffer.size(); i++) {
+            CardDietModel cardDietModel = new CardDietModel(timeBuffer.get(i));
+            for (int j = 0; j < dietBuffers.size(); j++) {
+                if (dietBuffers.get(j).equals(timeBuffer.get(i))) {
+                    cardDietModel.updateList(db.findFoodByID(dietBuffers.get(j).getID()));
+                }
+            }
+            cardDietModels.add(cardDietModel);
+        }
+        return cardDietModels;
     }
 
 }
