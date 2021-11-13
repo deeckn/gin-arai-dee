@@ -122,7 +122,7 @@
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
                     android:fontFamily="@font/rubik"
-                    android:text="Dietary"
+                    android:text="@string/dietary"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:visibility="visible"/>
@@ -135,8 +135,6 @@
                     android:id="@+id/RecipeButton"
                     android:layout_width="140dp"
                     android:layout_height="140dp"
-                    android:layout_row="0"
-                    android:layout_column="1"
                     android:layout_marginStart="40dp"
                     android:layout_marginEnd="40dp"
                     android:adjustViewBounds="false"
@@ -155,13 +153,14 @@
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
                     android:fontFamily="@font/rubik"
-                    android:text="Recipes"
+                    android:text="@string/recipes"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:visibility="visible" />
             </FrameLayout>
 
-            <FrameLayout android:layout_height="166dp">
+            <FrameLayout android:layout_height="166dp"
+                tools:ignore="ExtraText">
                 android:layout_width="214dp"
                 android:layout_height="200dp"
                 android:layout_row="3"
@@ -188,14 +187,12 @@
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
                     android:fontFamily="@font/rubik"
-                    android:text="Random"
+                    android:text="@string/random"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:visibility="visible"/>
             </FrameLayout>
-
         </GridLayout>
-
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
