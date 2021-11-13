@@ -1,5 +1,6 @@
 package com.gin_arai_dee.general;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -198,6 +199,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.e("DataBase", ex.getMessage());
         }
         return bufferList;
+    }
+
+    public void addDietItem(String date, String time, List<FoodItem> list) {
+        if (list == null) return;
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (FoodItem item : list) {
+            ContentValues cv = new ContentValues();
+            cv.put(COLUMN_DATE, date);
+            cv.put(COLUMN_TIME, time);
+            cv.put(COLUMN_ID, item.getId());
+            db.insert(FOOD_DIET_TABLE, null, cv);
+        }
+    }
+
+    @SuppressLint("Recycle")
+    public void deleteDietItem(String date, String time) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + FOOD_DIET_TABLE + " WHERE " + COLUMN_DATE + " = " + date + " AND " + COLUMN_TIME + " = " + time;
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.close();
+        db.close();
+
     }
 
 
