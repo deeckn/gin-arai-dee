@@ -17,11 +17,11 @@ public class DietBuffer {
         this.time = time;
     }
 
-    public int getiD() {
+    public int getID() {
         return iD;
     }
 
-    public void setiD(int iD) {
+    public void setID(int iD) {
         this.iD = iD;
     }
 }
