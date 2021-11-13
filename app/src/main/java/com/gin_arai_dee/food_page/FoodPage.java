@@ -215,6 +215,7 @@ public class FoodPage extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 searchFood(s.toString());
                 updateFoodCards();
+                filterFoodItems();
             }
         });
     }
