@@ -83,7 +83,7 @@
                     app:srcCompat="@drawable/food_food_menu" />
 
                 <TextView
-                    android:layout_width="65dp"
+                    android:layout_width="56dp"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
@@ -117,7 +117,7 @@
                     app:srcCompat="@drawable/dietary_home_page" />
 
                 <TextView
-                    android:layout_width="150dp"
+                    android:layout_width="145dp"
                     android:layout_height="40dp"
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
@@ -149,7 +149,7 @@
                     app:srcCompat="@drawable/recipes_food_menu" />
 
                 <TextView
-                    android:layout_width="135dp"
+                    android:layout_width="128dp"
                     android:layout_height="30dp"
 
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
@@ -183,7 +183,7 @@
                     app:srcCompat="@drawable/random_food_menu" />
 
                 <TextView
-                    android:layout_width="140dp"
+                    android:layout_width="134dp"
                     android:layout_height="25dp"
                     android:layout_gravity="bottom|center|center_horizontal|center_vertical|end"
                     android:clickable="false"
