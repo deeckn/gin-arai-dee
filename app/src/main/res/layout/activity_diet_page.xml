@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/ghost_white">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:paddingTop="40dp"
+        android:text="@string/dietary_planner"
+        android:textAlignment="center"
+        android:textColor="@color/wine"
+        android:textSize="40sp"
+        tools:ignore="RtlSymmetry" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/title"
+        android:layout_marginHorizontal="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Monday -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/monday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="40dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:background="@color/monday">
+
+                    <TextView
+                        android:layout_column="0"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:fontFamily="@font/rubik_bold"
+                        android:padding="20dp"
+                        android:paddingStart="0dp"
+                        android:text="@string/monday"
+                        android:textSize="25sp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <Button
+                        android:id="@+id/monday_edit"
+                        android:layout_column="1"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/diet_check_button"
+                        android:fontFamily="@font/rubik_bold"
+                        android:text="@string/edit"
+                        android:textColor="@color/wine"
+                        android:textSize="20sp" />
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Tuesday -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tuesday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/monday_card"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="40dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/tuesday"
+                    android:columnCount="2">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_marginStart="35dp"
+                        android:fontFamily="@font/rubik_bold"
+                        android:padding="20dp"
+                        android:paddingStart="0dp"
+                        android:text="@string/tuesday"
+                        android:textSize="25sp"
+                        android:paddingEnd="50dp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <Button
+                        android:id="@+id/tuesday_edit"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_column="1"
+                        android:background="@drawable/diet_check_button"
+                        android:fontFamily="@font/rubik_bold"
+                        android:text="@string/edit"
+                        android:textColor="@color/wine"
+                        android:textSize="20sp"/>
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Wednesday -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wednesday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tuesday_card"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="40dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/wednesday"
+                    android:columnCount="2">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_marginStart="35dp"
+                        android:fontFamily="@font/rubik_bold"
+                        android:padding="20dp"
+                        android:paddingStart="0dp"
+                        android:text="@string/wednesday"
+                        android:textSize="25sp"
+                        android:paddingEnd="50dp"
+                        tools:ignore="RtlSymmetry"/>
+
+                    <Button
+                        android:id="@+id/wednesday_edit"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_column="1"
+                        android:background="@drawable/diet_check_button"
+                        android:fontFamily="@font/rubik_bold"
+                        android:text="@string/edit"
+                        android:textColor="@color/wine"
+                        android:textSize="20sp"
+                        android:layout_marginEnd="40dp"/>
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Thursday -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/thursday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/wednesday_card"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="40dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/thursday"
+                    android:columnCount="2">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_marginStart="35dp"
+                        android:fontFamily="@font/rubik_bold"
+                        android:padding="20dp"
+                        android:paddingStart="0dp"
+                        android:text="@string/thursday"
+                        android:textSize="25sp"
+                        android:paddingEnd="50dp"
+                        tools:ignore="RtlSymmetry"/>
+
+                    <Button
+                        android:id="@+id/thursday_edit"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_column="1"
+                        android:background="@drawable/diet_check_button"
+                        android:fontFamily="@font/rubik_bold"
+                        android:text="@string/edit"
+                        android:textColor="@color/wine"
+                        android:textSize="20sp" />
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Friday -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/friday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/thursday_card"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="40dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/friday"
+                    android:columnCount="2">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_marginStart="35dp"
+                        android:fontFamily="@font/rubik_bold"
+                        android:padding="20dp"
+                        android:paddingStart="0dp"
+                        android:text="@string/friday"
+                        android:textSize="25sp"
+                        android:paddingEnd="50dp"
+                        tools:ignore="RtlSymmetry"/>
+
+                    <Button
+                        android:id="@+id/friday_edit"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_column="1"
+                        android:background="@drawable/diet_check_button"
+                        android:fontFamily="@font/rubik_bold"
+                        android:text="@string/edit"
+                        android:textColor="@color/wine"
+                        android:textSize="20sp" />
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Saturday -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/saturday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/friday_card"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="40dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/saturday"
+                    android:columnCount="2">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_marginStart="35dp"
+                        android:fontFamily="@font/rubik_bold"
+                        android:padding="20dp"
+                        android:paddingStart="0dp"
+                        android:text="@string/saturday"
+                        android:textSize="25sp"
+                        android:paddingEnd="50dp"
+                        tools:ignore="RtlSymmetry"/>
+
+                    <Button
+                        android:id="@+id/saturday_edit"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_column="1"
+                        android:background="@drawable/diet_check_button"
+                        android:fontFamily="@font/rubik_bold"
+                        android:text="@string/edit"
+                        android:textColor="@color/wine"
+                        android:textSize="20sp" />
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sunday -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/sunday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/saturday_card"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="40dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/sunday"
+                    android:columnCount="2">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_marginStart="35dp"
+                        android:fontFamily="@font/rubik_bold"
+                        android:padding="20dp"
+                        android:paddingStart="0dp"
+                        android:text="@string/sunday"
+                        android:textSize="25sp"
+                        android:paddingEnd="50dp"
+                        tools:ignore="RtlSymmetry"/>
+
+                    <Button
+                        android:id="@+id/sunday_edit"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_column="1"
+                        android:background="@drawable/diet_check_button"
+                        android:fontFamily="@font/rubik_bold"
+                        android:text="@string/edit"
+                        android:textColor="@color/wine"
+                        android:textSize="20sp" />
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

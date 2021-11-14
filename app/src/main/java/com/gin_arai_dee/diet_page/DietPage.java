@@ -24,12 +24,12 @@ public class DietPage extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diet_page_main);
+        setContentView(R.layout.activity_diet_page);
 
         button_monday       = findViewById(R.id.monday_edit);
         button_tuesday      = findViewById(R.id.tuesday_edit);
         button_wednesday    = findViewById(R.id.wednesday_edit);
-        button_thursday     = findViewById(R.id.thusday_edit);
+        button_thursday     = findViewById(R.id.thursday_edit);
         button_friday       = findViewById(R.id.friday_edit);
         button_saturday     = findViewById(R.id.saturday_edit);
         button_sunday       = findViewById(R.id.sunday_edit);

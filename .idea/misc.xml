@@ -23,8 +23,6 @@
         <entry key="..\:/AOOP_Group_Project/app/src/main/res/menu/menu_navigation.xml" value="0.36666666666666664" />
         <entry key="..\:/AOOP_Group_Project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.246875" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_bill_food_dialog.xml" value="0.264" />
-        <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_diet_page_daily.xml" value="0.1503623188405797" />
-        <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_diet_page_main.xml" value="0.1503623188405797" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_food_hub.xml" value="0.1359375" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/activity_user_page.xml" value="0.1359375" />
         <entry key="..\:/Project/gin-arai-dee/app/src/main/res/layout/card_diet.xml" value="0.15885416666666666" />
@@ -50,6 +48,7 @@
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/menu/menu_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Beam/StudioProjects/gin-arai-dee/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
         <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_bill_food_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_diet_page.xml" value="0.36666666666666664" />
         <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_diet_page_daily.xml" value="0.36666666666666664" />
         <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_diet_page_main.xml" value="0.24635416666666668" />
         <entry key="..\:/gin-arai-dee/app/src/main/res/layout/activity_food_hub.xml" value="0.24635416666666668" />
