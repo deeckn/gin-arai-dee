@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.gin_arai_dee.bill_splitter.BillSplitterPage;
+import com.gin_arai_dee.diet_page.DietPage;
 import com.gin_arai_dee.food_page.FoodHub;
 import com.gin_arai_dee.food_page.UserPage;
 import com.gin_arai_dee.general.DatabaseHelper;
@@ -71,12 +72,17 @@ public class HomePage extends AppCompatActivity {
         recipesButton = findViewById(R.id.recipesButton);
         todaySMealButton = findViewById(R.id.todaysMealButton);
 
-        highlightsButton.setOnClickListener(view ->
-                Toast.makeText(HomePage.this, "Coming Soon!", Toast.LENGTH_SHORT).show());
+        highlightsButton.setOnClickListener(view -> {
+            openFoodHub();
+            finish();
+            overridePendingTransition(0, 0);
+        });
         recipesButton.setOnClickListener(view ->
                 Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show());
-        todaySMealButton.setOnClickListener(view ->
-                Toast.makeText(HomePage.this,"Coming Soon!",Toast.LENGTH_SHORT).show());
+        todaySMealButton.setOnClickListener(view -> {
+            openDietPage();
+            overridePendingTransition(0, 0);
+        });
     }
 
     // Opens the bill splitter page
@@ -92,6 +98,11 @@ public class HomePage extends AppCompatActivity {
     // Open the favorites page
     private void openFavoritesPage() {
         startActivity(new Intent(this, UserPage.class));
+    }
+
+    // Opens the dietary planner
+    private void openDietPage() {
+        startActivity(new Intent(this, DietPage.class));
     }
 
     /***

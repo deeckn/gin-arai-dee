@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.gin_arai_dee.R;
@@ -71,7 +72,7 @@ public class BillDialog extends DialogFragment {
             checked.add(personBox);
             personBox.setText(p.getName());
             personBox.setTypeface(getResources().getFont(R.font.rubik));
-            personBox.setTextColor(getResources().getColor(R.color.ghost_white));
+            personBox.setTextColor(ContextCompat.getColor(requireContext(), R.color.ghost_white));
             personBox.setTextSize(20);
             personList.addView(personBox);
         }
@@ -80,11 +81,11 @@ public class BillDialog extends DialogFragment {
         selectAll.setOnCheckedChangeListener((compoundButton, b) -> {
             for (int i = 0; i < checked.size(); i++) {
                 if(selectAll.isChecked()) {
-                    selectAll.setTextColor(getResources().getColor(R.color.ghost_white));
+                    selectAll.setTextColor(ContextCompat.getColor(requireContext(), R.color.ghost_white));
                     checked.get(i).setChecked(true);
                 }
                 else {
-                    selectAll.setTextColor(getResources().getColor(R.color.charcoal));
+                    selectAll.setTextColor(ContextCompat.getColor(requireContext(), R.color.charcoal));
                     checked.get(i).setChecked(false);
                 }
             }
@@ -187,23 +188,25 @@ public class BillDialog extends DialogFragment {
         // Update data to person and food item
         done = view.findViewById(R.id.done_button);
         done.setOnClickListener(view118 -> {
-            if (!equal.isPressed()) result = Integer.parseInt(input);
-            for (int i = 0; i < checked.size(); i++) {
-                if (checked.get(i).isChecked()) numPerson++;
-            }
-            if (numPerson > 0 && result > 0) {
-                perPerson = result/numPerson;
+            if (!input.equals("")) {
+                if (!equal.isPressed()) result = Integer.parseInt(input);
                 for (int i = 0; i < checked.size(); i++) {
-                    if (checked.get(i).isChecked()) {
-                        for (Person p: people) {
-                            if (checked.get(i).getText() == p.getName()) p.updatePayment(perPerson);
+                    if (checked.get(i).isChecked()) numPerson++;
+                }
+                if (numPerson > 0 && result > 0) {
+                    perPerson = result/numPerson;
+                    for (int i = 0; i < checked.size(); i++) {
+                        if (checked.get(i).isChecked()) {
+                            for (Person p: people) {
+                                if (checked.get(i).getText() == p.getName()) p.updatePayment(perPerson);
+                            }
                         }
                     }
+                    food = new ListItem(name, result, perPerson);
+                    onDoneListener.sendFood(food);
+                    onDoneListener.sendResult(result);
+                    dismiss();
                 }
-                food = new ListItem(name, result, perPerson);
-                onDoneListener.sendFood(food);
-                onDoneListener.sendResult(result);
-                dismiss();
             }
         });
     }
