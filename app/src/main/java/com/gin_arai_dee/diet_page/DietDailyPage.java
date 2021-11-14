@@ -73,7 +73,6 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
             db.deleteDietItem(date,foodItemLists.get(holder.getBindingAdapterPosition()).getTime());
             updateTotalKcal(foodItemLists.get(holder.getBindingAdapterPosition()).getFoodItemsLists(), 1);
             foodItemLists.remove(holder.getBindingAdapterPosition());
-
             cardAdapter.notifyDataSetChanged();
         }
     };
@@ -111,7 +110,6 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         ArrayList<DietBuffer> buffers = (ArrayList<DietBuffer>) db.getAllDietItem(date);
         // filter time
         for (DietBuffer dBuffer : buffers) {
-            Log.e("LIST",dBuffer.getTime() + "-->" + dBuffer.getID());
             if (!timeBuffers.contains(dBuffer.getTime())) {
                 timeBuffers.add(dBuffer.getTime());
             }

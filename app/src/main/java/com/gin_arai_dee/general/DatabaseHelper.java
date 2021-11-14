@@ -175,7 +175,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_TIME, time);
         cv.put(COLUMN_ID, foodItem.getId());
-        long res = db.insert(DIET_TABLE, null, cv);
+        db.insert(DIET_TABLE, null, cv);
         db.close();
     }
 
@@ -199,7 +199,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     int myID = cursor.getInt(3);
                     DietBuffer buffer = new DietBuffer(myTime, myID);
                     dietBuffers.add(buffer);
-                    Log.d("GETALL",myTime);
                 } while (cursor.moveToNext());
             }
             cursor.close();
@@ -210,16 +209,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return dietBuffers;
     }
 
-
     @SuppressLint("Recycle")
     public void deleteDietItem(String date, String time) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM " + DIET_TABLE + " WHERE " + COLUMN_DATE + " = " + '"' + date + '"'  + " AND " + COLUMN_TIME + " = " + '"'  + time + '"' ;
-        Log.d("DELETE",date + " -- > " + time);
         db.execSQL(query);
         db.close();
-
     }
-
 
 }
