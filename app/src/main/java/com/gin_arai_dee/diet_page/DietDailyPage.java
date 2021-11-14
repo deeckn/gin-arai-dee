@@ -45,7 +45,7 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         totalKcal = findViewById(R.id.total_kcal);
         recyclerView = findViewById(R.id.item_list);
 
-        foodItemLists = loadItem(date);
+        foodItemLists = loadData(date);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardAdapter = new CardDietAdapter(this, foodItemLists);
         recyclerView.setAdapter(cardAdapter);
@@ -70,7 +70,7 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder holder, int direction) {
             // Swiped Left to Delete
-            //db.deleteDietItem(date,foodItemLists.get(holder.getBindingAdapterPosition()).getTime());
+            db.deleteDietItem(date,foodItemLists.get(holder.getBindingAdapterPosition()).getTime());
             updateTotalKcal(foodItemLists.get(holder.getBindingAdapterPosition()).getFoodItemsLists(), 1);
             foodItemLists.remove(holder.getBindingAdapterPosition());
 
@@ -99,34 +99,37 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         dietModel.getHourMinute();
         foodItemLists.add(dietModel);
         Collections.sort(foodItemLists);
-        db.addDietItem(date, time, lists);
+        db.addAllDietItem(date, time, lists);
         // update total kcal.
         updateTotalKcal(lists, 0);
         cardAdapter.notifyDataSetChanged();
     }
 
-    public ArrayList<CardDietModel> loadItem(String date) {
-        Log.d("Load Item",date);
-        ArrayList<CardDietModel> cardDietModels = new ArrayList<>();
-        ArrayList<DietBuffer> dietBuffers = (ArrayList<DietBuffer>) db.getAtDate(date);
-        if(dietBuffers.size() == 0) return new ArrayList<>();
-
-        ArrayList<String> timeBuffer = new ArrayList<>();
-        for (int i = 0; i < dietBuffers.size(); i++) {
-            if (!timeBuffer.contains(dietBuffers.get(i).getTime())) {
-                timeBuffer.add(dietBuffers.get(i).getTime());
+    private ArrayList<CardDietModel> loadData(String date) {
+        ArrayList<CardDietModel> models = new ArrayList<>();
+        ArrayList<String> timeBuffers = new ArrayList<>();
+        ArrayList<DietBuffer> buffers = (ArrayList<DietBuffer>) db.getAllDietItem(date);
+        // filter time
+        for (DietBuffer dBuffer : buffers) {
+            Log.e("LIST",dBuffer.getTime() + "-->" + dBuffer.getID());
+            if (!timeBuffers.contains(dBuffer.getTime())) {
+                timeBuffers.add(dBuffer.getTime());
             }
         }
-        for (int i = 0; i < timeBuffer.size(); i++) {
-            CardDietModel cardDietModel = new CardDietModel(timeBuffer.get(i));
-            for (int j = 0; j < dietBuffers.size(); j++) {
-                if (dietBuffers.get(j).equals(timeBuffer.get(i))) {
-                    cardDietModel.updateList(db.findFoodByID(dietBuffers.get(j).getID()));
+
+        for (String myTime : timeBuffers) {
+            CardDietModel model = new CardDietModel(myTime);
+            ArrayList<FoodItem> foodItems = new ArrayList<>();
+            for (DietBuffer dBuffer : buffers) {
+                if (dBuffer.getTime().equals(myTime)) {
+                    foodItems.add(db.findFoodByID(dBuffer.getID()));
                 }
+                model.setFoodItemsLists(foodItems);
             }
-            cardDietModels.add(cardDietModel);
+            updateTotalKcal(foodItems, 0);
+            models.add(model);
         }
-        return cardDietModels;
+        Collections.sort(models);
+        return models;
     }
-
 }

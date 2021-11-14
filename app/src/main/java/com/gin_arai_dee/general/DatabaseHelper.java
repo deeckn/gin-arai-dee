@@ -11,6 +11,7 @@ import android.util.Log;
 import com.gin_arai_dee.diet_page.DietBuffer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -26,7 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_IMAGE_URL = "IMAGE_URL";
     public static final String COLUMN_FAV_STATUS = "FAV_STATUS";
 
-    public static final String FOOD_DIET_TABLE = "FOOD_DIET_TABLE";
+    public static final String DIET_ID = "DIET_ID";
+    public static final String DIET_TABLE = "DIET_ITEM_TABLE";
     public static final String COLUMN_DATE = "COLUMN_DATE";
     public static final String COLUMN_TIME = "COLUMN_TIME";
 
@@ -49,16 +51,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createFoodTableStatement);
 
         String createDietTable =
-                "CREATE TABLE " + FOOD_DIET_TABLE + " (" +
-                        COLUMN_DATE + " TEXT PRIMARY KEY, " +
+                "CREATE TABLE " + DIET_TABLE + " (" +
+                        DIET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        COLUMN_DATE + " TEXT, " +
                         COLUMN_TIME + " TEXT, " +
-                        COLUMN_ID + " INTEGER)";
+                        COLUMN_ID + " INTEGER) ";
 
         sqLiteDatabase.execSQL(createDietTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FOOD_ITEMS_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DIET_TABLE);
+        onCreate(sqLiteDatabase);
     }
 
     public void addFoodItem(FoodItem food) {
@@ -154,71 +160,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public FoodItem findFoodByID(int iD) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + FOOD_ITEMS_TABLE + " WHERE " + COLUMN_ID + "=" + iD;
-        FoodItem foodItem = null;
-        try {
-            Cursor cursor = db.rawQuery(query, null);
-
-            if (cursor.moveToFirst()) {
-                int id = cursor.getInt(0);
-                String name = cursor.getString(1);
-                String description = cursor.getString(2);
-                String dish_type = cursor.getString(3);
-                String nationality = cursor.getString(4);
-                int kcal = cursor.getInt(5);
-                String image = cursor.getString(6);
-                int isFavorite = cursor.getInt(7);
-                foodItem = new FoodItem(id, name, description, dish_type, nationality, kcal, image, isFavorite);
+        ArrayList<FoodItem> foodItemList = (ArrayList<FoodItem>) getAllFoodItems();
+        for (FoodItem item : foodItemList) {
+            if (item.getId() == iD) {
+                return item;
             }
-            cursor.close();
-            db.close();
-        } catch (Exception ex) {
-            System.out.println("Database Error");
         }
-        return foodItem;
+        return null;
     }
 
-    public List<DietBuffer> getAtDate(String selectedDate) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<DietBuffer> bufferList = new ArrayList<>();
-        String query = "SELECT * FROM " + FOOD_DIET_TABLE + " WHERE " + COLUMN_DATE + " = " + selectedDate;
-        try {
-            Cursor cursor = db.rawQuery(query, null);
-
-            if (cursor.moveToFirst()) {
-                String time = cursor.getString(0);
-                String date = cursor.getString(1);
-                int iD = cursor.getInt(2);
-                DietBuffer buffer = new DietBuffer(time, iD);
-                bufferList.add(buffer);
-            }
-            cursor.close();
-            db.close();
-        } catch (Exception ex) {
-            Log.e("DataBase", ex.getMessage());
-        }
-        return bufferList;
-    }
-
-    public void addDietItem(String date, String time, List<FoodItem> list) {
-        if (list == null) return;
+    public void insertDietItem(String date, String time, FoodItem foodItem) {
         SQLiteDatabase db = this.getWritableDatabase();
-        for (FoodItem item : list) {
-            ContentValues cv = new ContentValues();
-            cv.put(COLUMN_DATE, date);
-            cv.put(COLUMN_TIME, time);
-            cv.put(COLUMN_ID, item.getId());
-            db.insert(FOOD_DIET_TABLE, null, cv);
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_DATE, date);
+        cv.put(COLUMN_TIME, time);
+        cv.put(COLUMN_ID, foodItem.getId());
+        long res = db.insert(DIET_TABLE, null, cv);
+        db.close();
+    }
+
+    public void addAllDietItem(String date, String time, List<FoodItem> foodItems) {
+        for (FoodItem item : foodItems) {
+            insertDietItem(date, time, item);
         }
     }
 
     @SuppressLint("Recycle")
+    public List<DietBuffer> getAllDietItem(String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<DietBuffer> dietBuffers = new ArrayList<>();
+        String query = "SELECT * FROM " + DIET_TABLE + " WHERE " + COLUMN_DATE + " =" + '"' + date + '"';
+        try {
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                do {
+
+                    String myTime = cursor.getString(2);
+                    int myID = cursor.getInt(3);
+                    DietBuffer buffer = new DietBuffer(myTime, myID);
+                    dietBuffers.add(buffer);
+                    Log.d("GETALL",myTime);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        } catch (Exception ex) {
+            Log.e("LOAD ITEM", "ERROR");
+        }
+        db.close();
+        return dietBuffers;
+    }
+
+
+    @SuppressLint("Recycle")
     public void deleteDietItem(String date, String time) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + FOOD_DIET_TABLE + " WHERE " + COLUMN_DATE + " = " + date + " AND " + COLUMN_TIME + " = " + time;
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.close();
+        String query = "DELETE FROM " + DIET_TABLE + " WHERE " + COLUMN_DATE + " = " + '"' + date + '"'  + " AND " + COLUMN_TIME + " = " + '"'  + time + '"' ;
+        Log.d("DELETE",date + " -- > " + time);
+        db.execSQL(query);
         db.close();
 
     }
