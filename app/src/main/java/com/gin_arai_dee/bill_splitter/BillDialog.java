@@ -188,23 +188,25 @@ public class BillDialog extends DialogFragment {
         // Update data to person and food item
         done = view.findViewById(R.id.done_button);
         done.setOnClickListener(view118 -> {
-            if (!equal.isPressed()) result = Integer.parseInt(input);
-            for (int i = 0; i < checked.size(); i++) {
-                if (checked.get(i).isChecked()) numPerson++;
-            }
-            if (numPerson > 0 && result > 0) {
-                perPerson = result/numPerson;
+            if (!input.equals("")) {
+                if (!equal.isPressed()) result = Integer.parseInt(input);
                 for (int i = 0; i < checked.size(); i++) {
-                    if (checked.get(i).isChecked()) {
-                        for (Person p: people) {
-                            if (checked.get(i).getText() == p.getName()) p.updatePayment(perPerson);
+                    if (checked.get(i).isChecked()) numPerson++;
+                }
+                if (numPerson > 0 && result > 0) {
+                    perPerson = result/numPerson;
+                    for (int i = 0; i < checked.size(); i++) {
+                        if (checked.get(i).isChecked()) {
+                            for (Person p: people) {
+                                if (checked.get(i).getText() == p.getName()) p.updatePayment(perPerson);
+                            }
                         }
                     }
+                    food = new ListItem(name, result, perPerson);
+                    onDoneListener.sendFood(food);
+                    onDoneListener.sendResult(result);
+                    dismiss();
                 }
-                food = new ListItem(name, result, perPerson);
-                onDoneListener.sendFood(food);
-                onDoneListener.sendResult(result);
-                dismiss();
             }
         });
     }
