@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DialogFoodAdapter extends ArrayAdapter<FoodItem> {
 
-    private Context context;
+    private final Context context;
     int resource;
 
     public DialogFoodAdapter(Context context, int resource, List<FoodItem> objects){
@@ -43,10 +43,7 @@ public class DialogFoodAdapter extends ArrayAdapter<FoodItem> {
 
         food_name.setText(name);
         food_kcal.setText(kCal + " kcal");
-        if(selected){
-            food_name.setTextColor(R.color.maximum_yellow_red);
-        }
-
+        if (selected) food_name.setTextColor(R.color.maximum_yellow_red);
         return convertView;
     }
 

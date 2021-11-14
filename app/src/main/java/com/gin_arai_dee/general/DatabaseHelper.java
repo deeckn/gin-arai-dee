@@ -11,26 +11,27 @@ import android.util.Log;
 import com.gin_arai_dee.diet_page.DietBuffer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String DB_NAME = "gin_arai_dee.sqlite";
-    public static final String FOOD_ITEMS_TABLE = "FOOD_ITEMS_TABLE";
-    public static final String COLUMN_ID = "ID";
-    public static final String COLUMN_FOOD_ITEM = "FOOD_ITEM";
-    public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
-    public static final String COLUMN_DISH_TYPE = "DISH_TYPE";
-    public static final String COLUMN_NATIONALITY = "NATIONALITY";
-    public static final String COLUMN_KCAL = "KCAL";
-    public static final String COLUMN_IMAGE_URL = "IMAGE_URL";
-    public static final String COLUMN_FAV_STATUS = "FAV_STATUS";
+    // FOOD_ITEMS_TABLE Constants
+    public static final String DB_NAME              = "gin_arai_dee.sqlite";
+    public static final String FOOD_ITEMS_TABLE     = "FOOD_ITEMS_TABLE";
+    public static final String COLUMN_ID            = "ID";
+    public static final String COLUMN_FOOD_ITEM     = "FOOD_ITEM";
+    public static final String COLUMN_DESCRIPTION   = "DESCRIPTION";
+    public static final String COLUMN_DISH_TYPE     = "DISH_TYPE";
+    public static final String COLUMN_NATIONALITY   = "NATIONALITY";
+    public static final String COLUMN_KCAL          = "KCAL";
+    public static final String COLUMN_IMAGE_URL     = "IMAGE_URL";
+    public static final String COLUMN_FAV_STATUS    = "FAV_STATUS";
 
-    public static final String DIET_ID = "DIET_ID";
-    public static final String DIET_TABLE = "DIET_ITEM_TABLE";
-    public static final String COLUMN_DATE = "COLUMN_DATE";
-    public static final String COLUMN_TIME = "COLUMN_TIME";
+    // DIET_ITEM_TABLE Constants
+    public static final String DIET_TABLE           = "DIET_ITEM_TABLE";
+    public static final String DIET_ID              = "DIET_ID";
+    public static final String COLUMN_DATE          = "COLUMN_DATE";
+    public static final String COLUMN_TIME          = "COLUMN_TIME";
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
@@ -40,22 +41,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createFoodTableStatement =
                 "CREATE TABLE " + FOOD_ITEMS_TABLE + " (" +
-                        COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_FOOD_ITEM + " TEXT, " +
-                        COLUMN_DESCRIPTION + " TEXT, " +
-                        COLUMN_DISH_TYPE + " TEXT, " +
-                        COLUMN_NATIONALITY + " TEXT, " +
-                        COLUMN_KCAL + " INTEGER, " +
-                        COLUMN_IMAGE_URL + " TEXT, " +
-                        COLUMN_FAV_STATUS + " INTEGER)";
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_FOOD_ITEM + " TEXT, " +
+                COLUMN_DESCRIPTION + " TEXT, " +
+                COLUMN_DISH_TYPE + " TEXT, " +
+                COLUMN_NATIONALITY + " TEXT, " +
+                COLUMN_KCAL + " INTEGER, " +
+                COLUMN_IMAGE_URL + " TEXT, " +
+                COLUMN_FAV_STATUS + " INTEGER)";
         sqLiteDatabase.execSQL(createFoodTableStatement);
 
         String createDietTable =
                 "CREATE TABLE " + DIET_TABLE + " (" +
-                        DIET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        COLUMN_DATE + " TEXT, " +
-                        COLUMN_TIME + " TEXT, " +
-                        COLUMN_ID + " INTEGER) ";
+                 DIET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                 COLUMN_DATE + " TEXT, " +
+                 COLUMN_TIME + " TEXT, " +
+                 COLUMN_ID + " INTEGER) ";
 
         sqLiteDatabase.execSQL(createDietTable);
     }
@@ -67,6 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    // Adding a FoodItem into the FOOD_ITEMS_TABLE
     public void addFoodItem(FoodItem food) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -81,6 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    // Gets a list of all the FoodItems in the database
     public List<FoodItem> getAllFoodItems() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<FoodItem> allFoodItems = new ArrayList<>();
@@ -98,11 +101,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     int kcal = cursor.getInt(5);
                     String image = cursor.getString(6);
                     int isFavorite = cursor.getInt(7);
-                    FoodItem foodItem =
-                            new FoodItem(id, name,
-                                    description, dish_type,
-                                    nationality, kcal,
-                                    image, isFavorite);
+                    FoodItem foodItem = new FoodItem(id, name,
+                                        description, dish_type,
+                                        nationality, kcal,
+                                        image, isFavorite);
                     allFoodItems.add(foodItem);
                 } while (cursor.moveToNext());
             }
@@ -114,6 +116,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allFoodItems;
     }
 
+    // Gets all the favorite FoodItems from the database
     public List<FoodItem> getAllFavorites() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<FoodItem> favorites = new ArrayList<>();
@@ -131,11 +134,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     int kcal = cursor.getInt(5);
                     String image = cursor.getString(6);
                     int isFavorite = cursor.getInt(7);
-                    FoodItem foodItem =
-                            new FoodItem(id, name,
-                                    description, dish_type,
-                                    nationality, kcal,
-                                    image, isFavorite);
+                    FoodItem foodItem = new FoodItem(id, name,
+                                        description, dish_type,
+                                        nationality, kcal,
+                                        image, isFavorite);
                     favorites.add(foodItem);
                 } while (cursor.moveToNext());
             }
@@ -147,6 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return favorites;
     }
 
+    // Updates the FoodItem favorite status
     public void updateFavoriteStatus(int id, int status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -154,21 +157,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(FOOD_ITEMS_TABLE, cv, COLUMN_ID + "=?", new String[]{String.valueOf(id)});
     }
 
+    // Clears the database
     public void clearDatabase() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(FOOD_ITEMS_TABLE, null, null);
     }
 
+    // Returns a FoodItem from ID
     public FoodItem findFoodByID(int iD) {
         ArrayList<FoodItem> foodItemList = (ArrayList<FoodItem>) getAllFoodItems();
         for (FoodItem item : foodItemList) {
-            if (item.getId() == iD) {
-                return item;
-            }
+            if (item.getId() == iD) return item;
         }
         return null;
     }
 
+    // Adds a FoodItem to the DIET_TABLE
     public void insertDietItem(String date, String time, FoodItem foodItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -179,12 +183,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    // Adds a list of FoodItems to with a specified date and time
     public void addAllDietItem(String date, String time, List<FoodItem> foodItems) {
-        for (FoodItem item : foodItems) {
-            insertDietItem(date, time, item);
-        }
+        for (FoodItem item : foodItems) insertDietItem(date, time, item);
     }
 
+    // Gets a list of all DietBuffer items from a date
     @SuppressLint("Recycle")
     public List<DietBuffer> getAllDietItem(String date) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -194,7 +198,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Cursor cursor = db.rawQuery(query, null);
             if (cursor.moveToFirst()) {
                 do {
-
                     String myTime = cursor.getString(2);
                     int myID = cursor.getInt(3);
                     DietBuffer buffer = new DietBuffer(myTime, myID);
@@ -209,12 +212,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return dietBuffers;
     }
 
+    // Deletes FoodItems at a specified date and time
     @SuppressLint("Recycle")
     public void deleteDietItem(String date, String time) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + DIET_TABLE + " WHERE " + COLUMN_DATE + " = " + '"' + date + '"'  + " AND " + COLUMN_TIME + " = " + '"'  + time + '"' ;
+        String query = "DELETE FROM " + DIET_TABLE + " WHERE "
+                        + COLUMN_DATE + " = " + '"' + date + '"' +
+                        " AND " + COLUMN_TIME + " = " + '"'  + time + '"';
         db.execSQL(query);
         db.close();
     }
-
 }

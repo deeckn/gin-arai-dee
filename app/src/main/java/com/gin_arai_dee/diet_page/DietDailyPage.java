@@ -3,7 +3,6 @@ package com.gin_arai_dee.diet_page;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -99,7 +98,8 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         foodItemLists.add(dietModel);
         Collections.sort(foodItemLists);
         db.addAllDietItem(date, time, lists);
-        // update total kcal.
+
+        // Update total kcal
         updateTotalKcal(lists, 0);
         cardAdapter.notifyDataSetChanged();
     }
@@ -108,7 +108,8 @@ public class DietDailyPage extends AppCompatActivity implements DietDialog.OnInp
         ArrayList<CardDietModel> models = new ArrayList<>();
         ArrayList<String> timeBuffers = new ArrayList<>();
         ArrayList<DietBuffer> buffers = (ArrayList<DietBuffer>) db.getAllDietItem(date);
-        // filter time
+
+        // Filter time
         for (DietBuffer dBuffer : buffers) {
             if (!timeBuffers.contains(dBuffer.getTime())) {
                 timeBuffers.add(dBuffer.getTime());

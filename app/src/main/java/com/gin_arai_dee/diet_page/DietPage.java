@@ -26,41 +26,21 @@ public class DietPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_page_main);
 
-        button_monday = findViewById(R.id.monday_edit);
-        button_tuesday = findViewById(R.id.tuesday_edit);
-        button_wednesday = findViewById(R.id.wednesday_edit);
-        button_thursday = findViewById(R.id.thusday_edit);
-        button_friday = findViewById(R.id.friday_edit);
-        button_saturday = findViewById(R.id.saturday_edit);
-        button_sunday = findViewById(R.id.sunday_edit);
+        button_monday       = findViewById(R.id.monday_edit);
+        button_tuesday      = findViewById(R.id.tuesday_edit);
+        button_wednesday    = findViewById(R.id.wednesday_edit);
+        button_thursday     = findViewById(R.id.thusday_edit);
+        button_friday       = findViewById(R.id.friday_edit);
+        button_saturday     = findViewById(R.id.saturday_edit);
+        button_sunday       = findViewById(R.id.sunday_edit);
 
-        button_monday.setOnClickListener(e -> {
-            openDailyDetail("Monday");
-        });
-
-        button_tuesday.setOnClickListener(e -> {
-            openDailyDetail("Tuesday");
-        });
-
-        button_wednesday.setOnClickListener(e -> {
-            openDailyDetail("Wednesday");
-        });
-
-        button_thursday.setOnClickListener(e -> {
-            openDailyDetail("Thursday");
-        });
-
-        button_friday.setOnClickListener(e -> {
-            openDailyDetail("Friday");
-        });
-
-        button_saturday.setOnClickListener(e -> {
-            openDailyDetail("Saturday");
-        });
-
-        button_sunday.setOnClickListener(e -> {
-            openDailyDetail("Sunday");
-        });
+        button_monday.setOnClickListener(e -> openDailyDetail("Monday"));
+        button_tuesday.setOnClickListener(e -> openDailyDetail("Tuesday"));
+        button_wednesday.setOnClickListener(e ->openDailyDetail("Wednesday"));
+        button_thursday.setOnClickListener(e -> openDailyDetail("Thursday"));
+        button_friday.setOnClickListener(e -> openDailyDetail("Friday"));
+        button_saturday.setOnClickListener(e -> openDailyDetail("Saturday"));
+        button_sunday.setOnClickListener(e -> openDailyDetail("Sunday"));
     }
 
     private void openDailyDetail(String day) {
@@ -68,6 +48,4 @@ public class DietPage extends AppCompatActivity {
         intent.putExtra(EXTRA_TEXT, day);
         startActivity(intent);
     }
-
-
 }

@@ -34,7 +34,6 @@ public class DietDialog extends DialogFragment {
 
     public interface OnInputListener {
         void sentInput(String time, ArrayList<FoodItem> lists);
-
     }
 
     private Button timeButton;
@@ -78,13 +77,10 @@ public class DietDialog extends DialogFragment {
         // search input and filter text
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
             @Override
             public void afterTextChanged(Editable editable) {
@@ -92,17 +88,17 @@ public class DietDialog extends DialogFragment {
             }
         });
 
-        // save data and send input to parent activity
+        // Save data and send input to parent activity
         saveButton.setOnClickListener(e -> {
             if (time_selected != null && selectedItems.size() != 0) {
                 inputListener.sentInput(time_selected, selectedItems);
-            } else{
+            } else {
                 Toast.makeText(getContext(),"Please Selected Item and Time",Toast.LENGTH_SHORT).show();
             }
             Objects.requireNonNull(getDialog()).dismiss();
         });
 
-        // time selected and format string
+        // Time selected and format string
         timeButton.setOnClickListener(e -> {
             TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), (timePicker, hh, mm) -> {
                 hour = hh;
