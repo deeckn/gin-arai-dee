@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDietHolder> {
-
     Context context;
     ArrayList<CardDietModel> models;
 
@@ -38,7 +37,7 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDi
 
     @Override
     public void onBindViewHolder(@NonNull CardDietHolder holder, int position) {
-        // set time
+        // Set time
         @SuppressLint("SimpleDateFormat") SimpleDateFormat f24Hour = new SimpleDateFormat("HH:mm");
         try {
             Date date = f24Hour.parse(models.get(position).getTime());
@@ -47,11 +46,11 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDi
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         ArrayList<FoodItem> foodItems = models.get(position).getFoodItemsLists();
         DetailAdapter detailAdapter = new DetailAdapter(foodItems);
         holder.cardRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         holder.cardRecyclerView.setAdapter(detailAdapter);
-
     }
 
     @Override
@@ -60,7 +59,6 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDi
     }
 
     public static class CardDietHolder extends RecyclerView.ViewHolder {
-
         TextView dietTime;
         RecyclerView cardRecyclerView;
 
@@ -68,7 +66,6 @@ public class CardDietAdapter extends RecyclerView.Adapter<CardDietAdapter.CardDi
             super(itemView);
             dietTime = itemView.findViewById(R.id.card_time);
             cardRecyclerView = itemView.findViewById(R.id.card_itemList);
-
         }
     }
 }
