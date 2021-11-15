@@ -19,7 +19,7 @@ The dietary planner section allows the user to plan the things they want to eat 
 Splitting up the bill when dining out with friends, colleagues, and acquaintances can be a pain. Some people on the table just had water, so splitting the bill with them would be unfair. The bill splitter section allow the users to split the bill fairly and easily.
 
 ## Technology
-The application is developed using the Android Java SDK and Android Studio.
+The application is developed using the Android Java SDK, Android Studio, and SQLite Database.
 
 ## Group
 63011119 Chakrin Deesit\
