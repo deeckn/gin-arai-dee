@@ -9,17 +9,23 @@
         android:id="@+id/diet_linear_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="15dp"
-        android:text="@string/dietary_planner"
-        android:textAlignment="center"
-        android:textColor="@color/wine"
-        android:textSize="36sp" />
+        android:paddingHorizontal="20dp"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/dietary_planner"
+            android:textAlignment="center"
+            android:textColor="@color/wine"
+            android:textSize="36sp" />
 
     <GridLayout
         android:layout_width="match_parent"
@@ -34,10 +40,11 @@
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="0"
-            android:text="SelectedDay"
+            android:text="@string/selected_day"
             android:textColor="@color/wine"
             android:textSize="20sp"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded"
+            android:fontFamily="@font/rubik_bold"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,7 +53,8 @@
             android:layout_column="0"
             android:text="@string/total_calories"
             android:textColor="@color/wine"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/rubik"/>
 
         <TextView
             android:id="@+id/total_kcal"
@@ -55,10 +63,11 @@
             android:layout_row="1"
             android:layout_column="1"
             android:layout_gravity="right"
-            android:text="0"
+            android:text="@string/zero"
             android:textColor="@color/wine"
             android:textSize="20sp"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded"
+            android:fontFamily="@font/rubik"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -67,7 +76,7 @@
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_marginTop="15dp"
-            android:background="@drawable/dietary_line"
+            android:background="@color/charcoal"
             tools:ignore="RtlHardcoded" />
     </GridLayout>
 
@@ -79,7 +88,9 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/diet_add_item_button"
-            android:text="Add item(s)" />
+            android:text="@string/add_items"
+            android:fontFamily="@font/rubik_bold"
+            android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/item_list"
@@ -89,7 +100,4 @@
             android:layout_margin="15dp" />
 
     </LinearLayout>
-
-
-
 </RelativeLayout>

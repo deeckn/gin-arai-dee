@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="20dp"
     app:cardUseCompatPadding="true">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +30,5 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>
