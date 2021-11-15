@@ -7,7 +7,6 @@ public class CardDietModel implements Comparable<CardDietModel>{
     private final String time;
     private ArrayList<FoodItem> foodItemsLists;
 
-
     public CardDietModel(String time){
         this.time = time;
         this.foodItemsLists = new ArrayList<>();

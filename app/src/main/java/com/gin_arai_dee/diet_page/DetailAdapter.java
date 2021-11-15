@@ -42,7 +42,6 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailHold
     }
 
     public static class DetailHolder extends RecyclerView.ViewHolder{
-
         TextView food_name;
         TextView food_kcal;
 
