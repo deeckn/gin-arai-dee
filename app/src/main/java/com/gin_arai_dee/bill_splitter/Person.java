@@ -12,9 +12,7 @@ public class Person {
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-
     public int getPayment() { return payment; }
     public void setPayment(int payment) { this.payment = payment; }
-
     public void updatePayment(int perPerson) { this.payment += perPerson; }
 }
